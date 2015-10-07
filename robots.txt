@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /imgs/
-Disallow: /theme/
-Sitemap: http://blog.game18.net/sitemap.xml
