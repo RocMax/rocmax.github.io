@@ -1,0 +1,243 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Roc's Blog</title>
+		<meta name="description" content="">
+		<meta name="author" content="Roc">
+
+		<link rel="stylesheet" href="http://blog.game18.net/theme/css/foundation.css" />
+		<link rel="stylesheet" href="http://blog.game18.net/theme/css/pygment/monokai.css" />
+		<link rel="stylesheet" href="http://blog.game18.net/theme/css/custom.css" />
+
+
+		<script src="http://blog.game18.net/theme/js/modernizr.js"></script>
+
+		<!-- Feeds -->
+
+
+		<!-- mathjax config similar to math.stackexchange -->
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			jax: ["input/TeX", "output/HTML-CSS"],
+			tex2jax: {
+				inlineMath: [ ['$', '$'] ],
+				displayMath: [ ['$$', '$$']],
+				processEscapes: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+			},
+			messageStyle: "none",
+			"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+		});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+	<body>
+		<div class="off-canvas-wrap">
+			<div class="inner-wrap">
+				<!-- mobile top bar to activate nav -->
+				<nav class="tab-bar show-for-small">
+					<section class="left-small">
+						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+					</section>
+
+					<section class="middle tab-bar-section">
+						<h1 class="title">Roc's&nbsp;Blog</h1>
+					</section>
+				</nav>
+
+				<!-- mobile side bar nav -->
+				<aside class="left-off-canvas-menu">
+					<ul class="off-canvas-list">
+						<li><a href="http://blog.game18.net">Home</a></li>
+						<li><label>Categories</label></li>
+							<li ><a href="http://blog.game18.net/cocos2d-x/index.html">Cocos2d-x</a></li>
+							<li class="active"><a href="http://blog.game18.net/sui-bi/index.html">随笔</a></li>
+
+						<li><label>Links</label></li>
+							<li><a href="http://getpelican.com/">Pelican</a></li>
+							<li><a href="http://python.org/">Python.org</a></li>
+							<li><a href="http://cocos.com/">Cocos2d-x</a></li>
+
+
+
+						<li><label>Social</label></li>
+							<li><a href="https://github.com/RocMax">GitHub</a></li>
+					</ul>	
+				</aside>
+
+				<!-- top bar nav -->
+				<nav class="top-bar hide-for-small-only" data-topbar>
+					<ul class="title-area">
+						<li class="name">
+							<h1><a href="http://blog.game18.net/">Roc's Blog</a></h1>
+						</li>
+					</ul>
+
+					<section class="top-bar-section">
+						<ul class="left">
+								<li ><a href="http://blog.game18.net/cocos2d-x/index.html">Cocos2d-x</a></li>
+								<li class="active"><a href="http://blog.game18.net/sui-bi/index.html">随笔</a></li>
+						</ul>
+                        <ul class="right">                                                                                                                                           
+                                                                                                                                             
+                        </ul>  
+					</section>
+				</nav>
+
+				<!-- Main Page Content and Sidebar -->
+				<section class="main-section">
+					<div class="row">
+						<!-- Main Content -->
+						<div class="medium-9 small-12 columns" role="content">
+<article>
+	<h2>123</h2>
+	<blockquote>
+<p>突然发现已经很久没有管博客了,反省一下,还是要坚持多写一点东西.</p>
+</blockquote>
+<p>其实开这个博客的初衷是因为某一天突然看到在印象笔记里cocos2d-x的学习笔记已经有100多条了,写这些笔记是想在解决问题以后记录下来备查.我这个人有个毛病,搞定问题以后很快就会忘记是怎么做的,但我会记得我曾经解决过这样的问题,于是去翻一下笔记就能想起来.由于在解决问题的过程中我参考了很多人的博客文章,我也希望把自己的成果分享给别人,印象笔记好像有共享的功能,旦不容易被搜索引擎找到.另外,有一个技术博客难道不是一件很酷的事情吗?</p>
+<p>那么回到最近为啥没写博客这件事情上来,最近我在研究cocos2d中实现<strong>流体模拟</strong>,原本想着整体研究完成以后再搬到博客上来,旦这个问题其实深入进去涉及的东西比较复杂,先是物理引擎然后是渲染.于是我看了半个月的资料,有一些进展,但是离最终目标还差得远.那半篇博客放在草稿箱里很久没啥完成的迹象.现在想想看不如边学边写,错了以后再回来改好了.另外,我打算在印象笔记里筛一筛,把比较好的内容也搬过来.</p>
+<p>最近我还干了一件事:<strong>学习markdown</strong>.自第一篇博客以来我就发现生写加手工排版实在是丑,markdown这种简洁美观的风格我觉得就很好.<a href="http://wowubuntu.com/markdown/index.html#em">markdown语法</a>很简单,就是在需要应用格式的地方加一些简单标记.手册几分钟就能看完,如果坚持用的话应该很快就能形成肌肉记忆.</p>
+<p>用markdown写的文字最终还是需要转换成html才能展示出来,否则只是在文本里添加了一些无意义的符号.这就需要支持markdown的编辑器,说到这个东西其实很纠结.我尝试了所有能找到的编辑器,我发现:<em>没・有・一・个・好・用・的  !</em></p>
+<p>我的需求是希望能支持推给印象笔记和Blogger,印象笔记本身是不支持markdown的,有一款很好的编辑器叫<a href="https://maxiang.info/">马克飞象</a>功能比较强大,有在线编辑器,chrome插件和app版本,跟印象笔记结合的不错.问题是收费79/年,有点贵.另外一个差不多的东西<a href="http://markdown.xiaoshujiang.com/">小书匠</a>界面比较差,运行比较慢.</p>
+<p>我也尝试了各种客户端,比较好的一个是<a href="http://zh.mweb.im/">MWebLite</a>首先它免费(当然可以付费升级成专业版,$9.9/¥68一次性买断),更棒的是免费版就支持推给印象笔记,Fantastic!推送blogger需要付费版(暂且可以复制粘贴嘛,用的不错的话考虑升级),还可以在本地存储一份(狡兔三窟).然后它有很多快捷键可以代替markdown的各种符号,不过我建议还是习惯手写符号比较好,快捷键是毕竟是app提供的,不能指望所有写markdown的地方都支持.</p>
+<p>另外一个想推荐的是chrome插件<a href="http://markdown-here.com/">Markdown Here</a>可以把浏览器里正在编辑的文字转成markdown样式.写博客和邮件的时候很方便,旦偶尔会丢格式丢符号,不是很保险,我建议还是在本地写完后拷贝粘贴.</p>
+<p>最后我还想重点说一下<strong>LaTeX</strong>,正好在试用markdown写第一篇文章的时候就遇到了公式输入,顺势就尝试了一下LaTeX.于是下面这一大串代码:
+<code>$G(x,y)=\frac{1}{2\pi\sigma^2}e^{-\frac{x^2+y^2}{2\sigma^2}}=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{x^2}{2\sigma^2}}\times\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{y^2}{2\sigma^2}}=G(x)G(y)$</code>
+duang的一下,就变成:
+<span class="math">\(G(x,y)=\frac{1}{2\pi\sigma^2}e^{-\frac{x^2+y^2}{2\sigma^2}}=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{x^2}{2\sigma^2}}\times\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{y^2}{2\sigma^2}}=G(x)G(y)\)</span>
+太漂亮了有没有?<a href="http://wiki.gwrite.googlecode.com/hg/misc/LaTex-EquRef.html?r=1de19067fce5484bb5c39cbd049f6a47f7d8a2e9">LaTeX语法</a>要复杂一些,嘛,也不用记,用的时候现查就好.</p>
+<p>说到这又得说说印象笔记,它不支持markdown还好,其他地方写完转成html拷过去就行了,LaTeX它是彻彻底底不支持,直接推送的会保留一堆代码,拷贝html过去公式结构会乱.马克飞象的处理方法是转成图片,MWebLite推过去还是代码.这是MWebLite唯一美中不足的地方.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+	<hr/>
+	<h6>Written by <a href="http://blog.game18.net/author/roc.html">Roc</a> in <a href="http://blog.game18.net/sui-bi/index.html">随笔</a> on 2015-10-06(二). Tags: <a href="http://blog.game18.net/tag/markdown.html">MarkDown</a>, <a href="http://blog.game18.net/tag/cpp.html">CPP</a>, </h6>
+</article>
+
+<hr/>
+<div class="row">
+	<div class="small-12 columns">
+		<h3>Comments</h3>
+		<div id="disqus_thread"></div>
+		<script type="text/javascript">
+			var disqus_shortname = 'rocmaxscats';
+			(function() {
+				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			})();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	</div>
+</div>
+						</div>
+						<!-- End Main Content -->
+						<!-- Sidebar -->
+						<aside class="medium-3 hide-for-small-only columns">
+							<div class="panel">
+								<h5>Links</h5>
+								<ul class="side-nav">
+									<li><a href="http://getpelican.com/">Pelican</a></li>
+									<li><a href="http://python.org/">Python.org</a></li>
+									<li><a href="http://cocos.com/">Cocos2d-x</a></li>
+								</ul>
+							</div>
+
+							<div class="panel">
+								<h5>Tags</h5>
+								<ul class="tag-cloud">
+									<li><a href="/tag/cpp.html" class="tag-1">CPP</a></li>
+									<li><a href="/tag/cocos2d-x.html" class="tag-4">Cocos2d-x</a></li>
+									<li><a href="/tag/markdown.html" class="tag-2">MarkDown</a></li>
+								</ul>
+							</div>
+
+
+							<div class="panel">
+								<h5>Social</h5>
+								<ul class="side-nav">
+									<li><a href="https://github.com/RocMax">GitHub</a></li>
+								</ul>
+							</div>
+						</aside>
+						<!-- End Sidebar -->
+					</div>
+
+					<!-- Footer -->
+					<footer class="row">
+						<div class="medium-9 small-12">
+							<hr/>
+							<p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Zurb Foundation</a>. Theme by <a href="http://hamaluik.com">Kenton Hamaluik</a>.</p>
+						</div>
+					</footer>
+					<!-- End Footer -->
+				</section>
+				<a class="exit-off-canvas"></a>
+			</div><!--off-canvas inner-->
+		</div><!--off-canvas wrap-->
+
+		<script src="http://blog.game18.net/theme/js/jquery.js"></script>
+		<script src="http://blog.game18.net/theme/js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
+	</body>
+</html>
