@@ -15,12 +15,13 @@
 
         <meta name="author" content="Roc" />
         <meta name="keywords" content="心情,Pelican,Python" />
+        <meta name="description" content="博客挂掉,尝试更换新主题." />
 
         <meta property="og:site_name" content="Roc's Blog" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="更换博客主题"/>
         <meta property="og:url" content="http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/"/>
-        <meta property="og:description" content=""/>
+        <meta property="og:description" content="博客挂掉,尝试更换新主题."/>
         <meta property="article:published_time" content="2015-10-10" />
             <meta property="article:section" content="Python" />
             <meta property="article:tag" content="心情" />
@@ -132,14 +133,10 @@ Roc's Blog            </a>
 
 <p>分明之前还好好的.分析了一下traceback,发现问题出在<code>extract_toc</code>插件.在elegant主题作者的<a href="http://oncrashreboot.com/elegant-best-pelican-theme-features">博客</a>上可以看到左边有一个<code>Contents</code>栏,可以在页面中定位文章的条目,从而方便地在内容之间跳转,很好的一个功能.作者的博客中说要使用这个功能的话需要引入<code>extract_toc</code>插件.</p>
 <blockquote>
-<p>顺便说一句需要看Pelican的log,使用
-</p>
+<p>顺便说一句需要看Pelican的log,使用</p>
+<p><code>pelican -D -s pelicanconf.py content -o output</code>
+而不是make html来运行Pelican</p>
 </blockquote>
-<div class="highlight"><pre>pelican -D -s pelicanconf.py content -o output
-</pre></div>
-
-
-<p>而不是make html来运行Pelican</p>
 <p>在插件列表中添加<code>extract_toc</code>后就出现上面的错误,即使把其他插件都删除只剩<code>extract_toc</code>还是会报错.看了一下<code>extract_toc</code>的<a href="https://github.com/getpelican/pelican-plugins/tree/master/extract_toc">代码</a>,发现这么一段:</p>
 <div class="highlight"><pre><span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">pandoc_reader</span> <span class="kn">import</span> <span class="n">PandocReader</span>
@@ -259,13 +256,13 @@ Roc's Blog            </a>
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="http://blog.game18.net/tag/markdown/">
-                            MarkDown
+                        <a href="http://blog.game18.net/tag/xin-qing/">
+                            心情
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="http://blog.game18.net/tag/xin-qing/">
-                            心情
+                        <a href="http://blog.game18.net/tag/markdown/">
+                            MarkDown
                         </a>
                     </li>
                 </ul>

@@ -6,14 +6,10 @@
 
 &lt;p&gt;分明之前还好好的.分析了一下traceback,发现问题出在&lt;code&gt;extract_toc&lt;/code&gt;插件.在elegant主题作者的&lt;a href="http://oncrashreboot.com/elegant-best-pelican-theme-features"&gt;博客&lt;/a&gt;上可以看到左边有一个&lt;code&gt;Contents&lt;/code&gt;栏,可以在页面中定位文章的条目,从而方便地在内容之间跳转,很好的一个功能.作者的博客中说要使用这个功能的话需要引入&lt;code&gt;extract_toc&lt;/code&gt;插件.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;顺便说一句需要看Pelican的log,使用
-&lt;/p&gt;
+&lt;p&gt;顺便说一句需要看Pelican的log,使用&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pelican -D -s pelicanconf.py content -o output&lt;/code&gt;
+而不是make html来运行Pelican&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;pelican -D -s pelicanconf.py content -o output
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;而不是make html来运行Pelican&lt;/p&gt;
 &lt;p&gt;在插件列表中添加&lt;code&gt;extract_toc&lt;/code&gt;后就出现上面的错误,即使把其他插件都删除只剩&lt;code&gt;extract_toc&lt;/code&gt;还是会报错.看了一下&lt;code&gt;extract_toc&lt;/code&gt;的&lt;a href="https://github.com/getpelican/pelican-plugins/tree/master/extract_toc"&gt;代码&lt;/a&gt;,发现这么一段:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pandoc_reader&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;PandocReader&lt;/span&gt;
