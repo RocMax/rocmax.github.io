@@ -5,23 +5,30 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.game18.net/</loc>
-<lastmod>2015-10-10T00:38:01-00:00</lastmod>
+<lastmod>2015-10-10T10:50:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/archives.html</loc>
-<lastmod>2015-10-10T00:38:01-00:00</lastmod>
+<lastmod>2015-10-10T10:50:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/categories.html</loc>
-<lastmod>2015-10-10T00:38:01-00:00</lastmod>
+<lastmod>2015-10-10T10:50:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</loc>
+<lastmod>2015-10-08T08:51:35+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
 </url>
 
 <url>
@@ -40,7 +47,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.game18.net/category/python</loc>
-<lastmod>2015-10-07T20:37:58+08:06</lastmod>
+<lastmod>2015-10-08T08:51:35+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -54,28 +61,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.game18.net/tag/python/</loc>
-<lastmod>2015-10-07T20:37:58+08:06</lastmod>
+<lastmod>2015-10-08T08:51:35+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/pelican/</loc>
-<lastmod>2015-10-07T20:37:58+08:06</lastmod>
+<lastmod>2015-10-08T08:51:35+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/github/</loc>
-<lastmod>2015-10-07T20:37:58+08:06</lastmod>
+<lastmod>2015-10-08T08:51:35+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/markdown/</loc>
-<lastmod>2015-10-07T20:37:58+08:06</lastmod>
+<lastmod>2015-10-08T08:51:35+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -89,7 +96,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.game18.net/author/roc.html</loc>
-<lastmod>2015-10-07T20:37:58+08:06</lastmod>
+<lastmod>2015-10-08T08:51:35+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

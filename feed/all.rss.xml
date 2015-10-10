@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Roc's Blog</title><link>http://blog.game18.net/</link><description></description><atom:link href="http://blog.game18.net/feed/all.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 08 Oct 2015 08:51:35 +0800</lastBuildDate><item><title>利用Pelican和GitHub Pages打造个性化博客(二)</title><link>http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</link><description>&lt;blockquote&gt;
+&lt;p&gt;在上一篇里我们已经完成了Pelican的安装,生成网站并部署到GitHub Pages上.下面我们就继续完善网站的设置.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;1. 更换主题&lt;/h2&gt;
+&lt;p&gt;目前我们的网站使用默认主题,不是很漂亮,功能也单一,我们首先更换主题.运行:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git clone --recursive https://github.com/getpelican/pelican-themes.git
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;会把所有主题下载到本地,注意使用--recursive参数,否则很多链接的主题只能获取到空文件.&lt;/p&gt;
+&lt;p&gt;下一步安装主题,有两种方法,在上面的git中提到可以在pelicanconf.py配置文件中指定主题存放路径,如下:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;THEME = &amp;quot;.../Blog/pelican-themes/theme-name&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;我使用了另一种方法,在pelican-themes文件夹下运行:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pelican-themes -i .../Blog/pelican-themes/theme-name
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这条命令可以把主题安装到&lt;code&gt;/Library/Python/2.7/site-packages/pelican/themes&lt;/code&gt;下,然后在配置文件中直接指定主题名即可:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;THEME = &amp;quot;theme-name&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;重新&lt;code&gt;make html&lt;/code&gt;,查看一下是不是已经应用了新的主题.&lt;/p&gt;
+&lt;p&gt;主题虽然改了,但很多功能还没法使用,我们还需要进行很多配置.&lt;/p&gt;
+&lt;h2&gt;2. 安装插件&lt;/h2&gt;
+&lt;p&gt;插件可以扩展Pelican的功能,很多主题也需要依赖插件运行.和主题的安装一样,首先将插件包下载到本地:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git clone --recursive https://github.com/getpelican/pelican-plugins
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后在配置文件中设置插件路径和名称列表:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;PLUGIN_PATHS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;pelican-plugins&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;PLUGINS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;assets&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;sitemap&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;gravatar&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;简单介绍几个正在用的插件:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;sitemap&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;生成sitemap.xml,帮助搜索引擎抓取网站内容.除了添加进插件列表意外,还需要添加一些设置:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;SITEMAP&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;format&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;xml&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;priorities&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;articles&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;indexes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;pages&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;changefreqs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;articles&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;monthly&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;indexes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;daily&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;pages&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;monthly&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;render_math&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;让Pelican支持数学公式,由&lt;a href="https://www.mathjax.org/"&gt;MathJax&lt;/a&gt;引擎提供支持,公式语法和LaTex相似,尝试一下:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$E = mc^2$$&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;tag_cloud&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;提供&lt;strong&gt;标签云&lt;/strong&gt;,除了显示Tags以外,会按文章数目区分显示不同的标签.这个功能原本是集成在Pelican中的,后来被拿出来作为插件,于是一些旧的主题如果不装这个插件的话标签列表无法显示,例如我尝试使用过的&lt;code&gt;foundation-default-colours&lt;/code&gt;,安装这个插件就可以解决问题.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;gzip_cache&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;将页面压缩为gz格式,提高加载速度.&lt;/p&gt;
+&lt;p&gt;另外,有些主题需要特定插件的支持,例如我现在用的&lt;code&gt;elegant&lt;/code&gt;需要安装&lt;code&gt;extract_toc&lt;/code&gt;, &lt;code&gt;tipue_search&lt;/code&gt;,总之查看主题和插件的Readme,自己决定安装哪些插件.&lt;/p&gt;
+&lt;h2&gt;3. 修改配置文件&lt;/h2&gt;
+&lt;p&gt;接下来我们要修改Pelican的配置文件&lt;code&gt;pelicanconf.py&lt;/code&gt;,这里包含非常多的条目,详细的介绍参见&lt;a href="http://docs.getpelican.com/en/stable/settings.html"&gt;这里&lt;/a&gt;,我简单介绍其中几项:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;日期格式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;DEFAULT_LANG = u&amp;#39;zh&amp;#39;
+DATE_FORMATS = {&amp;#39;zh&amp;#39; : &amp;#39;%Y-%m-%d(%a)&amp;#39;}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;默认的日期格式比较适合国外的习惯,上面两句可以把日期格式改为年-月-日(星期)这样比较适合国人习惯的格式.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span id="jump"&gt;文件路径&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;STATIC_PATHS=[&amp;quot;imgs&amp;quot;,&amp;quot;extra&amp;quot;]
+EXTRA_PATH_METADATA = {
+    &amp;#39;extra/CNAME&amp;#39;: { &amp;#39;path&amp;#39;: &amp;#39;CNAME&amp;#39; },
+    &amp;#39;extra/favicon.ico&amp;#39;: { &amp;#39;path&amp;#39;: &amp;#39;favicon.ico&amp;#39; },
+    &amp;#39;extra/robots.txt&amp;#39;: { &amp;#39;path&amp;#39;: &amp;#39;robots.txt&amp;#39; },
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;我在content目录下建了两个目录&lt;code&gt;imgs&lt;/code&gt;用来存放图片,&lt;code&gt;extra&lt;/code&gt;里存放了&lt;code&gt;CNAME,favicon.ico,robots.txt&lt;/code&gt;三个文件.上面两句把imgs文件夹和extra里的三个文件原封不动拷贝到output目录下(注意:imgs是文件夹拷贝,另外三个文件直接拷贝).博文中可以直接使用&lt;code&gt;![text](/imgs/filename.jpeg)&lt;/code&gt;这样的链接来引用本地图片.另外三个文件作用分别是:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;CNAME:解析域名用,后面会说到.
+favicon.ico:让网页标签中显示图标,像这样&lt;img alt="favicon" src="/imgs/2015/favicon.png" /&gt;
+robots.txt:告诉搜索引擎爬虫此网站中的哪些内容不应被搜索引擎获取，哪些可以被获取,写法可以参考&lt;a href="https://zh.wikipedia.org/wiki/Robots.txt"&gt;这里&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;文件保存配置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一些主题会要求配置特定的项目,elegant主题推荐如下配置:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;MD_EXTENSIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;codehilite(css_class=highlight)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;extra&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;headerid&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;toc&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;DIRECT_TEMPLATES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;index&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;tags&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;categories&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;archives&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;search&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;404&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;TAG_SAVE_AS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;CATEGORY_SAVE_AS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;AUTHOR_SAVE_AS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;参考官方配置文档可以发现有很多&lt;code&gt;xxxx_SAVE_AS&lt;/code&gt;的配置项,控制各类页面保存方式,可以使用&lt;code&gt;{slug}&lt;/code&gt;变量用来获取md文件中的Slug字段.Pelican在保存页面的时候会生成一个文件名,文章名是中文如&lt;code&gt;随笔&lt;/code&gt;的话会生成类似&lt;code&gt;sui-bi.html&lt;/code&gt;的文件,同时会过滤掉一些不适合放在路径和文件名中的空格和其他符号.于是带来一个问题,在某些主题中如果添加&lt;code&gt;C++&lt;/code&gt;标签的话,保存时会忽略&lt;code&gt;++&lt;/code&gt;生成类似于&lt;code&gt;~/tags/c.html&lt;/code&gt;的路径,但是在页面链接中点击&lt;code&gt;C++&lt;/code&gt;的tag,网页仍会尝试转向&lt;code&gt;~/tags/C++.html&lt;/code&gt;页面,于是报错.elegant主题倒没有这个问题,以后自己定制主题的时候要注意这一点.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;其他功能配置:&lt;ul&gt;
+&lt;li&gt;评论:利用Disqus实现评论功能,只需在配置中添加&lt;code&gt;DISQUS_SITENAME="yoursitename"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Google Analytcs:在配置中添加&lt;code&gt;GOOGLE_ANALYTICS="UA-xxxxxx-xxxx"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;友情链接和社交链接:参照&lt;a href="http://docs.getpelican.com/en/stable/settings.html"&gt;这里&lt;/a&gt;填写配置文件相关项目&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;4. Tips&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;s&gt;删除线&lt;/s&gt;不是MarkDown的标准语法,使用&lt;code&gt;~~&lt;/code&gt;语法不会被转化为删除线效果,这种情况下可直接使用&lt;code&gt;&amp;lt;s&amp;gt;删除线&amp;lt;/s&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;新建md文件时总是需要在开头写meta data,比较繁琐,我写了一个sh脚本来创建新的md文件,代码如下:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh&lt;/span&gt;
+&lt;span class="nv"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date +%Y-%m-%d&lt;span class="se"&gt;\ &lt;/span&gt;%H:%M:%S&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date +%Y%m%d_%H_%M_%S&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Title: \nDate: &lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;datetime&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;\nModified: \nCategory: \nTags: \nSlug: \nAuthors: \nSummary: \nStatus: draft&amp;quot;&lt;/span&gt;&amp;gt;../content/&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;filename&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;.md
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这样可以自动使用当前日期和时间创建新md文件,而且meta data项目已经都添加好.如果觉得打开shell运行脚本比较麻烦,也可以使用Automator打包成可执行文件(OSX系统).另外,虽然利用&lt;code&gt;publishconf.py&lt;/code&gt;中的设定可以完成GitHub上传,我还是写了一个脚本完成上传工作:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh&lt;/span&gt;
+&lt;span class="nv"&gt;commitstr&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date +%Y%m%d_%H_%M_%S&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;cd&lt;/span&gt; /Users/lipeng/Documents/Blog
+make html
+&lt;span class="nb"&gt;cd&lt;/span&gt; /Users/lipeng/Documents/Blog/output 
+git add .
+git commit -m &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;commitstr&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+git push origin master
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在脚本中使用&lt;code&gt;date&lt;/code&gt;获取系统时间,可以确保不会重名,而且上传到GitHub中的commit信息也比较容易识别.我把脚本都扔在tools文件夹中.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用自己的域名&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果觉得GitHub.io域名不够个性的话,也可以把网站挂在自己的域名下.具体做法是:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在网站根目录新建一个&lt;code&gt;CNAME&lt;/code&gt;文件(文件名大写,无扩展名),文件中填写域名,我的这个文件中写&lt;code&gt;blog.game18.net&lt;/code&gt;,将这个文件放在&lt;code&gt;content/extra&lt;/code&gt;下,按照我们在&lt;a href="#jump"&gt;这里&lt;/a&gt;的设置,&lt;code&gt;CNAME&lt;/code&gt;文件会被自动拷贝至网站根目录.&lt;/li&gt;
+&lt;li&gt;登陆域名管理页面,在DNS设定中添加一项:&lt;img alt="setdomain" src="/imgs/2015/setdomain.png" /&gt;如果需要做TYPE A设置,参考&lt;a href="https://help.github.com/articles/tips-for-configuring-an-a-record-with-your-dns-provider/"&gt;这里&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;将网站同步至GitHub,在根目录下看到&lt;code&gt;CNAME&lt;/code&gt;文件后,检查Settings页面,应该已显示新域名:&lt;img alt="domaingit" src="/imgs/2015/domaingit.png" /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;等待几分钟DNS设置生效后即可从新域名访问博客,是不是很酷?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;到这里,博客的一些基本设置就完成了,Enjoy your own Blog!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' &amp;&amp; location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Thu, 08 Oct 2015 08:51:35 +0800</pubDate><guid>tag:blog.game18.net,2015-10-08:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</guid><category>Pelican</category><category>GitHub</category><category>Python</category><category>MarkDown</category></item><item><title>利用Pelican和GitHub Pages打造个性化博客(一)</title><link>http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</link><description>&lt;h2&gt;1. 配置GitHbu Pages&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;在GitHub中新建一个repository,命名为username.github.io,其中username是github的用户名,我建的是rocmax.github.io.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;进入后点击右边栏中的Settings,找到GitHub Pages栏,点击Launch automatic page generator按钮,然后点击Continue to layouts,选择一个主题样式,点击Publish page,一个崭新的GitHub Pages页面就出现了,你可以使用username.github.io访问这个新页面,是不是很酷?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;网页虽然能访问了,但离想要的博客还很遥远.当然,直接去编辑html文件可以改变网页内容,我们显然不会采用这种笨办法.我们先把自动生成的文件都删除(不熟悉Git命令的话可以在网页上挨个删掉然后commit,git命令下面会涉及到)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;2. 安装Pelican&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;我的系统环境:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;OSX&lt;/th&gt;
+&lt;th&gt;Python&lt;/th&gt;
+&lt;th&gt;Git&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;10.11&lt;/td&gt;
+&lt;td&gt;2.7.10&lt;/td&gt;
+&lt;td&gt;2.3.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;使用pip安装Pelican和MarkDown&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install pelican
+pip install markdown
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果安装时报Permission denied,在命令前加sodu,运行时可能需要输入系统密码.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在磁盘上新建一个文件夹用来存放本地文件,比如我的文件夹叫Blog,然后运行:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;cd Blog
+pelican-quickstart
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果你跟我的环境一样的话&lt;code&gt;from six.moves.html_parser import HTMLParser&lt;/code&gt;这句代码会报错,在six.moves里找不到html_parser.看来出了一些问题,处理之前我们先卸载Pelican&lt;code&gt;pip uninstall pelican&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;网上有一种处理方法是把这句代码改为&lt;code&gt;from HTMLParser import HTMLParser&lt;/code&gt;实测可以解决.&lt;/p&gt;
+&lt;p&gt;我在网上找到另一种解释说是因为six的版本过低导致,使用&lt;code&gt;pip install -U six&lt;/code&gt;可以fetch到新版本但是安装报错,加sudo都不让装,好像说是因为six这个组件比较核心.我找到的解决方法是到&lt;a href="https://pypi.python.org/pypi/six"&gt;这里&lt;/a&gt;下载six的whl格式安装文件可以正常安装.&lt;/p&gt;
+&lt;p&gt;然后重新安装Pelican,在Blog下运行&lt;code&gt;pelican-quickstart&lt;/code&gt;,它会问一些问题,按自己喜好回答或者在&lt;a href="http://docs.getpelican.com/en/latest/settings.html"&gt;这里&lt;/a&gt;找答案,系统会按照答案生成一些配置,以后可以改所以怎么填都行,完成后会在目录下生成很多文件.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这就是Blog下的文件列表:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="BlogFolder" src="/imgs/2015/BlogFolder.png" /&gt;&lt;/p&gt;
+&lt;p&gt;解释一下其中的部分内容(有些文件是后面加入的):&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;content 存放md文件&lt;/li&gt;
+&lt;li&gt;develop_server.sh 控制本地网页服务器&lt;/li&gt;
+&lt;li&gt;Makefile 生成网站&lt;/li&gt;
+&lt;li&gt;output 存放生成的网站,之后这个文件夹会被同步到GitHub&lt;/li&gt;
+&lt;li&gt;pelican-plugins 插件目录&lt;/li&gt;
+&lt;li&gt;pelican-themes 主题目录&lt;/li&gt;
+&lt;li&gt;pelicanconf.py 配置文件&lt;/li&gt;
+&lt;li&gt;publishconf.py 发布配置文件&lt;/li&gt;
+&lt;li&gt;tools 我自己加的,后面再讲&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;到这里安装就基本完成了.&lt;/p&gt;
+&lt;h2&gt;3. 开始写博客&lt;/h2&gt;
+&lt;p&gt;编写一个md文件,在最前边需要添加一些信息,下面是一个例子:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Title&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;My&lt;/span&gt; &lt;span class="kd"&gt;super&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;         &lt;span class="err"&gt;#文章标题&lt;/span&gt;     &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="n"&gt;Date&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2010&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;03&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;        &lt;span class="err"&gt;#编写时间&lt;/span&gt;     &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="n"&gt;Modified&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2010&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;05&lt;/span&gt; &lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;    &lt;span class="err"&gt;#修改时间&lt;/span&gt;
+&lt;span class="n"&gt;Category&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt;              &lt;span class="err"&gt;#类别&lt;/span&gt;        &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="n"&gt;Tags&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;publishing&lt;/span&gt;     &lt;span class="err"&gt;#标签&lt;/span&gt;        &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="n"&gt;Slug&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;my&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="kd"&gt;super&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;post&lt;/span&gt;           &lt;span class="err"&gt;#翻译不能&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="err"&gt;链接地址字符串&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="err"&gt;可以用来处理文章不同语言版本&lt;/span&gt;
+&lt;span class="n"&gt;Authors&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Alexis&lt;/span&gt; &lt;span class="n"&gt;Metaireau&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Conan&lt;/span&gt; &lt;span class="n"&gt;Doyle&lt;/span&gt;      &lt;span class="err"&gt;#作者&lt;/span&gt;
+&lt;span class="n"&gt;Summary&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Short&lt;/span&gt; &lt;span class="n"&gt;version&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;feeds&lt;/span&gt;  &lt;span class="err"&gt;#摘要&lt;/span&gt;
+
+&lt;span class="n"&gt;Hello&lt;/span&gt; &lt;span class="n"&gt;world&lt;/span&gt;&lt;span class="o"&gt;!......&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;加*的是必填项&lt;/p&gt;
+&lt;p&gt;写完后放到content目录下,然后在Blog文件夹下执行&lt;code&gt;make html&lt;/code&gt;生成网站.可以看到output目录下已经存放了生成好的文件.&lt;/p&gt;
+&lt;p&gt;然后继续运行&lt;code&gt;make devserver&lt;/code&gt;开启网页服务,浏览器访问http://localhost:8000 即可看到生成的网页了,而且文件更改后还可以实时重新生成.用完以后记得&lt;code&gt;make stopserver&lt;/code&gt;关闭服务.&lt;/p&gt;
+&lt;h2&gt;4. 将网站部署到GitHub Pages&lt;/h2&gt;
+&lt;p&gt;最后一步,将生成的网站部署到GitHub Pages,这一步需要使用一些Git命令,不熟悉的话请参考&lt;a href="http://rogerdudler.github.io/git-guide/index.zh.html"&gt;这里&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;在终端里进入output目录,执行下列命令:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git init             #创建Git仓库
+git add .            #将output下的所有文件加入仓库
+git remote add origin https://github.com/username/username.github.io   #添加远程仓库,可能会要求输入Github用户名和密码
+git pull origin master     #将远程仓库中的文件获取回本地,之前已经都删除了,不会获取任何文件,不这样的话之后提交会冲突
+git commit -m &amp;#39;first update&amp;#39; #提交一个更改,命名为&amp;quot;first update&amp;quot;
+git push origin master    #将本地更改同步到远程仓库的master分支
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;运行完成的话博客就上传到GitHub了,可以登陆username.github.io看一下,应该跟上一步最后看到的网页一样.&lt;/p&gt;
+&lt;h2&gt;总结&lt;/h2&gt;
+&lt;p&gt;到这里就把使用Pelican+GitHub Pages搭建个人博客的基本流程介绍完了.生成的博客应该类似于这样:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="PelicanWeb" src="/imgs/2015/PelicanWeb.png" /&gt;
+呃....好像也很丑的样子,而且也没啥功能.
+下一篇我们继续定制这个博客,让它变得既美观又功能强大.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Wed, 07 Oct 2015 20:37:58 +0800</pubDate><guid>tag:blog.game18.net,2015-10-07:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</guid><category>Pelican</category><category>GitHub</category><category>Python</category><category>MarkDown</category></item><item><title>祝!新博客开张!</title><link>http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/</link><description>&lt;blockquote&gt;
+&lt;p&gt;生命在于折腾!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;不久前刚刚开始使用&lt;a href="http://yellowandblackcats.blogspot.jp/"&gt;Blogger&lt;/a&gt;,为了替换一直使用的印象笔记.用了一段时间发现还是不爽,Blogger对MarkDown的支持并不是太好,也没什么好用的编辑器去配合,而且我费半天劲定制的Blogger界面丑得要死.终于,我下定决心再折腾一遍,搞一个更好用的博客.&lt;/p&gt;
+&lt;p&gt;上网搜一搜,什么博客比较高大上呢?知乎马上给你答案:&lt;a href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt;,GitHub推出了支持静态网页的功能,就是GitHub Pages,程序员当然要用GitHub才算专业嘛.我们现在有md文件写博客内容,只要能把它们转成网页然后发布到GitHub Pages上就大功告成了.在GitHub Pages页面上推荐了&lt;a href="http://jekyllcn.com/"&gt;Jekyll&lt;/a&gt;应该是最有名的静态博客网站转换工具.但Jekyll是基于Ruby的,我不懂也不想学,于是我选择了基于Python的&lt;a href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;来完成这项工作.&lt;/p&gt;
+&lt;p&gt;经过三天的研究,&lt;a href="http://blog.game18.net"&gt;新博客&lt;/a&gt;终于上线了,本篇是随笔所以不写太多技术内容,下一篇详细写搭建流程吧.&lt;/p&gt;
+&lt;p&gt;最后,感谢神奈提供的域名,让博客的&lt;s&gt;B格&lt;/s&gt;更加提高了一点(刚明明说用GitHub才叫专业).感谢&lt;a href="http://oncrashreboot.com/"&gt;Talha Mansoor&lt;/a&gt;开发的&lt;a href="http://oncrashreboot.com/elegant-best-pelican-theme-features"&gt;Elegant&lt;/a&gt;主题,试过了n多个主题以后,发现Elegant果然是当之无愧的&lt;strong&gt;best-pelican-theme&lt;/strong&gt;.我自己也研究了一下Pelican的主题开发,似乎难度并不高,以后有时间自己也弄一套吧.另外,感谢Pelican,感谢Python......&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Wed, 07 Oct 2015 18:55:16 +0800</pubDate><guid>tag:blog.game18.net,2015-10-07:posts/2015/10/zhu-xin-bo-ke-kai-zhang/</guid><category>心情</category><category>Pelican</category><category>GitHub</category></item></channel></rss>

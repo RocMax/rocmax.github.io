@@ -36,6 +36,10 @@
     <link rel="stylesheet" href="http://blog.game18.net/theme/css/style.css" type="text/css"/>
         <link href="http://blog.game18.net/theme/css/shariff/shariff.min.css" rel="stylesheet">
 
+        <link href="http://blog.game18.net/feed/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Roc's Blog ATOM Feed"/>
+        <link href="http://blog.game18.net/feed/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Roc's Blog RSS Feed"/>
 
 </head>
 <body>
@@ -84,6 +88,34 @@ Roc's Blog            </a>
         <li class="active">Pelican</li>
     </ol>
 
+            <article>
+                <h2><a href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/">利用Pelican和GitHub Pages打造个性化博客(二)</a></h2>
+                <div class="summary"><blockquote>
+<p>在上一篇里我们已经完成了Pelican的安装,生成网站并部署到GitHub Pages上.下面我们就继续完善网站的设置.</p>
+</blockquote>
+<h2>1. 更换主题</h2>
+<p>目前我们的网站使用默认主题,不是很漂亮,功能也单一,我们首先更换主题.运行:</p>
+<div class="highlight"><pre>git clone --recursive https://github.com/getpelican/pelican-themes.git
+</pre></div>
+
+
+<p>会把所有主题下载到本地,注意使用--recursive参数,否则很多链接的主题只能获取到空文件.</p>
+<p>下一步安装主题,有两种方法,在上面的git中提到可以在pelicanconf.py配置文件中指定主题存放路径,如下:</p>
+<div class="highlight"><pre>THEME = &quot;.../Blog/pelican-themes/theme-name&quot;
+</pre></div>
+
+
+<p>我使用了另一种方法,在pelican-themes文件夹下运行:</p>
+<div class="highlight"><pre>pelican-themes -i .../Blog/pelican-themes/theme-name
+</pre></div>
+
+
+<p>这条命令可以把主题安装到<code>/Library/Python/2.7/site-packages/pelican/themes</code>下,然后在配置文件中直接指定主题名即可:</p>
+<div class="highlight"><pre>THEME ...</pre></div>
+                    <a class="btn btn-default btn-xs" href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/">more ...</a>
+                </div>
+            </article>
+            <hr/>
             <article>
                 <h2><a href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/">利用Pelican和GitHub Pages打造个性化博客(一)</a></h2>
                 <div class="summary"><h2>1. 配置GitHbu Pages</h2>
@@ -151,6 +183,7 @@ Roc's Blog            </a>
               <ul class="list-group" id="social">
                 <li class="list-group-item"><a href="https://github.com/RocMax"><i class="fa fa-github-square fa-lg"></i> GitHub</a></li>
                 <li class="list-group-item"><a href="https://twitter.com/ROCLEE"><i class="fa fa-twitter-square fa-lg"></i> Twitter</a></li>
+                <li class="list-group-item"><a href="feed/all.atom.xml"><i class="fa fa-rss-square fa-lg"></i> Rss</a></li>
               </ul>
             </li>
 
@@ -159,28 +192,28 @@ Roc's Blog            </a>
             <li class="list-group-item"><a href="http://blog.game18.net/tags.html"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
+                        <a href="http://blog.game18.net/tag/pelican/">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
                         <a href="http://blog.game18.net/tag/github/">
                             GitHub
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
-                        <a href="http://blog.game18.net/tag/pelican/">
-                            Pelican
+                    <li class="list-group-item tag-2">
+                        <a href="http://blog.game18.net/tag/markdown/">
+                            MarkDown
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://blog.game18.net/tag/python/">
+                            Python
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
                         <a href="http://blog.game18.net/tag/xin-qing/">
                             心情
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://blog.game18.net/tag/markdown/">
-                            MarkDown
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://blog.game18.net/tag/python/">
-                            Python
                         </a>
                     </li>
                 </ul>

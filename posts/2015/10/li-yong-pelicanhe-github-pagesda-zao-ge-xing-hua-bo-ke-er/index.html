@@ -11,7 +11,7 @@
 
 
 
-<link rel="canonical" href="http://blog.game18.net/drafts/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er.html">
+<link rel="canonical" href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/">
 
         <meta name="author" content="Roc" />
         <meta name="keywords" content="Pelican,GitHub,Python,MarkDown" />
@@ -20,7 +20,7 @@
         <meta property="og:site_name" content="Roc's Blog" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="利用Pelican和GitHub Pages打造个性化博客(二)"/>
-        <meta property="og:url" content="http://blog.game18.net/drafts/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er.html"/>
+        <meta property="og:url" content="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/"/>
         <meta property="og:description" content="在上一篇里我们已经完成了Pelican的安装,生成网站并部署到GitHub Pages上.下面我们就继续完善网站的设置. 1. 更换主题 目前我们的网站使用默认主题,不是很漂亮,功能也单一,我们首先更换主题.运行: git clone --recursive https://github.com/getpelican/pelican-themes.git 会把所有主题下载到本地,注意使用--recursive参数,否则很多链接的主题只能获取到空文件. 下一步安装主题,有两种方法,在上面的git中提到可以在pelicanconf.py配置文件中指定主题存放路径,如下: THEME = &#34;.../Blog/pelican-themes/theme-name&#34; 我使用了另一种方法,在pelican-themes文件夹下运行: pelican-themes -i .../Blog/pelican-themes/theme-name 这条命令可以把主题安装到/Library/Python/2.7/site-packages/pelican/themes下,然后在配置文件中直接指定主题名即可: THEME ..."/>
         <meta property="article:published_time" content="2015-10-08" />
             <meta property="article:section" content="Python" />
@@ -66,7 +66,6 @@ Roc's Blog            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                    <li><a href="/index.html">About me</a></li>
                         <li class="active">
                             <a href="http://blog.game18.net/category/python">Python</a>
                         </li>
@@ -101,7 +100,7 @@ Roc's Blog            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://blog.game18.net/drafts/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er.html"
+                    <a href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/"
                        rel="bookmark"
                        title="Permalink to 利用Pelican和GitHub Pages打造个性化博客(二)">
                         利用Pelican和GitHub Pages打造个性化博客(二)
@@ -217,7 +216,7 @@ DATE_FORMATS = {&#39;zh&#39; : &#39;%Y-%m-%d(%a)&#39;}
 
 <p>默认的日期格式比较适合国外的习惯,上面两句可以把日期格式改为年-月-日(星期)这样比较适合国人习惯的格式.</p>
 <ul>
-<li>文件路径</li>
+<li><span id="jump">文件路径</span></li>
 </ul>
 <div class="highlight"><pre>STATIC_PATHS=[&quot;imgs&quot;,&quot;extra&quot;]
 EXTRA_PATH_METADATA = {
@@ -257,17 +256,46 @@ robots.txt:告诉搜索引擎爬虫此网站中的哪些内容不应被搜索引
 </ul>
 <h2>4. Tips</h2>
 <ul>
-<li><s>删除线</s>不是MarkDown的标准语法,使用<code>~~</code>语法不会被转化为删除线效果,这种情况下可直接使用<code>&lt;s&gt;删除线&lt;/s&gt;</code>.</li>
-<li>新建md文件时总是需要在开头写meta data,比较繁琐,我写了一个sh脚本来创建新的md文件,代码如下:</li>
+<li>
+<p><s>删除线</s>不是MarkDown的标准语法,使用<code>~~</code>语法不会被转化为删除线效果,这种情况下可直接使用<code>&lt;s&gt;删除线&lt;/s&gt;</code>.</p>
+</li>
+<li>
+<p>新建md文件时总是需要在开头写meta data,比较繁琐,我写了一个sh脚本来创建新的md文件,代码如下:</p>
+</li>
 </ul>
 <div class="highlight"><pre><span class="c">#!/bin/sh</span>
 <span class="nv">datetime</span><span class="o">=</span><span class="k">$(</span>date +%Y-%m-%d<span class="se">\ </span>%H:%M:%S<span class="k">)</span>
 <span class="nv">filename</span><span class="o">=</span><span class="k">$(</span>date +%Y%m%d_%H_%M_%S<span class="k">)</span>
-<span class="nb">echo</span> <span class="s2">&quot;Title: \nDate: </span><span class="si">${</span><span class="nv">datetime</span><span class="si">}</span><span class="s2">\nModified: \nCategory: \nTags: \nSlug: \nAuthors: \nSummary: \nStatus: draft&quot;</span>&gt;../Blog/content/<span class="si">${</span><span class="nv">filename</span><span class="si">}</span>.md
+<span class="nb">echo</span> <span class="s2">&quot;Title: \nDate: </span><span class="si">${</span><span class="nv">datetime</span><span class="si">}</span><span class="s2">\nModified: \nCategory: \nTags: \nSlug: \nAuthors: \nSummary: \nStatus: draft&quot;</span>&gt;../content/<span class="si">${</span><span class="nv">filename</span><span class="si">}</span>.md
 </pre></div>
 
 
-<p>这样可以自动使用当前日期和时间创建新md文件,而且meta data项目已经都添加好.如果觉得打开shell运行脚本比较麻烦,也可以使用Automator打包成可执行文件(OSX系统).我把脚本都扔在</p>
+<p>这样可以自动使用当前日期和时间创建新md文件,而且meta data项目已经都添加好.如果觉得打开shell运行脚本比较麻烦,也可以使用Automator打包成可执行文件(OSX系统).另外,虽然利用<code>publishconf.py</code>中的设定可以完成GitHub上传,我还是写了一个脚本完成上传工作:</p>
+<div class="highlight"><pre><span class="c">#!/bin/sh</span>
+<span class="nv">commitstr</span><span class="o">=</span><span class="k">$(</span>date +%Y%m%d_%H_%M_%S<span class="k">)</span>
+<span class="nb">cd</span> /Users/lipeng/Documents/Blog
+make html
+<span class="nb">cd</span> /Users/lipeng/Documents/Blog/output 
+git add .
+git commit -m <span class="si">${</span><span class="nv">commitstr</span><span class="si">}</span>
+git push origin master
+</pre></div>
+
+
+<p>在脚本中使用<code>date</code>获取系统时间,可以确保不会重名,而且上传到GitHub中的commit信息也比较容易识别.我把脚本都扔在tools文件夹中.</p>
+<ul>
+<li>使用自己的域名</li>
+</ul>
+<p>如果觉得GitHub.io域名不够个性的话,也可以把网站挂在自己的域名下.具体做法是:</p>
+<ol>
+<li>在网站根目录新建一个<code>CNAME</code>文件(文件名大写,无扩展名),文件中填写域名,我的这个文件中写<code>blog.game18.net</code>,将这个文件放在<code>content/extra</code>下,按照我们在<a href="#jump">这里</a>的设置,<code>CNAME</code>文件会被自动拷贝至网站根目录.</li>
+<li>登陆域名管理页面,在DNS设定中添加一项:<img alt="setdomain" src="/imgs/2015/setdomain.png" />如果需要做TYPE A设置,参考<a href="https://help.github.com/articles/tips-for-configuring-an-a-record-with-your-dns-provider/">这里</a></li>
+<li>将网站同步至GitHub,在根目录下看到<code>CNAME</code>文件后,检查Settings页面,应该已显示新域名:<img alt="domaingit" src="/imgs/2015/domaingit.png" /></li>
+</ol>
+<p>等待几分钟DNS设置生效后即可从新域名访问博客,是不是很酷?</p>
+<blockquote>
+<p>到这里,博客的一些基本设置就完成了,Enjoy your own Blog!</p>
+</blockquote>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -327,6 +355,13 @@ robots.txt:告诉搜索引擎爬虫此网站中的哪些内容不应被搜索引
 </script>
             </div>
             <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/">利用Pelican和GitHub Pages打造个性化博客(一)</a></li>
+        <li><a href="http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/">祝!新博客开张!</a></li>
+    </ul>
+</section>
     <hr />
     <!-- Shariff Button BEGIN -->
     <div class="shariff"
@@ -335,7 +370,7 @@ robots.txt:告诉搜索引擎爬虫此网站中的哪些内容不应被搜索引
         data-services = "[&quot;twitter&quot;,&quot;facebook&quot;,&quot;googleplus&quot;]"
         data-theme="grey"
         data-twitter-via="ROCLEE"
-        data-url="http://blog.game18.net/drafts/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er.html"></div>
+        data-url="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/"></div>
     <!-- Shariff Button END -->
     <hr/>
     <section class="comments" id="comments">
@@ -347,7 +382,7 @@ robots.txt:告诉搜索引擎爬虫此网站中的哪些内容不应被搜索引
             var disqus_shortname = 'rocmaxscats'; // required: replace example with your forum shortname
 
                     var disqus_identifier = 'li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er';
-                var disqus_url = 'http://blog.game18.net/drafts/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er.html';
+                var disqus_url = 'http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/';
 
             var disqus_config = function () {
                 this.language = "zh";
@@ -397,21 +432,21 @@ robots.txt:告诉搜索引擎爬虫此网站中的哪些内容不应被搜索引
             <li class="list-group-item"><a href="http://blog.game18.net/tags.html"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="http://blog.game18.net/tag/github/">
-                            GitHub
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
                         <a href="http://blog.game18.net/tag/pelican/">
                             Pelican
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
+                    <li class="list-group-item tag-1">
+                        <a href="http://blog.game18.net/tag/github/">
+                            GitHub
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
                         <a href="http://blog.game18.net/tag/markdown/">
                             MarkDown
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
+                    <li class="list-group-item tag-2">
                         <a href="http://blog.game18.net/tag/python/">
                             Python
                         </a>
