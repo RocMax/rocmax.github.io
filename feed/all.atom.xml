@@ -361,7 +361,7 @@ git push origin master    #将本地更改同步到远程仓库的master分支
 &lt;p&gt;到这里就把使用Pelican+GitHub Pages搭建个人博客的基本流程介绍完了.生成的博客应该类似于这样:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="PelicanWeb" src="/imgs/2015/PelicanWeb.png" /&gt;
 呃....好像也很丑的样子,而且也没啥功能.
-下一篇我们继续定制这个博客,让它变得既美观又功能强大.&lt;/p&gt;</summary><category term="Pelican"></category><category term="GitHub"></category><category term="Python"></category><category term="MarkDown"></category></entry><entry><title>祝!新博客开张!</title><link href="http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/" rel="alternate"></link><updated>2015-10-07T18:55:16+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-07:posts/2015/10/zhu-xin-bo-ke-kai-zhang/</id><summary type="html">&lt;blockquote&gt;
+下一篇我们继续定制这个博客,让它变得既美观又功能强大.&lt;/p&gt;</summary><category term="Pelican"></category><category term="GitHub"></category><category term="Python"></category><category term="MarkDown"></category></entry><entry><title>祝!新博客开张!</title><link href="http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/" rel="alternate"></link><updated>2015-10-10T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-07:posts/2015/10/zhu-xin-bo-ke-kai-zhang/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;生命在于折腾!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;不久前刚刚开始使用&lt;a href="http://yellowandblackcats.blogspot.jp/"&gt;Blogger&lt;/a&gt;,为了替换一直使用的印象笔记.用了一段时间发现还是不爽,Blogger对MarkDown的支持并不是太好,也没什么好用的编辑器去配合,而且我费半天劲定制的Blogger界面丑得要死.终于,我下定决心再折腾一遍,搞一个更好用的博客.&lt;/p&gt;
