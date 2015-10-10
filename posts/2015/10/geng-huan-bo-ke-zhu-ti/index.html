@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title>更换博客主题 - Roc's Blog</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/">
+
+        <meta name="author" content="Roc" />
+        <meta name="keywords" content="心情,Pelican,Python,C++" />
+
+        <meta property="og:site_name" content="Roc's Blog" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="更换博客主题"/>
+        <meta property="og:url" content="http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/"/>
+        <meta property="og:description" content=""/>
+        <meta property="article:published_time" content="2015-10-10" />
+            <meta property="article:section" content="Python" />
+            <meta property="article:tag" content="心情" />
+            <meta property="article:tag" content="Pelican" />
+            <meta property="article:tag" content="Python" />
+            <meta property="article:tag" content="C++" />
+            <meta property="article:author" content="Roc" />
+
+    <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@ROCLEE">
+        <meta name="twitter:creator" content="@ROCLEE">
+    <meta name="twitter:domain" content="http://blog.game18.net">
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://blog.game18.net/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="http://blog.game18.net/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://blog.game18.net/theme/css/pygments/solarizedlight.css" rel="stylesheet">
+    <link href="http://blog.game18.net/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.game18.net/theme/css/style.css" type="text/css"/>
+        <link href="http://blog.game18.net/theme/css/shariff/shariff.min.css" rel="stylesheet">
+
+        <link href="http://blog.game18.net/feed/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Roc's Blog ATOM Feed"/>
+        <link href="http://blog.game18.net/feed/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Roc's Blog RSS Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://blog.game18.net/" class="navbar-brand">
+Roc's Blog            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="http://blog.game18.net/category/python">Python</a>
+                        </li>
+                        <li >
+                            <a href="http://blog.game18.net/category/sui-bi">随笔</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><span>
+                <form class="navbar-search" action="/search">
+                  <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input" required>
+                </form></span>
+              </li>
+              <li><a href="http://blog.game18.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <ol class="breadcrumb">
+                <li><a href="http://blog.game18.net" title="Roc's Blog"><i class="fa fa-home fa-lg"></i></a></li>
+                <li><a href="http://blog.game18.net/category/python" title="Python">Python</a></li>
+                <li class="active">更换博客主题</li>
+            </ol>
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/"
+                       rel="bookmark"
+                       title="Permalink to 更换博客主题">
+                        更换博客主题
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-10-10T13:40:59+08:00"> 2015-10-10(六)</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://blog.game18.net/tag/xin-qing/">心情</a>
+        /
+	<a href="http://blog.game18.net/tag/pelican/">Pelican</a>
+        /
+	<a href="http://blog.game18.net/tag/python/">Python</a>
+        /
+	<a href="http://blog.game18.net/tag/c/">C++</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>刚弄好的博客突然间挂掉了.运行<code>make html</code>的时候所有md文件都报</p>
+<div class="highlight"><pre>OSError: [Errno 2] No such file or directory.
+</pre></div>
+
+
+<p>分明之前还好好的.分析了一下traceback,发现问题出在<code>extract_toc</code>插件.在elegant主题作者的<a href="http://oncrashreboot.com/elegant-best-pelican-theme-features">博客</a>上可以看到左边有一个<code>Contents</code>栏,可以在页面中定位文章的条目,从而方便地在内容之间跳转,很好的一个功能.作者的博客中说要使用这个功能的话需要引入<code>extract_toc</code>插件.</p>
+<blockquote>
+<p>顺便说一句需要看Pelican的log,使用
+</p>
+</blockquote>
+<div class="highlight"><pre>pelican -D -s pelicanconf.py content -o output
+</pre></div>
+
+
+<p>而不是make html来运行Pelican</p>
+<p>在插件列表中添加<code>extract_toc</code>后就出现上面的错误,即使把其他插件都删除只剩<code>extract_toc</code>还是会报错.看了一下<code>extract_toc</code>的<a href="https://github.com/getpelican/pelican-plugins/tree/master/extract_toc">代码</a>,发现这么一段:</p>
+<div class="highlight"><pre><span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">pandoc_reader</span> <span class="kn">import</span> <span class="n">PandocReader</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">PandocReader</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="sb">``</span><span class="err">`</span><span class="p">[</span><span class="err">代码</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">getpelican</span><span class="o">/</span><span class="n">pelican</span><span class="o">-</span><span class="n">plugins</span><span class="o">/</span><span class="n">tree</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">extract_toc</span><span class="p">)</span>
+<span class="err">看来这个插件还擅自引用了</span><span class="sb">`pandoc_reader`</span><span class="err">这个插件</span><span class="o">.</span><span class="err">查看其</span><span class="p">[</span><span class="err">代码</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">liob</span><span class="o">/</span><span class="n">pandoc_reader</span><span class="p">):</span>
+
+<span class="sb">``</span><span class="err">`</span><span class="n">Python</span>
+<span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">pandoc_cmd</span><span class="p">,</span>
+                                <span class="n">stdin</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+                                <span class="n">stdout</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+</pre></div>
+
+
+<p>这里运行时报错,在stackoverflow上有很多类似的问题,subprocess.Popen经常会引起<code>raise child_exception</code>然后<code>No such file or directory.</code>从他们的讨论内容看来似乎是PATH方面的问题.</p>
+<p>如果在<code>extract_toc</code>中忽略对<code>pandoc_reader</code>的检查直接返回False的话是可以避免报错,但是返回给Pelican的toc仍然是None,在Pelican代码中有个检测,toc为None的时候Content不显示,所以添加<code>extract_toc</code>也就没有意义了.</p>
+<p>我顺着报错的地方看了一些源码,但还是搞不明白原因.elegant这种用户很多的theme按说出了bug应该会有很多人反映,而且据说elegant的作者更新也很勤快.所以我感觉应该是我的配置或者环境有些问题.在<a href="http://blog.atime.me/note/pelican-setup-summary.html">这里</a>博主也有提到:</p>
+<blockquote>
+<p>plugin的执行顺序是随机的（坑爹），所以最好不要有相互依赖的关系</p>
+</blockquote>
+<p>之后有时间继续研究一下这个问题吧.当务之急是让把博客恢复起来.我把官方Git上的所有主题截图都浏览过,喜欢的并不多,有几个虽然看起来很漂亮,但又有点过于文艺范.后来我发现很多博客都在用<a href="https://github.com/DandyDev/pelican-bootstrap3">pelican-bootstrap3</a>主题,风格比较简约适合技术博客.</p>
+<p>按着readme配置了一下,发现这个主题可配置的地方很多,功能比较完善.我最喜欢的是可定制的顶部banner,用了黑猫的图片加上黑白配色,堪称完美.</p>
+<p>于是Bolg满血复活,测试了几次没发现什么bug,暂且先用这个主题好了.以后研究一下自己学着定制主题吧.</p>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/">祝!新博客开张!</a></li>
+        <li><a href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/">利用Pelican和GitHub Pages打造个性化博客(一)</a></li>
+        <li><a href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/">利用Pelican和GitHub Pages打造个性化博客(二)</a></li>
+    </ul>
+</section>
+    <hr />
+    <!-- Shariff Button BEGIN -->
+    <div class="shariff"
+        data-lang="en"
+        data-orientation=""
+        data-services = "[&quot;twitter&quot;,&quot;facebook&quot;,&quot;googleplus&quot;]"
+        data-theme="grey"
+        data-twitter-via="ROCLEE"
+        data-url="http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/"></div>
+    <!-- Shariff Button END -->
+    <hr/>
+    <section class="comments" id="comments">
+        <h2>Comments</h2>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'rocmaxscats'; // required: replace example with your forum shortname
+
+                    var disqus_identifier = 'geng-huan-bo-ke-zhu-ti';
+                var disqus_url = 'http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/';
+
+            var disqus_config = function () {
+                this.language = "zh";
+            };
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/extra/avatar.png"/>
+        </p>
+    <p>
+        <strong>About Roc</strong><br/>
+        <p>A Mobile Game Developer.</p>            <p>Indie Game : <a style="color: #0066FF" href="https://play.google.com/store/apps/details?id=jp.co.newchar.noteball">NoteBall</a></p>            <p>Using Cocos2d-x Unity3D</p>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="https://github.com/RocMax"><i class="fa fa-github-square fa-lg"></i> GitHub</a></li>
+                <li class="list-group-item"><a href="https://twitter.com/ROCLEE"><i class="fa fa-twitter-square fa-lg"></i> Twitter</a></li>
+                <li class="list-group-item"><a href="feed/all.atom.xml"><i class="fa fa-rss-square fa-lg"></i> Rss</a></li>
+              </ul>
+            </li>
+
+
+
+            <li class="list-group-item"><a href="http://blog.game18.net/tags.html"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group " id="tags">
+                    <li class="list-group-item tag-1">
+                        <a href="http://blog.game18.net/tag/pelican/">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://blog.game18.net/tag/github/">
+                            GitHub
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://blog.game18.net/tag/python/">
+                            Python
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://blog.game18.net/tag/markdown/">
+                            MarkDown
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://blog.game18.net/tag/xin-qing/">
+                            心情
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/c/">
+                            C++
+                        </a>
+                    </li>
+                </ul>
+            </li>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://cocos.com/" target="_blank">
+                Cocos2d-x
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2015 Roc
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://blog.game18.net/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://blog.game18.net/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://blog.game18.net/theme/js/respond.min.js"></script>
+
+    <script src="http://blog.game18.net/theme/js/bodypadding.js"></script>
+    <!-- Disqus -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'rocmaxscats'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <!-- End Disqus Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-68564285-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
+
+    <!-- add shariff support -->
+    <script src="http://blog.game18.net/theme/js/shariff.min.js"></script>
+</body>
+</html>
