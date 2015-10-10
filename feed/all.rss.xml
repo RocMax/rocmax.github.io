@@ -15,11 +15,11 @@
     &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pandoc_reader&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;PandocReader&lt;/span&gt;
 &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;ImportError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;PandocReader&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
-&lt;span class="sb"&gt;``&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;代码&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;getpelican&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;plugins&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tree&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;master&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;extract_toc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="err"&gt;看来这个插件还擅自引用了&lt;/span&gt;&lt;span class="sb"&gt;`pandoc_reader`&lt;/span&gt;&lt;span class="err"&gt;这个插件&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="err"&gt;查看其&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;代码&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;liob&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pandoc_reader&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
-&lt;span class="sb"&gt;``&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;Python&lt;/span&gt;
-&lt;span class="n"&gt;proc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;subprocess&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Popen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pandoc_cmd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+
+&lt;p&gt;看来这个插件还擅自引用了&lt;code&gt;pandoc_reader&lt;/code&gt;这个插件.查看其&lt;a href="https://github.com/liob/pandoc_reader"&gt;代码&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;proc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;subprocess&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Popen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pandoc_cmd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
                                 &lt;span class="n"&gt;stdin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;subprocess&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PIPE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
                                 &lt;span class="n"&gt;stdout&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;subprocess&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PIPE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -256,7 +256,7 @@ git push origin master
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Thu, 08 Oct 2015 08:51:35 +0800</pubDate><guid>tag:blog.game18.net,2015-10-08:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</guid><category>Pelican</category><category>GitHub</category><category>Python</category><category>MarkDown</category></item><item><title>利用Pelican和GitHub Pages打造个性化博客(一)</title><link>http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</link><description>&lt;h2&gt;1. 配置GitHbu Pages&lt;/h2&gt;
+&lt;/script&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Sat, 10 Oct 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-08:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</guid><category>Pelican</category><category>GitHub</category><category>Python</category><category>MarkDown</category></item><item><title>利用Pelican和GitHub Pages打造个性化博客(一)</title><link>http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</link><description>&lt;h2&gt;1. 配置GitHbu Pages&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;在GitHub中新建一个repository,命名为username.github.io,其中username是github的用户名,我建的是rocmax.github.io.&lt;/p&gt;
@@ -361,7 +361,7 @@ git push origin master    #将本地更改同步到远程仓库的master分支
 &lt;p&gt;到这里就把使用Pelican+GitHub Pages搭建个人博客的基本流程介绍完了.生成的博客应该类似于这样:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="PelicanWeb" src="/imgs/2015/PelicanWeb.png" /&gt;
 呃....好像也很丑的样子,而且也没啥功能.
-下一篇我们继续定制这个博客,让它变得既美观又功能强大.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Wed, 07 Oct 2015 20:37:58 +0800</pubDate><guid>tag:blog.game18.net,2015-10-07:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</guid><category>Pelican</category><category>GitHub</category><category>Python</category><category>MarkDown</category></item><item><title>祝!新博客开张!</title><link>http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/</link><description>&lt;blockquote&gt;
+下一篇我们继续定制这个博客,让它变得既美观又功能强大.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Sat, 10 Oct 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-07:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</guid><category>Pelican</category><category>GitHub</category><category>Python</category><category>MarkDown</category></item><item><title>祝!新博客开张!</title><link>http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/</link><description>&lt;blockquote&gt;
 &lt;p&gt;生命在于折腾!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;不久前刚刚开始使用&lt;a href="http://yellowandblackcats.blogspot.jp/"&gt;Blogger&lt;/a&gt;,为了替换一直使用的印象笔记.用了一段时间发现还是不爽,Blogger对MarkDown的支持并不是太好,也没什么好用的编辑器去配合,而且我费半天劲定制的Blogger界面丑得要死.终于,我下定决心再折腾一遍,搞一个更好用的博客.&lt;/p&gt;

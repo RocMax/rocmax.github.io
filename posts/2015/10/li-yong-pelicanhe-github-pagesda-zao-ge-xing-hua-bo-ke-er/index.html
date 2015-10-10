@@ -15,13 +15,13 @@
 
         <meta name="author" content="Roc" />
         <meta name="keywords" content="Pelican,GitHub,Python,MarkDown" />
-        <meta name="description" content="在上一篇里我们已经完成了Pelican的安装,生成网站并部署到GitHub Pages上.下面我们就继续完善网站的设置. 1. 更换主题 目前我们的网站使用默认主题,不是很漂亮,功能也单一,我们首先更换主题.运行: git clone --recursive https://github.com/getpelican/pelican-themes.git 会把所有主题下载到本地,注意使用--recursive参数,否则很多链接的主题只能获取到空文件. 下一步安装主题,有两种方法,在上面的git中提到可以在pelicanconf.py配置文件中指定主题存放路径,如下: THEME = &#34;.../Blog/pelican-themes/theme-name&#34; 我使用了另一种方法,在pelican-themes文件夹下运行: pelican-themes -i .../Blog/pelican-themes/theme-name 这条命令可以把主题安装到/Library/Python/2.7/site-packages/pelican/themes下,然后在配置文件中直接指定主题名即可: THEME ..." />
+        <meta name="description" content="完善网站设置" />
 
         <meta property="og:site_name" content="Roc's Blog" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="利用Pelican和GitHub Pages打造个性化博客(二)"/>
         <meta property="og:url" content="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/"/>
-        <meta property="og:description" content="在上一篇里我们已经完成了Pelican的安装,生成网站并部署到GitHub Pages上.下面我们就继续完善网站的设置. 1. 更换主题 目前我们的网站使用默认主题,不是很漂亮,功能也单一,我们首先更换主题.运行: git clone --recursive https://github.com/getpelican/pelican-themes.git 会把所有主题下载到本地,注意使用--recursive参数,否则很多链接的主题只能获取到空文件. 下一步安装主题,有两种方法,在上面的git中提到可以在pelicanconf.py配置文件中指定主题存放路径,如下: THEME = &#34;.../Blog/pelican-themes/theme-name&#34; 我使用了另一种方法,在pelican-themes文件夹下运行: pelican-themes -i .../Blog/pelican-themes/theme-name 这条命令可以把主题安装到/Library/Python/2.7/site-packages/pelican/themes下,然后在配置文件中直接指定主题名即可: THEME ..."/>
+        <meta property="og:description" content="完善网站设置"/>
         <meta property="article:published_time" content="2015-10-08" />
             <meta property="article:section" content="Python" />
             <meta property="article:tag" content="Pelican" />
@@ -359,8 +359,8 @@ git push origin master
     <h4>Related Posts:</h4>
     <ul>
         <li><a href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/">利用Pelican和GitHub Pages打造个性化博客(一)</a></li>
-        <li><a href="http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/">祝!新博客开张!</a></li>
         <li><a href="http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/">更换博客主题</a></li>
+        <li><a href="http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/">祝!新博客开张!</a></li>
     </ul>
 </section>
     <hr />
@@ -448,13 +448,13 @@ git push origin master
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="http://blog.game18.net/tag/xin-qing/">
-                            心情
+                        <a href="http://blog.game18.net/tag/markdown/">
+                            MarkDown
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
-                        <a href="http://blog.game18.net/tag/markdown/">
-                            MarkDown
+                        <a href="http://blog.game18.net/tag/xin-qing/">
+                            心情
                         </a>
                     </li>
                 </ul>
