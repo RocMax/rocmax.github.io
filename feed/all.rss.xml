@@ -99,9 +99,9 @@ EXTRA_PATH_METADATA = {
 
 &lt;p&gt;我在content目录下建了两个目录&lt;code&gt;imgs&lt;/code&gt;用来存放图片,&lt;code&gt;extra&lt;/code&gt;里存放了&lt;code&gt;CNAME,favicon.ico,robots.txt&lt;/code&gt;三个文件.上面两句把imgs文件夹和extra里的三个文件原封不动拷贝到output目录下(注意:imgs是文件夹拷贝,另外三个文件直接拷贝).博文中可以直接使用&lt;code&gt;![text](/imgs/filename.jpeg)&lt;/code&gt;这样的链接来引用本地图片.另外三个文件作用分别是:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;CNAME:解析域名用,后面会说到.
-favicon.ico:让网页标签中显示图标,像这样&lt;img alt="favicon" src="/imgs/2015/favicon.png" /&gt;
-robots.txt:告诉搜索引擎爬虫此网站中的哪些内容不应被搜索引擎获取，哪些可以被获取,写法可以参考&lt;a href="https://zh.wikipedia.org/wiki/Robots.txt"&gt;这里&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;CNAME:解析域名用,后面会说到.&lt;/p&gt;
+&lt;p&gt;favicon.ico:让网页标签中显示图标,像这样&lt;img alt="favicon" src="/imgs/2015/favicon.png" /&gt;&lt;/p&gt;
+&lt;p&gt;robots.txt:告诉搜索引擎爬虫此网站中的哪些内容不应被搜索引擎获取，哪些可以被获取,写法可以参考&lt;a href="https://zh.wikipedia.org/wiki/Robots.txt"&gt;这里&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;文件保存配置&lt;/li&gt;
