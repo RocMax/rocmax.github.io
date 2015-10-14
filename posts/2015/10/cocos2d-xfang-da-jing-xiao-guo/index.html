@@ -129,8 +129,8 @@ Roc's Blog            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>挖一篇以前写的笔记,如何用Cocos2d-x实现放大镜效果.主要思路是使用图片的一部分创建Sprite,然后setscale,将生成的sprite添加到点击位置.选取部分用点击位置周围的100x100大小.如果原图分辨率不够的话也可以使用另外的大图,截取范围按照两张图的分辨率比值设定,截取的sprite无需放大scale.另,对ontouchmoved进行响应,改变截取的位置,生成新的texture,然后使用sprite-&gt;settexture即可实现拖动效果.在ontouchended中销毁sprite即可.基本功能实现非常简单,效果如下:
-<img alt="SquareMagnifyingGlass" src="/imgs/2015/squaremagnifyingglass.png" /></p>
+                <p>挖一篇以前写的笔记,如何用Cocos2d-x实现放大镜效果.主要思路是使用图片的一部分创建Sprite,然后setscale,将生成的sprite添加到点击位置.选取部分用点击位置周围的100x100大小.如果原图分辨率不够的话也可以使用另外的大图,截取范围按照两张图的分辨率比值设定,截取的sprite无需放大scale.另,对ontouchmoved进行响应,改变截取的位置,生成新的texture,然后使用sprite-&gt;settexture即可实现拖动效果.在ontouchended中销毁sprite即可.基本功能实现非常简单,效果如下:</p>
+<p><img alt="SquareMagnifyingGlass" src="/imgs/2015/squaremagnifyingglass.png" /></p>
 <p>实现起来虽然简单,但是方形的放大框非常不自然.下面我们就在Cocos2d-x中实现圆形外框的放大镜效果.先看代码:</p>
 <div class="highlight"><pre><span class="n">Sprite</span><span class="o">*</span> <span class="n">HelloWorld</span><span class="o">::</span><span class="n">getMaskedSprite</span><span class="p">(</span><span class="n">cocos2d</span><span class="o">::</span><span class="n">Rect</span> <span class="n">rect</span><span class="p">){</span>
     <span class="n">Sprite</span><span class="o">*</span> <span class="n">textureSprite</span><span class="o">=</span><span class="n">Sprite</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&quot;bg.png&quot;</span><span class="p">,</span> <span class="n">rect</span><span class="p">);</span>
@@ -172,11 +172,11 @@ Roc's Blog            </a>
 <li>BlendFunc{GL_DST_ALPHA,GL_ZERO}这是另一个公式:源因子是使用目标的透明度,目标因子是0,于是textureSprite的透明度先被设置成maskSprite的透明度,maskSprite是一个圆形,周围是透明的,于是textureSprite除中间圆形区域以外的其他区域被透明化,而目标因子是0,屏蔽掉了maskSprite,最后就只显示了textureSprite的中间部分,其实还是个方形区域,但是周围变透明了.</li>
 </ul>
 <p>有一个需要注意的地方,如果Sprite使用了create方法(无论是哪种Create)内部都是会retain一次,但是像rt-&gt;getSprite()这种就不是,于是这样取回的Sprite会很快被销毁掉,所以采用使用texture再重建一次然后再返回.</p>
-<p>效果如下:
-<img alt="RoundMagnifyingGlass1" src="/imgs/2015/roundmagnifyingglass1.png" /><img alt="RoundMagnifyingGlass2" src="/imgs/2015/roundmagnifyingglass2.png" /></p>
+<p>效果如下:</p>
+<p><img alt="RoundMagnifyingGlass1" src="/imgs/2015/roundmagnifyingglass1.png" /><img alt="RoundMagnifyingGlass2" src="/imgs/2015/roundmagnifyingglass2.png" /></p>
 <p>怎么样,<s>无论从哪个方面来看</s>效果好多了吧?代码见<a href="https://github.com/RocMax/MagnifyingGlassEffect.git">这里</a>.</p>
-<p>其实稍作改动,我们还可以实现更有趣的效果.比如:
-<img alt="screenshot" src="/imgs/2015/screenshot.gif" /></p>
+<p>其实稍作改动,我们还可以实现更有趣的效果.比如:</p>
+<p><img alt="screenshot" src="/imgs/2015/screenshot.gif" /></p>
 <p>是不是有些小激动呢?（¯﹃¯）嘿嘿嘿嘿....</p>
             </div>
             <!-- /.entry-content -->
@@ -250,8 +250,8 @@ Roc's Blog            </a>
             <li class="list-group-item"><a href="http://blog.game18.net/tags.html"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="http://blog.game18.net/tag/python/">
-                            Python
+                        <a href="http://blog.game18.net/tag/pelican/">
+                            Pelican
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
@@ -260,13 +260,8 @@ Roc's Blog            </a>
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="http://blog.game18.net/tag/pelican/">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://blog.game18.net/tag/markdown/">
-                            MarkDown
+                        <a href="http://blog.game18.net/tag/python/">
+                            Python
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -274,24 +269,9 @@ Roc's Blog            </a>
                             心情
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://blog.game18.net/tag/beautifulsoup/">
-                            BeautifulSoup
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://blog.game18.net/tag/html/">
-                            html
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://blog.game18.net/tag/c/">
-                            C++
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://blog.game18.net/tag/cocos2d-x/">
-                            Cocos2d-x
+                    <li class="list-group-item tag-2">
+                        <a href="http://blog.game18.net/tag/markdown/">
+                            MarkDown
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -302,6 +282,26 @@ Roc's Blog            </a>
                     <li class="list-group-item tag-4">
                         <a href="http://blog.game18.net/tag/rendertexture/">
                             RenderTexture
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/cocos2d-x/">
+                            Cocos2d-x
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/html/">
+                            html
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/beautifulsoup/">
+                            BeautifulSoup
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/c/">
+                            C++
                         </a>
                     </li>
                 </ul>
