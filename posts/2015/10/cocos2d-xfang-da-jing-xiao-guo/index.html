@@ -129,7 +129,7 @@ Roc's Blog            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>挖一篇以前写的笔记,如何用Cocos2d-x实现放大镜效果.主要思路是使用图片的一部分创建Sprite,然后setscale,将生成的sprite添加到点击位置.选取部分用点击位置周围的100x100大小.如果原图分辨率不够的话也可以使用另外的大图,截取范围按照两张图的分辨率比值设定,截取的sprite无需放大scale.另,对ontouchmoved进行响应,改变截取的位置,生成新的texture,然后使用sprite-&gt;settexture即可实现拖动效果.在ontouchended中销毁sprite即可.基本功能实现非常简单,效果如下:</p>
+                <p>挖一篇以前写的笔记,如何用Cocos2d-x实现放大镜效果.主要思路是使用图片的一部分创建Sprite,然后setscale,将生成的sprite添加到点击位置.如果原图分辨率不够的话也可以使用另外的大图,截取范围按照两张图的分辨率比值设定.如果对ontouchmoved进行响应,改变截取的位置,生成新的texture,然后使用sprite-&gt;settexture即可实现拖动效果.在ontouchended中销毁sprite即可.基本功能实现非常简单,效果如下:</p>
 <p><img alt="SquareMagnifyingGlass" src="/imgs/2015/squaremagnifyingglass.png" /></p>
 <p>实现起来虽然简单,但是方形的放大框非常不自然.下面我们就在Cocos2d-x中实现圆形外框的放大镜效果.先看代码:</p>
 <div class="highlight"><pre><span class="n">Sprite</span><span class="o">*</span> <span class="n">HelloWorld</span><span class="o">::</span><span class="n">getMaskedSprite</span><span class="p">(</span><span class="n">cocos2d</span><span class="o">::</span><span class="n">Rect</span> <span class="n">rect</span><span class="p">){</span>
