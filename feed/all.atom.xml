@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Roc's Blog</title><link href="http://blog.game18.net/" rel="alternate"></link><link href="http://blog.game18.net/feed/all.atom.xml" rel="self"></link><id>http://blog.game18.net/</id><updated>2015-10-10T00:00:00+08:00</updated><entry><title>更换博客主题</title><link href="http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/" rel="alternate"></link><updated>2015-10-10T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-10:posts/2015/10/geng-huan-bo-ke-zhu-ti/</id><summary type="html">&lt;p&gt;刚弄好的博客突然间挂掉了.运行&lt;code&gt;make html&lt;/code&gt;的时候所有md文件都报&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Roc's Blog</title><link href="http://blog.game18.net/" rel="alternate"></link><link href="http://blog.game18.net/feed/all.atom.xml" rel="self"></link><id>http://blog.game18.net/</id><updated>2015-10-14T00:00:00+08:00</updated><entry><title>更换博客主题</title><link href="http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/" rel="alternate"></link><updated>2015-10-14T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-10:posts/2015/10/geng-huan-bo-ke-zhu-ti/</id><summary type="html">&lt;p&gt;刚弄好的博客突然间挂掉了.运行&lt;code&gt;make html&lt;/code&gt;的时候所有md文件都报&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;OSError: [Errno 2] No such file or directory.
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -33,7 +33,7 @@
 &lt;/blockquote&gt;
 &lt;p&gt;之后有时间继续研究一下这个问题吧.当务之急是让把博客恢复起来.我把官方Git上的所有主题截图都浏览过,喜欢的并不多,有几个虽然看起来很漂亮,但又有点过于文艺范.后来我发现很多博客都在用&lt;a href="https://github.com/DandyDev/pelican-bootstrap3"&gt;pelican-bootstrap3&lt;/a&gt;主题,风格比较简约适合技术博客.&lt;/p&gt;
 &lt;p&gt;按着readme配置了一下,发现这个主题可配置的地方很多,功能比较完善.我最喜欢的是可定制的顶部banner,用了黑猫的图片加上黑白配色,堪称完美.&lt;/p&gt;
-&lt;p&gt;于是Bolg满血复活,测试了几次没发现什么bug,暂且先用这个主题好了.以后研究一下自己学着定制主题吧.&lt;/p&gt;</summary><category term="心情"></category><category term="Pelican"></category><category term="Python"></category></entry><entry><title>利用Pelican和GitHub Pages打造个性化博客(二)</title><link href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/" rel="alternate"></link><updated>2015-10-10T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-08:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;于是Bolg满血复活,测试了几次没发现什么bug,暂且先用这个主题好了.以后研究一下自己学着定制主题吧.&lt;/p&gt;</summary><category term="心情"></category><category term="Pelican"></category><category term="Python"></category></entry><entry><title>利用Pelican和GitHub Pages打造个性化博客(二)</title><link href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/" rel="alternate"></link><updated>2015-10-14T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-08:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;在上一篇里我们已经完成了Pelican的安装,生成网站并部署到GitHub Pages上.下面我们就继续完善网站的设置.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;1. 更换主题&lt;/h2&gt;
@@ -256,7 +256,7 @@ git push origin master
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="Pelican"></category><category term="GitHub"></category><category term="Python"></category><category term="MarkDown"></category></entry><entry><title>利用Pelican和GitHub Pages打造个性化博客(一)</title><link href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/" rel="alternate"></link><updated>2015-10-10T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-07:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</id><summary type="html">&lt;h2&gt;1. 配置GitHbu Pages&lt;/h2&gt;
+&lt;/script&gt;</summary><category term="Pelican"></category><category term="GitHub"></category><category term="Python"></category><category term="MarkDown"></category></entry><entry><title>利用Pelican和GitHub Pages打造个性化博客(一)</title><link href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/" rel="alternate"></link><updated>2015-10-14T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-07:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</id><summary type="html">&lt;h2&gt;1. 配置GitHbu Pages&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;在GitHub中新建一个repository,命名为username.github.io,其中username是github的用户名,我建的是rocmax.github.io.&lt;/p&gt;
@@ -361,7 +361,7 @@ git push origin master    #将本地更改同步到远程仓库的master分支
 &lt;p&gt;到这里就把使用Pelican+GitHub Pages搭建个人博客的基本流程介绍完了.生成的博客应该类似于这样:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="PelicanWeb" src="/imgs/2015/PelicanWeb.png" /&gt;
 呃....好像也很丑的样子,而且也没啥功能.
-下一篇我们继续定制这个博客,让它变得既美观又功能强大.&lt;/p&gt;</summary><category term="Pelican"></category><category term="GitHub"></category><category term="Python"></category><category term="MarkDown"></category></entry><entry><title>祝!新博客开张!</title><link href="http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/" rel="alternate"></link><updated>2015-10-10T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-07:posts/2015/10/zhu-xin-bo-ke-kai-zhang/</id><summary type="html">&lt;blockquote&gt;
+下一篇我们继续定制这个博客,让它变得既美观又功能强大.&lt;/p&gt;</summary><category term="Pelican"></category><category term="GitHub"></category><category term="Python"></category><category term="MarkDown"></category></entry><entry><title>祝!新博客开张!</title><link href="http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/" rel="alternate"></link><updated>2015-10-14T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-07:posts/2015/10/zhu-xin-bo-ke-kai-zhang/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;生命在于折腾!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;不久前刚刚开始使用&lt;a href="http://yellowandblackcats.blogspot.jp/"&gt;Blogger&lt;/a&gt;,为了替换一直使用的印象笔记.用了一段时间发现还是不爽,Blogger对MarkDown的支持并不是太好,也没什么好用的编辑器去配合,而且我费半天劲定制的Blogger界面丑得要死.终于,我下定决心再折腾一遍,搞一个更好用的博客.&lt;/p&gt;
