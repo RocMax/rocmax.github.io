@@ -165,8 +165,11 @@ Roc's Blog            </a>
 </pre></div>
 
 
-<p>首先解释<code>RenderTexture</code>,可以把它想象为一块可以渲染的画布,它不在屏幕显示的范围内.就像一块调色板,我们可以先用颜料在调色板上调出颜色,再去画板上画画.</p>
-<p>另外<code>BlendFunc</code>是颜色混合函数,用于将源图像和目标图像混合在一起,它提供了多种混合方式,详细说明如下:</p>
+<p>mask是中间有一个透明圆形的图片,长这样:</p>
+<p><img alt="mask" src="/imgs/2015/mask.png" /></p>
+<p>当然,也可以用其他形状的图片生成各种各样的蒙版.</p>
+<p><code>RenderTexture</code>,可以把它想象为一块可以渲染的画布,它不在屏幕显示的范围内.就像一块调色板,我们可以先用颜料在调色板上调出颜色,再去画板上画画.</p>
+<p><code>BlendFunc</code>是颜色混合函数,用于将源图像和目标图像混合在一起,它提供了多种混合方式,详细说明如下:</p>
 <ul>
 <li>BlendFunc{GL_ONE,GL_ZERO}这一句设定了一个颜色混合的公式:源因子是1,目标因子是0,于是maskSprite原样复制到画布上,而画布上不管之前有什么颜色,都乘以0,屏蔽掉了.</li>
 <li>BlendFunc{GL_DST_ALPHA,GL_ZERO}这是另一个公式:源因子是使用目标的透明度,目标因子是0,于是textureSprite的透明度先被设置成maskSprite的透明度,maskSprite是一个圆形,周围是透明的,于是textureSprite除中间圆形区域以外的其他区域被透明化,而目标因子是0,屏蔽掉了maskSprite,最后就只显示了textureSprite的中间部分,其实还是个方形区域,但是周围变透明了.</li>
