@@ -269,7 +269,7 @@ read to max pageindex,stop
 &lt;blockquote&gt;
 &lt;p&gt;总结:
 Python爬网页数据真方便!&lt;/p&gt;
-&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Wed, 14 Oct 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-12:posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/</guid><category>crawl</category><category>BeautifulSoup</category><category>html</category></item><item><title>更换博客主题</title><link>http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/</link><description>&lt;p&gt;刚弄好的博客突然间挂掉了.运行&lt;code&gt;make html&lt;/code&gt;的时候所有md文件都报&lt;/p&gt;
+&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Wed, 14 Oct 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-12:posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/</guid><category>Python</category><category>crawl</category><category>BeautifulSoup</category><category>html</category></item><item><title>更换博客主题</title><link>http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/</link><description>&lt;p&gt;刚弄好的博客突然间挂掉了.运行&lt;code&gt;make html&lt;/code&gt;的时候所有md文件都报&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;OSError: [Errno 2] No such file or directory.
 &lt;/pre&gt;&lt;/div&gt;
 
