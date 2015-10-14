@@ -47,10 +47,11 @@
 &lt;p&gt;有一个需要注意的地方,如果Sprite使用了create方法(无论是哪种Create)内部都是会retain一次,但是像rt-&amp;gt;getSprite()这种就不是,于是这样取回的Sprite会很快被销毁掉,所以采用使用texture再重建一次然后再返回.&lt;/p&gt;
 &lt;p&gt;效果如下:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="RoundMagnifyingGlass1" src="/imgs/2015/roundmagnifyingglass1.png" /&gt;&lt;img alt="RoundMagnifyingGlass2" src="/imgs/2015/roundmagnifyingglass2.png" /&gt;&lt;/p&gt;
-&lt;p&gt;怎么样,&lt;s&gt;无论从哪个方面来看&lt;/s&gt;效果好多了吧?代码见&lt;a href="https://github.com/RocMax/MagnifyingGlassEffect.git"&gt;这里&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;代码见&lt;a href="https://github.com/RocMax/MagnifyingGlassEffect.git"&gt;这里&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;其实稍作改动,我们还可以实现更有趣的效果.比如:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="screenshot" src="/imgs/2015/screenshot.gif" /&gt;&lt;/p&gt;
-&lt;p&gt;是不是有些小激动呢?（¯﹃¯）嘿嘿嘿嘿....&lt;/p&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="RenderTexture"></category></entry><entry><title>Python抓取网页数据</title><link href="http://blog.game18.net/posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/" rel="alternate"></link><updated>2015-10-15T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-12:posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/</id><summary type="html">&lt;p&gt;稍微花了点时间学习Python,真是一种好用的语言啊.相对于要求严格的C++,Python非常自由、简单、方便.有时候让我有一种"这么随便会不会出什么问题?"的感觉.基本上稍微看一下文档我就能上手干活了,做了一个抓取网页数据的小工具.感谢&lt;a href="http://cuiqingcai.com/927.html"&gt;静觅的博客&lt;/a&gt;详细讲解了Python爬虫,更棒的是有多个实例供参考.&lt;/p&gt;
+&lt;p&gt;怎么样,&lt;s&gt;无论从哪个方面来看&lt;/s&gt;效果都很不错吧?
+是不是有些小激动呢?（¯﹃¯）嘿嘿嘿嘿....&lt;/p&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="RenderTexture"></category></entry><entry><title>Python抓取网页数据</title><link href="http://blog.game18.net/posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/" rel="alternate"></link><updated>2015-10-15T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-12:posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/</id><summary type="html">&lt;p&gt;稍微花了点时间学习Python,真是一种好用的语言啊.相对于要求严格的C++,Python非常自由、简单、方便.有时候让我有一种"这么随便会不会出什么问题?"的感觉.基本上稍微看一下文档我就能上手干活了,做了一个抓取网页数据的小工具.感谢&lt;a href="http://cuiqingcai.com/927.html"&gt;静觅的博客&lt;/a&gt;详细讲解了Python爬虫,更棒的是有多个实例供参考.&lt;/p&gt;
 &lt;p&gt;因为上面推荐的博客里讲解已经非常细致,我就直接上代码好了.另外关于html的基本概念可以参考&lt;a href="http://www.w3school.com.cn/html/"&gt;这里&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;我们今天要爬的网站是这个:&lt;a href="http://www.suruga-ya.jp/"&gt;駿河屋&lt;/a&gt;,一个日本的电商网站,我们希望能把商品信息抓出来供以后使用.IDE方面,我使用的是Anaconda家的Pycharm,另外还附带一个网页版的界面叫IPython Notebook(Jupyter),可以随写随运行,写比较小的脚本时很方便.那么好,上代码:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib&lt;/span&gt;
