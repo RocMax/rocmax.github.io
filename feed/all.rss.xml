@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Roc's Blog</title><link>http://blog.game18.net/</link><description></description><atom:link href="http://blog.game18.net/feed/all.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 15 Oct 2015 00:00:00 +0800</lastBuildDate><item><title>魔塔游戏实现思路</title><link>http://blog.game18.net/posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/</link><description>&lt;p&gt;发现一款游戏叫《魔塔》，是一个8bit风格的RPG游戏，主人公出生在一个多层迷宫里，各层迷宫之间通过楼梯相连，每层迷宫中有怪物，门，钥匙，血瓶等，不同颜色的门需要对应颜色的钥匙开启，遇到怪物会开启战斗，最终目标是消灭某一层的boss。
-    从功能点上来看与之前实现的RPG游戏Demo重合度很高。先分析记录一下实现思路,如果以后有时间和兴趣的话考虑自己做一下.
-    需要重新构架游戏实现机制，肯定不能逐层写代码实现，而应该完成一种读入游戏资源即可进行游戏的框架，之后只要策划将游戏资源导入即可.
-     目前想到需要实现的东西：&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Roc's Blog</title><link>http://blog.game18.net/</link><description></description><atom:link href="http://blog.game18.net/feed/all.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 15 Oct 2015 00:00:00 +0800</lastBuildDate><item><title>魔塔游戏实现思路</title><link>http://blog.game18.net/posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/</link><description>&lt;blockquote&gt;
+&lt;p&gt;发现一款游戏叫《魔塔》，是一个8bit风格的RPG游戏，主人公出生在一个多层迷宫里，各层迷宫之间通过楼梯相连，每层迷宫中有怪物，门，钥匙，血瓶等，不同颜色的门需要对应颜色的钥匙开启，遇到怪物会开启战斗，最终目标是消灭某一层的boss。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;从功能点上来看与之前实现的RPG游戏Demo重合度很高。先分析记录一下实现思路,如果以后有时间和兴趣的话考虑自己做一下.&lt;/p&gt;
+&lt;p&gt;需要重新构架游戏实现机制，肯定不能逐层写代码实现，而应该完成一种读入游戏资源即可进行游戏的框架，之后只要策划将游戏资源导入即可.&lt;/p&gt;
+&lt;p&gt;目前想到需要实现的东西：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;数据信息存放在sqlite中，从读入的ID获得相应数据&lt;/p&gt;
