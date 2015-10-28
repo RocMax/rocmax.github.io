@@ -18,7 +18,7 @@
 &lt;li&gt;重启&lt;/li&gt;
 &lt;li&gt;在&lt;a href="https://mega.co.nz/#F!8Q10yAiZ!4GVoGr7FJtXauVI3kvPSMQ"&gt;这里&lt;/a&gt;下载GApps,逐个安装&lt;/li&gt;
 &lt;li&gt;Login GooglePlay And Enjoy !&lt;/li&gt;
-&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Wed, 28 Oct 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-28:posts/2015/10/amazon-firehdx7-root-fang-fa/</guid><category>Android FireHDX ROOT</category></item><item><title>魔塔游戏实现思路</title><link>http://blog.game18.net/posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/</link><description>&lt;blockquote&gt;
+&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Wed, 28 Oct 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-28:posts/2015/10/amazon-firehdx7-root-fang-fa/</guid><category>Android</category><category>FireHDX</category><category>ROOT</category></item><item><title>魔塔游戏实现思路</title><link>http://blog.game18.net/posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/</link><description>&lt;blockquote&gt;
 &lt;p&gt;发现一款游戏叫《魔塔》，是一个8bit风格的RPG游戏，主人公出生在一个多层迷宫里，各层迷宫之间通过楼梯相连，每层迷宫中有怪物，门，钥匙，血瓶等，不同颜色的门需要对应颜色的钥匙开启，遇到怪物会开启战斗，最终目标是消灭某一层的boss。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;从功能点上来看与之前实现的RPG游戏Demo重合度很高。先分析记录一下实现思路,如果以后有时间和兴趣的话考虑自己做一下.&lt;/p&gt;
