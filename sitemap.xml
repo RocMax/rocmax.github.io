@@ -5,217 +5,238 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.game18.net/</loc>
-<lastmod>2015-10-28T12:36:56-00:00</lastmod>
+<lastmod>2015-10-29T11:27:15-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/archives.html</loc>
-<lastmod>2015-10-28T12:36:56-00:00</lastmod>
+<lastmod>2015-10-29T11:27:15-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tags.html</loc>
-<lastmod>2015-10-28T12:36:56-00:00</lastmod>
+<lastmod>2015-10-29T11:27:15-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/categories.html</loc>
-<lastmod>2015-10-28T12:36:56-00:00</lastmod>
+<lastmod>2015-10-29T11:27:15-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
+<loc>http://blog.game18.net/posts/2015/10/root-firehdx7-zhi-hou-de-yi-xie-wen-ti/</loc>
+<lastmod>2015-10-29T00:00:00+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+
+<url>
 <loc>http://blog.game18.net/posts/2015/10/amazon-firehdx7-root-fang-fa/</loc>
-<lastmod>2015-10-28T00:00:00+08:00</lastmod>
+<lastmod>2015-10-29T09:21:59+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/</loc>
-<lastmod>2015-10-28T00:00:00+08:00</lastmod>
+<lastmod>2015-10-29T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/</loc>
-<lastmod>2015-10-28T00:00:00+08:00</lastmod>
+<lastmod>2015-10-29T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/</loc>
-<lastmod>2015-10-28T00:00:00+08:00</lastmod>
+<lastmod>2015-10-29T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/</loc>
-<lastmod>2015-10-28T00:00:00+08:00</lastmod>
+<lastmod>2015-10-29T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</loc>
-<lastmod>2015-10-28T00:00:00+08:00</lastmod>
+<lastmod>2015-10-29T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</loc>
-<lastmod>2015-10-28T00:00:00+08:00</lastmod>
+<lastmod>2015-10-29T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/</loc>
-<lastmod>2015-10-28T00:00:00+08:00</lastmod>
+<lastmod>2015-10-29T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/category/cocos2d-x</loc>
-<lastmod>2015-10-28T00:00:00+08:06</lastmod>
+<lastmod>2015-10-29T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/category/python</loc>
-<lastmod>2015-10-28T00:00:00+08:06</lastmod>
+<lastmod>2015-10-29T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/category/sui-bi</loc>
-<lastmod>2015-10-28T09:21:20+08:06</lastmod>
+<lastmod>2015-10-29T09:21:59+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/pelican/</loc>
-<lastmod>2015-10-28T00:00:00+08:06</lastmod>
+<lastmod>2015-10-29T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.game18.net/tag/c/</loc>
-<lastmod>2015-10-28T00:00:00+08:06</lastmod>
+<loc>http://blog.game18.net/tag/safestrap/</loc>
+<lastmod>2015-10-29T08:42:41+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/github/</loc>
-<lastmod>2015-10-28T00:00:00+08:06</lastmod>
+<lastmod>2015-10-29T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/rendertexture/</loc>
-<lastmod>2015-10-28T00:00:00+08:06</lastmod>
+<lastmod>2015-10-29T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/you-xi-kai-fa/</loc>
-<lastmod>2015-10-28T00:00:00+08:06</lastmod>
+<lastmod>2015-10-29T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.game18.net/tag/crawl/</loc>
-<lastmod>2015-10-28T00:00:00+08:06</lastmod>
+<loc>http://blog.game18.net/tag/cyanogenmod/</loc>
+<lastmod>2015-10-29T08:42:41+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/cocos2d-x/</loc>
-<lastmod>2015-10-28T00:00:00+08:06</lastmod>
+<lastmod>2015-10-29T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.game18.net/tag/beautifulsoup/</loc>
-<lastmod>2015-10-28T00:00:00+08:06</lastmod>
+<loc>http://blog.game18.net/tag/c/</loc>
+<lastmod>2015-10-29T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/markdown/</loc>
-<lastmod>2015-10-28T00:00:00+08:06</lastmod>
+<lastmod>2015-10-29T00:00:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://blog.game18.net/tag/beautifulsoup/</loc>
+<lastmod>2015-10-29T00:00:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://blog.game18.net/tag/crawl/</loc>
+<lastmod>2015-10-29T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/python/</loc>
-<lastmod>2015-10-28T00:00:00+08:06</lastmod>
+<lastmod>2015-10-29T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/html/</loc>
-<lastmod>2015-10-28T00:00:00+08:06</lastmod>
+<lastmod>2015-10-29T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/xin-qing/</loc>
-<lastmod>2015-10-28T00:00:00+08:06</lastmod>
+<lastmod>2015-10-29T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/android/</loc>
-<lastmod>2015-10-28T09:21:20+08:06</lastmod>
+<lastmod>2015-10-29T09:21:59+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/root/</loc>
-<lastmod>2015-10-28T09:21:20+08:06</lastmod>
+<lastmod>2015-10-29T09:21:59+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/firehdx/</loc>
-<lastmod>2015-10-28T09:21:20+08:06</lastmod>
+<lastmod>2015-10-29T09:21:59+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/author/roc.html</loc>
-<lastmod>2015-10-28T09:21:20+08:06</lastmod>
+<lastmod>2015-10-29T09:21:59+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
