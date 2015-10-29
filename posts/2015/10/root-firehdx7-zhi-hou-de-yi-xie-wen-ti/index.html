@@ -145,12 +145,17 @@ Roc's Blog            </a>
 <li>在<a href="http://forum.xda-developers.com/kindle-fire-hdx/development/recovery-safestrap-v4-0-1-t3137840">这里</a>下载<code>Safestrap for THOR</code>,直接下载链接点<a href="https://www.androidfilehost.com/?fid=24052804347760109">这里</a>,直接安装apk即可.Safestrap可以将设备当前的ROM备份存储,并提供多个ROM-Slot供用户安装其他Rom,之后可以在各个Rom之间灵活切换.一旦Slot中安装的Rom出问题还可以切回备份的默认Rom,灵活性和安全性兼备.安装Safestrap之后设备启动时会有一个选择界面,可选择进入Recovery或者System.</li>
 <li>
 <p>打开Safestrap,点击<code>Install Recovery</code>,安装完成后左上角<code>State</code>变为<code>Installed</code>.点击<code>Reboot to Recovery</code>,系统重启并进入Recovery界面,如下图:(在Recovery中截图不便,之后我就只写按钮名称)</p>
-<p><img alt="Safestrap" src="/imgs/2015/Safestrap.JPG" />
-4. 从界面顶部可以看到<code>ROM Slot:stock</code>表明当前使用的是默认Rom,点击<code>Backup</code>,勾选<code>Data</code>和<code>System</code>两项,滑动最下方的滑块,即可备份默认Rom,这样以后折腾出了问题就不怕了.先回到主菜单,点击<code>Reboot</code>重启至<code>System</code>.
-5. 下面准备新Rom(资源都在国外网站,下载速度可能比较慢,我之后会传一份到百度云上),在<a href="http://forum.xda-developers.com/kindle-fire-hdx/development/rom-cm-11-safestrap-20150628-unofficial-t3145547">这里</a>下载<code>Thor ROM</code>.在<a href="http://opengapps.org/">这里</a>下载<code>GApps</code>,下载时前两项选择<code>ARM,4.4</code>最后一项是包含组件的多少,推荐选择<code>mini</code>或者参考网页中的介绍选择(这个资源无论在墙里还是墙外都很慢,下不动的可以去<a href="http://tieba.baidu.com/f?kw=gapps&amp;ie=utf-8">gapps吧</a>查找对应版本,有人提供了百度云的链接.在<a href="http://forum.xda-developers.com/showthread.php?t=1538053">这里</a>下载<code>SuperSU</code>(选择<code>CWM / TWRP / MobileODIN installable ZIP</code>版本).
-6. 回到设备上操作,把上述下载的3个zip文件(Rom,Gapps,SuperSU)拷贝至设备存储中,比如放在<code>Download</code>文件夹下.重启系统进入<code>Recovery</code>,点击<code>Boot Options</code>点击<code>Rom-Slot-1</code>,设置<code>Data partition size</code>我想让这个新系统使用所有的剩余空间,我就把它设置到比下方的<code>Free Space</code>稍小.然后点击<code>Create ROM Slot</code>等待分区建好.
-7. 建好分区后点击<code>Activate</code>启用这个Slot,此时顶部应该显示<code>ROM Slot:rom-slot1</code>.回到主菜单,点击<code>Install</code>找到<code>Download</code>文件夹,点选Rom的zip文件,在新的界面中点击<code>Add More Zips</code>把其它2个文件都选中,滑动下方的滑块开始安装.(我在安装时是分开单独安装3个zip,一起安装应该也没问题)
-8. 安装完成后重启设备至<code>System</code>,一个具备Root和GApps的全新系统就做好了,至此可以跟FireHDX原生系统Say Bye Bye!</p>
+<p><img alt="Safestrap" src="/imgs/2015/Safestrap.JPG" /></p>
+</li>
+<li>
+<p>从界面顶部可以看到<code>ROM Slot:stock</code>表明当前使用的是默认Rom,点击<code>Backup</code>,勾选<code>Data</code>和<code>System</code>两项,滑动最下方的滑块,即可备份默认Rom,这样以后折腾出了问题就不怕了.先回到主菜单,点击<code>Reboot</code>重启至<code>System</code>.</p>
+</li>
+<li>下面准备新Rom(资源都在国外网站,下载速度可能比较慢,我之后会传一份到百度云上),在<a href="http://forum.xda-developers.com/kindle-fire-hdx/development/rom-cm-11-safestrap-20150628-unofficial-t3145547">这里</a>下载<code>Thor ROM</code>.在<a href="http://opengapps.org/">这里</a>下载<code>GApps</code>,下载时前两项选择<code>ARM,4.4</code>最后一项是包含组件的多少,推荐选择<code>mini</code>或者参考网页中的介绍选择(这个资源无论在墙里还是墙外都很慢,下不动的可以去<a href="http://tieba.baidu.com/f?kw=gapps&amp;ie=utf-8">gapps吧</a>查找对应版本,有人提供了百度云的链接.在<a href="http://forum.xda-developers.com/showthread.php?t=1538053">这里</a>下载<code>SuperSU</code>(选择<code>CWM / TWRP / MobileODIN installable ZIP</code>版本).</li>
+<li>回到设备上操作,把上述下载的3个zip文件(Rom,Gapps,SuperSU)拷贝至设备存储中,比如放在<code>Download</code>文件夹下.重启系统进入<code>Recovery</code>,点击<code>Boot Options</code>点击<code>Rom-Slot-1</code>,设置<code>Data partition size</code>我想让这个新系统使用所有的剩余空间,我就把它设置到比下方的<code>Free Space</code>稍小.然后点击<code>Create ROM Slot</code>等待分区建好.</li>
+<li>建好分区后点击<code>Activate</code>启用这个Slot,此时顶部应该显示<code>ROM Slot:rom-slot1</code>.回到主菜单,点击<code>Install</code>找到<code>Download</code>文件夹,点选Rom的zip文件,在新的界面中点击<code>Add More Zips</code>把其它2个文件都选中,滑动下方的滑块开始安装.(我在安装时是分开单独安装3个zip,一起安装应该也没问题)</li>
+<li>
+<p>安装完成后重启设备至<code>System</code>,一个具备Root和GApps的全新系统就做好了,至此可以跟FireHDX原生系统Say Bye Bye!</p>
+<p><img alt="CyanogenMod" src="/imgs/2015/CyanogenMod.png" /></p>
 </li>
 </ol>
             </div>
