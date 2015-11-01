@@ -154,9 +154,13 @@ Roc's Blog            </a>
 <li>回到设备上操作,把上述下载的3个zip文件(Rom,Gapps,SuperSU)拷贝至设备存储中,比如放在<code>Download</code>文件夹下.重启系统进入<code>Recovery</code>,点击<code>Boot Options</code>点击<code>Rom-Slot-1</code>,设置<code>Data partition size</code><s>我想让这个新系统使用所有的剩余空间,我就把它设置到比下方的<code>Free Space</code>稍小.</s>这里我起初的理解有误,在下一步详细解释.然后点击<code>Create ROM Slot</code>等待分区建好.</li>
 <li>
 <p><code>Data partition size</code>实际上设置的是系统中用来装app的空间,即根目录下的<code>Data</code>文件夹,可以视需要装app的大小而定,确定之后会固定占用存储中的空间,设定太大的话会浪费,设定太小的话安装app时会报空间不足.下图中我使用了默认的2.5G,以及系统选项-存储中可用空间显示.</p>
-<p><img alt="data" src="/imgs/2015/storage_data.png" /><img alt="storage" src="/imgs/2015/storage.png" />
-7. 建好分区后点击<code>Activate</code>启用这个Slot,此时顶部应该显示<code>ROM Slot:rom-slot1</code>.回到主菜单,点击<code>Install</code>找到<code>Download</code>文件夹,点选Rom的zip文件,在新的界面中点击<code>Add More Zips</code>把其它2个文件都选中,滑动下方的滑块开始安装.(我在安装时是分开单独安装3个zip,一起安装应该也没问题)
-8. 安装完成后重启设备至<code>System</code>,一个具备Root和GApps的全新系统就做好了,至此可以跟FireHDX原生系统Say Bye Bye!</p>
+<p><img alt="data" src="/imgs/2015/storage_data.png" /><img alt="storage" src="/imgs/2015/storage.png" /></p>
+</li>
+<li>
+<p>建好分区后点击<code>Activate</code>启用这个Slot,此时顶部应该显示<code>ROM Slot:rom-slot1</code>.回到主菜单,点击<code>Install</code>找到<code>Download</code>文件夹,点选Rom的zip文件,在新的界面中点击<code>Add More Zips</code>把其它2个文件都选中,滑动下方的滑块开始安装.(我在安装时是分开单独安装3个zip,一起安装应该也没问题)</p>
+</li>
+<li>
+<p>安装完成后重启设备至<code>System</code>,一个具备Root和GApps的全新系统就做好了,至此可以跟FireHDX原生系统Say Bye Bye!</p>
 <p><img alt="CyanogenMod" src="/imgs/2015/CyanogenMod.png" /></p>
 </li>
 </ol>

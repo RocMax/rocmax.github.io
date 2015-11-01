@@ -18,9 +18,13 @@
 &lt;li&gt;回到设备上操作,把上述下载的3个zip文件(Rom,Gapps,SuperSU)拷贝至设备存储中,比如放在&lt;code&gt;Download&lt;/code&gt;文件夹下.重启系统进入&lt;code&gt;Recovery&lt;/code&gt;,点击&lt;code&gt;Boot Options&lt;/code&gt;点击&lt;code&gt;Rom-Slot-1&lt;/code&gt;,设置&lt;code&gt;Data partition size&lt;/code&gt;&lt;s&gt;我想让这个新系统使用所有的剩余空间,我就把它设置到比下方的&lt;code&gt;Free Space&lt;/code&gt;稍小.&lt;/s&gt;这里我起初的理解有误,在下一步详细解释.然后点击&lt;code&gt;Create ROM Slot&lt;/code&gt;等待分区建好.&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;Data partition size&lt;/code&gt;实际上设置的是系统中用来装app的空间,即根目录下的&lt;code&gt;Data&lt;/code&gt;文件夹,可以视需要装app的大小而定,确定之后会固定占用存储中的空间,设定太大的话会浪费,设定太小的话安装app时会报空间不足.下图中我使用了默认的2.5G,以及系统选项-存储中可用空间显示.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="data" src="/imgs/2015/storage_data.png" /&gt;&lt;img alt="storage" src="/imgs/2015/storage.png" /&gt;
-7. 建好分区后点击&lt;code&gt;Activate&lt;/code&gt;启用这个Slot,此时顶部应该显示&lt;code&gt;ROM Slot:rom-slot1&lt;/code&gt;.回到主菜单,点击&lt;code&gt;Install&lt;/code&gt;找到&lt;code&gt;Download&lt;/code&gt;文件夹,点选Rom的zip文件,在新的界面中点击&lt;code&gt;Add More Zips&lt;/code&gt;把其它2个文件都选中,滑动下方的滑块开始安装.(我在安装时是分开单独安装3个zip,一起安装应该也没问题)
-8. 安装完成后重启设备至&lt;code&gt;System&lt;/code&gt;,一个具备Root和GApps的全新系统就做好了,至此可以跟FireHDX原生系统Say Bye Bye!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="data" src="/imgs/2015/storage_data.png" /&gt;&lt;img alt="storage" src="/imgs/2015/storage.png" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;建好分区后点击&lt;code&gt;Activate&lt;/code&gt;启用这个Slot,此时顶部应该显示&lt;code&gt;ROM Slot:rom-slot1&lt;/code&gt;.回到主菜单,点击&lt;code&gt;Install&lt;/code&gt;找到&lt;code&gt;Download&lt;/code&gt;文件夹,点选Rom的zip文件,在新的界面中点击&lt;code&gt;Add More Zips&lt;/code&gt;把其它2个文件都选中,滑动下方的滑块开始安装.(我在安装时是分开单独安装3个zip,一起安装应该也没问题)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装完成后重启设备至&lt;code&gt;System&lt;/code&gt;,一个具备Root和GApps的全新系统就做好了,至此可以跟FireHDX原生系统Say Bye Bye!&lt;/p&gt;
 &lt;p&gt;&lt;img alt="CyanogenMod" src="/imgs/2015/CyanogenMod.png" /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
