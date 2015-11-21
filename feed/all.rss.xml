@@ -207,7 +207,7 @@ point 8 : 0.003799
 
 
 &lt;p&gt;看看效果：&lt;/p&gt;
-&lt;p&gt;&lt;img alt="GaussianBlur" src="//imgs/2015/GaussianBlur.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="GaussianBlur" src="/imgs/2015/GaussianBlur.png" /&gt;&lt;/p&gt;
 &lt;p&gt;大功告成！但是多阶高斯模糊和RenderTexture都非常消耗系统资源，使用时一定要注意，非必要时尽量选择其他替代方案。&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
