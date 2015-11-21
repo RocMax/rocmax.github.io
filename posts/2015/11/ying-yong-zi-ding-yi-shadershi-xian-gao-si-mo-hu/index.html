@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title>应用自定义Shader实现高斯模糊 - Roc's Blog</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/">
+
+        <meta name="author" content="Roc" />
+        <meta name="keywords" content="Cocos2d-x,C++,Shader,Gaussian Blur" />
+        <meta name="description" content="Achieve Gaussian Blur Effect with Custom Shader in Cocos2d-x" />
+
+        <meta property="og:site_name" content="Roc's Blog" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="应用自定义Shader实现高斯模糊"/>
+        <meta property="og:url" content="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/"/>
+        <meta property="og:description" content="Achieve Gaussian Blur Effect with Custom Shader in Cocos2d-x"/>
+        <meta property="article:published_time" content="2015-11-12" />
+            <meta property="article:section" content="Cocos2d-x" />
+            <meta property="article:tag" content="Cocos2d-x" />
+            <meta property="article:tag" content="C++" />
+            <meta property="article:tag" content="Shader" />
+            <meta property="article:tag" content="Gaussian Blur" />
+            <meta property="article:author" content="Roc" />
+
+    <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@ROCLEE">
+        <meta name="twitter:creator" content="@ROCLEE">
+    <meta name="twitter:domain" content="http://blog.game18.net">
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://blog.game18.net/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="http://blog.game18.net/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://blog.game18.net/theme/css/pygments/monokai.css" rel="stylesheet">
+    <link href="http://blog.game18.net/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.game18.net/theme/css/style.css" type="text/css"/>
+        <link href="http://blog.game18.net/theme/css/shariff/shariff.min.css" rel="stylesheet">
+
+        <link href="http://blog.game18.net/feed/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Roc's Blog ATOM Feed"/>
+        <link href="http://blog.game18.net/feed/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Roc's Blog RSS Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://blog.game18.net/" class="navbar-brand">
+Roc's Blog            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="http://blog.game18.net/category/cocos2d-x">Cocos2d-x</a>
+                        </li>
+                        <li >
+                            <a href="http://blog.game18.net/category/python">Python</a>
+                        </li>
+                        <li >
+                            <a href="http://blog.game18.net/category/sui-bi">随笔</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><span>
+                <form class="navbar-search" action="/search">
+                  <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input" required>
+                </form></span>
+              </li>
+              <li><a href="http://blog.game18.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <ol class="breadcrumb">
+                <li><a href="http://blog.game18.net" title="Roc's Blog"><i class="fa fa-home fa-lg"></i></a></li>
+                <li><a href="http://blog.game18.net/category/cocos2d-x" title="Cocos2d-x">Cocos2d-x</a></li>
+                <li class="active">应用自定义Shader实现高斯模糊</li>
+            </ol>
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/"
+                       rel="bookmark"
+                       title="Permalink to 应用自定义Shader实现高斯模糊">
+                        应用自定义Shader实现高斯模糊
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-11-12T15:26:13+08:00"> 2015-11-12(四)</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://blog.game18.net/tag/cocos2d-x/">Cocos2d-x</a>
+        /
+	<a href="http://blog.game18.net/tag/c/">C++</a>
+        /
+	<a href="http://blog.game18.net/tag/shader/">Shader</a>
+        /
+	<a href="http://blog.game18.net/tag/gaussian-blur/">Gaussian Blur</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <blockquote>
+<p>是时候研究真正的技术了！深入Cocos2d-x引擎核心，利用Shader实现更炫酷的效果。</p>
+</blockquote>
+<p>掌握了Cocos2d-x的基本应用之后，是不是已经不能满足于基本的精灵和动画效果了？本篇就向游戏引擎的核心迈进一步，利用自定义Shader实现高斯模糊效果。参考文章：<a href="http://discuss.cocos2d-x.org/t/cocos3-8-tutorial-rendertexture-blur/13622">RenderTexture + Blur</a>
+<a href="http://www.cocoachina.com/bbs/read.php?tid-209811-fpage-7.html">中文翻译</a></p>
+<h3>高斯模糊</h3>
+<p>模糊算是一种比较常见的特效，窗口半透明的效果就是通过模糊实现的，可以表现出较好的质感。模糊算法有很多种，举个简单的例子：把某个像素的值设为它和周围相邻的8个像素的平均，处理后图像的很多细节被抹去，看起来就变得模糊，这种方式叫均值模糊（Box Blur）。</p>
+<p>显然，均值模糊是所有点的权重都为1的模糊，这种处理方式比较简单粗暴。考虑到实际情况，可以给像素赋予一定的权重，比如像素点自身的颜色赋予较大权重，使其更多地影响模糊结果，而周围像素的权重随距离增大而减小。</p>
+<p>高斯模糊（Gaussian Blur）即是这样一种模糊方式，它采用高斯函数计算每个点的权重，所有的权重值符合正态分布规律。在2维平面中的高斯函数如下（又用到LaTeX了，效果真不错）：</p>
+<div class="math">$$G(x,y)=\frac{1}{2\pi\sigma^2}e^{-\frac{x^2+y^2}{2\sigma^2}}=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{x^2}{2\sigma^2}}\times\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{y^2}{2\sigma^2}}=G(x)G(y)$$</div>
+<p>函数图像：</p>
+<p><img alt="img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Standard_deviation_diagram.svg/700px-Standard_deviation_diagram.svg.png" /></p>
+<p>高斯函数有几个特性：</p>
+<ol>
+<li>中心点的值最大，两侧对称</li>
+<li>函数值总和为1，离中心点3<span class="math">\(\sigma\)</span>距离外函数值接近于0,可忽略。因此可认为函数值集中在（-3<span class="math">\(\sigma\)</span>，3<span class="math">\(\sigma\)</span>）区间内</li>
+<li>一个n<span class="math">\(\times\)</span>n阶的高斯模糊可以分解为水平垂直两次n阶模糊的叠加</li>
+</ol>
+<p>然后我们来计算各点权重，这种小事当然是直接打开ipython-notebook喽：</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">math</span>
+<span class="k">class</span> <span class="nc">Gaussian</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pointnum</span><span class="o">=</span><span class="mi">7</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="o">=</span><span class="mf">3.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pointnum</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">para1</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">para2</span><span class="o">=-</span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">calculateweights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">pointnum</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">para1</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">para2</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-=</span><span class="mf">2.0</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">printweights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">pointnum</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">pointnum</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">print</span> <span class="s">u&quot;point </span><span class="si">%d</span><span class="s"> : </span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span>
+
+<span class="n">test</span><span class="o">=</span><span class="n">Gaussian</span><span class="p">()</span>
+<span class="n">test</span><span class="o">.</span><span class="n">calculateweights</span><span class="p">()</span>
+<span class="n">test</span><span class="o">.</span><span class="n">printweights</span><span class="p">()</span>
+</pre></div>
+
+
+<p>得到的值如下：</p>
+<div class="highlight"><pre>point -8 : 0.003799
+point -7 : 0.008741
+point -6 : 0.017997
+point -5 : 0.033159
+point -4 : 0.054670
+point -3 : 0.080657
+point -2 : 0.106483
+point -1 : 0.125794
+point 0 : 0.137401
+point 1 : 0.125794
+point 2 : 0.106483
+point 3 : 0.080657
+point 4 : 0.054670
+point 5 : 0.033159
+point 6 : 0.017997
+point 7 : 0.008741
+point 8 : 0.003799
+</pre></div>
+
+
+<p>这种算法实际上把距离更远而没有计算的点的权重都累加在中心点上，保证总和为1，不会因为模糊处理而损失颜色和透明度。</p>
+<h3>着色器</h3>
+<p>Cocos2d-x基于OpenGLES2.0，有关OpenGL的相关概念，这里就不做太深入的研究了。我之前购买一本OpenGL蓝宝书，费劲啃了版本，只能说是一知半解。OpenGL感觉有些晦涩难懂，又加需要很多数学计算，看着头痛。不过没关系，只要有点浅显的知识就足以解决问题。</p>
+<p>在渲染中使用到的着色器（shader）一般有两种：顶点着色器（Vertex Shader ）和片段着色器（Fragment Shader）。其中顶点着色器主要处理顶点数据，计算变换、光照等效果；片段着色器则处理最终渲染的颜色材质等。利用显卡的并行处理优势着色器代码会对图像的每个像素执行计算，所以考虑执行效率的话尽量不要包含复杂的语句。</p>
+<p>模糊变换对顶点不做改变，所以我们只需要自定义片段着色器即可。着色器采用着色器语言编写，语言风格和C基本相同。先上代码：</p>
+<div class="highlight"><pre><span class="cp">#ifdef GL_ES</span>
+<span class="n">precision</span> <span class="n">mediump</span> <span class="kt">float</span><span class="p">;</span>
+<span class="cp">#endif</span>
+
+<span class="n">varying</span> <span class="n">vec4</span> <span class="n">v_fragmentColor</span><span class="p">;</span>
+<span class="n">varying</span> <span class="n">vec2</span> <span class="n">v_texCoord</span><span class="p">;</span>
+
+<span class="c1">//uniform sampler2D CC_Texture0;</span>
+<span class="n">uniform</span> <span class="n">vec2</span> <span class="n">resolution</span><span class="p">;</span>
+<span class="n">uniform</span> <span class="n">vec2</span> <span class="n">direction</span><span class="p">;</span>
+<span class="n">uniform</span> <span class="kt">float</span> <span class="n">radius</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">vec4</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">vec4</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
+    <span class="kt">float</span> <span class="n">pixelsizex</span> <span class="o">=</span> <span class="n">radius</span><span class="o">/</span><span class="n">resolution</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">pixelsizey</span> <span class="o">=</span> <span class="n">radius</span><span class="o">/</span><span class="n">resolution</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">CC_Texture0</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">v_texCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="mf">7.0</span><span class="o">*</span><span class="n">pixelsizex</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v_texCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="mf">8.0</span><span class="o">*</span><span class="n">pixelsizey</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.003799</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">CC_Texture0</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">v_texCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="mf">7.0</span><span class="o">*</span><span class="n">pixelsizex</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v_texCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="mf">7.0</span><span class="o">*</span><span class="n">pixelsizey</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.008741</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">CC_Texture0</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">v_texCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="mf">6.0</span><span class="o">*</span><span class="n">pixelsizex</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v_texCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="mf">6.0</span><span class="o">*</span><span class="n">pixelsizey</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.017997</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">CC_Texture0</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">v_texCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="mf">5.0</span><span class="o">*</span><span class="n">pixelsizex</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v_texCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="mf">5.0</span><span class="o">*</span><span class="n">pixelsizey</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.033159</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">CC_Texture0</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">v_texCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="mf">4.0</span><span class="o">*</span><span class="n">pixelsizex</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v_texCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="mf">4.0</span><span class="o">*</span><span class="n">pixelsizey</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.054670</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">CC_Texture0</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">v_texCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="mf">3.0</span><span class="o">*</span><span class="n">pixelsizex</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v_texCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="mf">3.0</span><span class="o">*</span><span class="n">pixelsizey</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.080657</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">CC_Texture0</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">v_texCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">pixelsizex</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v_texCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">pixelsizey</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.106483</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">CC_Texture0</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">v_texCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">pixelsizex</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v_texCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">pixelsizey</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.125794</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">CC_Texture0</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">v_texCoord</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v_texCoord</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.137401</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">CC_Texture0</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">v_texCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">pixelsizex</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v_texCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">pixelsizey</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.125794</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">CC_Texture0</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">v_texCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">pixelsizex</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v_texCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">pixelsizey</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.106483</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">CC_Texture0</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">v_texCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="mf">3.0</span><span class="o">*</span><span class="n">pixelsizex</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v_texCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="mf">3.0</span><span class="o">*</span><span class="n">pixelsizey</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.080657</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">CC_Texture0</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">v_texCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="mf">4.0</span><span class="o">*</span><span class="n">pixelsizey</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v_texCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="mf">4.0</span><span class="o">*</span><span class="n">pixelsizey</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.054670</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">CC_Texture0</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">v_texCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="mf">5.0</span><span class="o">*</span><span class="n">pixelsizex</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v_texCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="mf">5.0</span><span class="o">*</span><span class="n">pixelsizey</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.033159</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">CC_Texture0</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">v_texCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="mf">6.0</span><span class="o">*</span><span class="n">pixelsizex</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v_texCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="mf">6.0</span><span class="o">*</span><span class="n">pixelsizey</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.017997</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">CC_Texture0</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">v_texCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="mf">7.0</span><span class="o">*</span><span class="n">pixelsizex</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v_texCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="mf">7.0</span><span class="o">*</span><span class="n">pixelsizey</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.008741</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">CC_Texture0</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">v_texCoord</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="mf">8.0</span><span class="o">*</span><span class="n">pixelsizex</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v_texCoord</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="mf">8.0</span><span class="o">*</span><span class="n">pixelsizey</span><span class="o">*</span><span class="n">direction</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.003799</span><span class="p">;</span>
+
+    <span class="n">gl_FragColor</span> <span class="o">=</span> <span class="n">v_fragmentColor</span><span class="o">*</span><span class="n">sum</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>简单讲解一下：</p>
+<ul>
+<li>varying声明的两个变量是从顶点着色器传过来的，v_texCoord是坐标，v_fragmentColor是对应的颜色值。</li>
+<li>uniform声明的变量是运行时可以从外部传入的，这里我们需要传入图片的大小resolution，采样间隔radius，以及模糊方向direction。</li>
+<li>在OpenGL中没有像素的概念，整个图像的尺寸归一化为单位长度，所以1/resolution即是一个像素的大小。采样方向可以传入水平或垂直的单位向量，兼容两种模糊模式。</li>
+<li>下面的main函数很好理解，将每个采样点的颜色乘以相应权重然后相加，最终输出的gl_FragColor即是要渲染在屏幕上的颜色值</li>
+<li>CC_Texture0是Cocos2d-x中默认传入的材质uniform，其实就是要做模糊处理的图片。网上很多教程中有显式的声明，但我在Cocos2d-x3.8中测试显式声明会报错，需要注意。</li>
+<li>Cocos2d-x中对着色器进行了封装，而且在不同版本中差异较大，导致使用时代码上会有一些不同。</li>
+<li>着色器代码也需要经过编译和连接才能使用，但在Xcode环境中不会反馈任何编译错误。所以一定要仔细检查语法，出错的话很难定位。（例如浮点数赋值的时候千万别在后面加f，我检查了n遍才发现...）</li>
+</ul>
+<h3>Cocos2d-x中应用自定义Shader</h3>
+<p>接下来就把自定义的shader整合到代码中，实现一个应用自定义shader的Sprite类。只要实现下列几个函数就行：</p>
+<div class="highlight"><pre><span class="cp">#ifndef ShaderSprite_hpp</span>
+<span class="cp">#define ShaderSprite_hpp</span>
+
+<span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="cp">#include &quot;cocos2d.h&quot;</span>
+<span class="n">USING_NS_CC</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">ShaderSprite</span><span class="o">:</span><span class="k">public</span> <span class="n">Sprite</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">ShaderSprite</span><span class="p">();</span>
+    <span class="k">virtual</span> <span class="o">~</span><span class="n">ShaderSprite</span><span class="p">();</span>
+    <span class="k">static</span> <span class="n">ShaderSprite</span><span class="o">*</span> <span class="nf">create</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">filename</span><span class="p">,</span><span class="n">Vec2</span> <span class="n">direction</span><span class="p">,</span><span class="kt">float</span> <span class="n">radius</span><span class="p">);</span>
+    <span class="k">static</span> <span class="n">ShaderSprite</span><span class="o">*</span> <span class="nf">createWithTexture</span><span class="p">(</span><span class="n">Texture2D</span> <span class="o">*</span><span class="n">texture</span><span class="p">,</span><span class="k">const</span> <span class="n">Rect</span><span class="o">&amp;</span> <span class="n">rect</span><span class="p">,</span><span class="n">Vec2</span> <span class="n">direction</span><span class="p">,</span><span class="kt">float</span> <span class="n">radius</span><span class="p">);</span>
+    <span class="kt">bool</span> <span class="nf">initWithFile</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">filename</span><span class="p">,</span><span class="n">Vec2</span> <span class="n">direction</span><span class="p">,</span><span class="kt">float</span> <span class="n">radius</span><span class="p">);</span>
+    <span class="kt">bool</span> <span class="nf">initWithTexture</span><span class="p">(</span><span class="n">Texture2D</span><span class="o">*</span> <span class="n">pTexture</span><span class="p">,</span><span class="k">const</span> <span class="n">Rect</span><span class="o">&amp;</span> <span class="n">tRect</span><span class="p">,</span><span class="n">Vec2</span> <span class="n">direction</span><span class="p">,</span><span class="kt">float</span> <span class="n">radius</span><span class="p">);</span>
+
+    <span class="n">GLProgram</span><span class="o">*</span> <span class="nf">getCustomGLProgram</span><span class="p">(</span><span class="n">Vec2</span> <span class="n">resolution</span><span class="p">,</span><span class="n">Vec2</span> <span class="n">direction</span><span class="p">,</span><span class="kt">float</span> <span class="n">radius</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="cp">#endif </span><span class="cm">/* ShaderSprite_hpp */</span><span class="cp"></span>
+</pre></div>
+
+
+<p>几个构造函数完全照着CCSprite源码写即可，主要是把shader所需的3个参数传入。重点说两个函数:</p>
+<div class="highlight"><pre><span class="kt">bool</span> <span class="n">ShaderSprite</span><span class="o">::</span><span class="n">initWithTexture</span><span class="p">(</span><span class="n">cocos2d</span><span class="o">::</span><span class="n">Texture2D</span> <span class="o">*</span><span class="n">pTexture</span><span class="p">,</span> <span class="k">const</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">Rect</span> <span class="o">&amp;</span><span class="n">tRect</span><span class="p">,</span><span class="n">Vec2</span> <span class="n">direction</span><span class="p">,</span><span class="kt">float</span> <span class="n">radius</span><span class="p">){</span>
+    <span class="k">do</span> <span class="p">{</span>
+        <span class="n">CC_BREAK_IF</span><span class="p">(</span><span class="o">!</span><span class="n">Sprite</span><span class="o">::</span><span class="n">initWithTexture</span><span class="p">(</span><span class="n">pTexture</span><span class="p">,</span> <span class="n">tRect</span><span class="p">,</span> <span class="nb">false</span><span class="p">));</span>
+        <span class="k">auto</span> <span class="n">_program</span><span class="o">=</span><span class="n">getCustomGLProgram</span><span class="p">(</span><span class="n">tRect</span><span class="p">.</span><span class="n">size</span><span class="p">,</span><span class="n">direction</span><span class="p">,</span><span class="n">radius</span><span class="p">);</span>
+        <span class="n">setGLProgram</span><span class="p">(</span><span class="n">_program</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>所有构造函数都调用上面这个<code>initWithTexture</code>,在其中应用了自定义的GLProgram。而<code>getCustomGLProgram</code>代码如下：</p>
+<div class="highlight"><pre><span class="n">GLProgram</span><span class="o">*</span> <span class="n">ShaderSprite</span><span class="o">::</span><span class="n">getCustomGLProgram</span><span class="p">(</span><span class="n">Vec2</span> <span class="n">resolution</span><span class="p">,</span><span class="n">Vec2</span> <span class="n">direction</span><span class="p">,</span><span class="kt">float</span> <span class="n">radius</span><span class="p">){</span>
+    <span class="c1">//获取着色器代码字符串</span>
+    <span class="k">auto</span> <span class="n">filepath</span><span class="o">=</span><span class="n">FileUtils</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">fullPathForFilename</span><span class="p">(</span><span class="s">&quot;Gaussian_Blur.fsh&quot;</span><span class="p">);</span>
+    <span class="k">auto</span> <span class="n">fshstring</span><span class="o">=</span><span class="n">FileUtils</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getStringFromFile</span><span class="p">(</span><span class="n">filepath</span><span class="p">);</span>
+    <span class="c1">//创建GLProgram</span>
+    <span class="k">auto</span> <span class="n">_program</span><span class="o">=</span><span class="n">GLProgram</span><span class="o">::</span><span class="n">createWithByteArrays</span><span class="p">(</span><span class="n">ccPositionTextureColor_noMVP_vert</span><span class="p">,</span> <span class="n">fshstring</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_program</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//创建GLProgramState</span>
+        <span class="k">auto</span> <span class="n">_programstate</span><span class="o">=</span><span class="n">GLProgramState</span><span class="o">::</span><span class="n">getOrCreateWithGLProgram</span><span class="p">(</span><span class="n">_program</span><span class="p">);</span>
+        <span class="n">setGLProgramState</span><span class="p">(</span><span class="n">_programstate</span><span class="p">);</span>
+        <span class="c1">//传入参数</span>
+        <span class="n">_programstate</span><span class="o">-&gt;</span><span class="n">setUniformVec2</span><span class="p">(</span><span class="s">&quot;resolution&quot;</span><span class="p">,</span> <span class="n">resolution</span><span class="p">);</span>
+        <span class="n">getGLProgramState</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">setUniformVec2</span><span class="p">(</span><span class="s">&quot;direction&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="p">);</span>
+        <span class="n">getGLProgramState</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">setUniformFloat</span><span class="p">(</span><span class="s">&quot;radius&quot;</span><span class="p">,</span> <span class="n">radius</span><span class="p">);</span>
+        <span class="n">CHECK_GL_ERROR_DEBUG</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">_program</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Cocos2d-x版本更新过程中不断加强对GLProogram和GLProgramState的封装，应该是希望让用户能更简单地进行操作，尽量不用接触底层OpenGL的东西。上面的代码中可以看出，Cocos2d-x将shader封装到GLProgram中，完成着色器的编译、连接等工作；而uniform等参数被封装到GLProgramState中，一些初始化和传参工作都利用GLProgramState完成。网上一些旧版本的示例代码中还保留诸如<code>bindAttribLocation</code>、<code>updateuniforms</code>等操作在当前版本中已经不再需要了。</p>
+<p>但这种做法有利有弊，它也损失了很多OpenGL的自由度。参考博文中采用在外部计算权重，然后使用1维浮点数组传入Shader。我最初也想使用同样的方式，但我发现GLProgramState并未提供传递1维浮点数组的函数。尝试使用<code>setUniformLocationWith1fv</code>传递数组也不起作用，好像应用GLProgramState后就无法接受其他的参数。跟踪了一下源码，以后有机会再仔细展开写写。</p>
+<h3>实现效果</h3>
+<p>下面就利用ShaderSprite实现高斯模糊效果，最后还有一个问题需要解决。按照第一节所说，我们要将n<span class="math">\(\times\)</span>n阶模糊计算分解为水平竖直两次n阶模糊处理，于是需要存放中间的处理结果。还记得<a href="http://blog.game18.net/posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/">这篇博文</a>中涉及到的RenderTexture吗？正好拿来作为“中转站”。好了，上代码：</p>
+<div class="highlight"><pre>    <span class="k">auto</span> <span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>  
+    <span class="k">auto</span> <span class="n">sporigin</span><span class="o">=</span><span class="n">Sprite</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&quot;grossini.png&quot;</span><span class="p">);</span>
+    <span class="k">auto</span> <span class="n">spblurhorizontal</span><span class="o">=</span><span class="n">ShaderSprite</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&quot;grossini.png&quot;</span><span class="p">,</span> <span class="n">Vec2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">radius</span><span class="p">);</span>
+    <span class="k">auto</span> <span class="n">spblurvertical</span><span class="o">=</span><span class="n">ShaderSprite</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&quot;grossini.png&quot;</span><span class="p">,</span> <span class="n">Vec2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">radius</span><span class="p">);</span>
+    <span class="k">auto</span> <span class="n">spblurtemp</span><span class="o">=</span><span class="n">ShaderSprite</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&quot;grossini.png&quot;</span><span class="p">,</span> <span class="n">Vec2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">radius</span><span class="p">);</span>
+    <span class="n">spblurtemp</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="n">sporigin</span><span class="o">-&gt;</span><span class="n">getContentSize</span><span class="p">().</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">sporigin</span><span class="o">-&gt;</span><span class="n">getContentSize</span><span class="p">().</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="p">));</span>
+
+    <span class="k">auto</span> <span class="n">rt</span><span class="o">=</span><span class="n">RenderTexture</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="n">sporigin</span><span class="o">-&gt;</span><span class="n">getContentSize</span><span class="p">().</span><span class="n">width</span><span class="p">,</span> <span class="n">sporigin</span><span class="o">-&gt;</span><span class="n">getContentSize</span><span class="p">().</span><span class="n">height</span><span class="p">);</span>
+    <span class="n">rt</span><span class="o">-&gt;</span><span class="n">begin</span><span class="p">();</span>
+    <span class="n">spblurtemp</span><span class="o">-&gt;</span><span class="n">visit</span><span class="p">();</span>   <span class="c1">//将水平模糊的图像渲染在RenderTexture中</span>
+    <span class="n">rt</span><span class="o">-&gt;</span><span class="n">end</span><span class="p">();</span>
+    <span class="k">auto</span> <span class="n">spblur</span><span class="o">=</span><span class="n">ShaderSprite</span><span class="o">::</span><span class="n">createWithTexture</span><span class="p">(</span><span class="n">rt</span><span class="o">-&gt;</span><span class="n">getSprite</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getTexture</span><span class="p">(),</span> <span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sporigin</span><span class="o">-&gt;</span><span class="n">getContentSize</span><span class="p">().</span><span class="n">width</span><span class="p">,</span> <span class="n">sporigin</span><span class="o">-&gt;</span><span class="n">getContentSize</span><span class="p">().</span><span class="n">height</span><span class="p">),</span> <span class="n">Vec2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">radius</span><span class="p">);</span> <span class="c1">//取出RenderTexture中的材质，垂直模糊后渲染在屏幕上</span>
+    <span class="n">spblur</span><span class="o">-&gt;</span><span class="n">setFlippedY</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span> <span class="c1">//不要忘记RenderTexture中的材质是上下颠倒的</span>
+
+    <span class="n">sporigin</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="o">*</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">));</span>
+    <span class="n">spblurhorizontal</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="o">*</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="o">*</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">));</span>
+    <span class="n">spblurvertical</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="o">/</span><span class="mi">4</span><span class="p">));</span>
+    <span class="n">spblur</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="o">*</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="o">/</span><span class="mi">4</span><span class="p">));</span>
+    <span class="n">addChild</span><span class="p">(</span><span class="n">sporigin</span><span class="p">);</span>
+    <span class="n">addChild</span><span class="p">(</span><span class="n">spblurhorizontal</span><span class="p">);</span>
+    <span class="n">addChild</span><span class="p">(</span><span class="n">spblurvertical</span><span class="p">);</span>
+    <span class="n">addChild</span><span class="p">(</span><span class="n">spblur</span><span class="p">);</span>
+</pre></div>
+
+
+<p>看看效果：</p>
+<p><img alt="GaussianBlur" src="./imgs/2015/GaussianBlur.png" /></p>
+<p>大功告成！但是多阶高斯模糊和RenderTexture都非常消耗系统资源，使用时一定要注意，非必要时尽量选择其他替代方案。</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://blog.game18.net/posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/">Cocos2d-x放大镜效果</a></li>
+        <li><a href="http://blog.game18.net/posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/">魔塔游戏实现思路</a></li>
+    </ul>
+</section>
+    <hr />
+    <!-- Shariff Button BEGIN -->
+    <div class="shariff"
+        data-lang="en"
+        data-orientation=""
+        data-services = "[&quot;twitter&quot;,&quot;facebook&quot;,&quot;googleplus&quot;]"
+        data-theme="grey"
+        data-twitter-via="ROCLEE"
+        data-url="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/"></div>
+    <!-- Shariff Button END -->
+    <hr/>
+    <section class="comments" id="comments">
+        <h2>Comments</h2>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'rocmaxscats'; // required: replace example with your forum shortname
+
+                    var disqus_identifier = 'ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu';
+                var disqus_url = 'http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/';
+
+            var disqus_config = function () {
+                this.language = "zh";
+            };
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/extra/avatar.png"/>
+        </p>
+    <p>
+        <strong>About Roc</strong><br/>
+        <p>A Mobile Game Developer.</p>            <p>Indie Game : <a style="color: #0066FF" href="https://play.google.com/store/apps/details?id=jp.co.newchar.noteball">NoteBall</a></p>            <p>Using Cocos2d-x Unity3D</p>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="https://github.com/RocMax"><i class="fa fa-github-square fa-lg"></i> GitHub</a></li>
+                <li class="list-group-item"><a href="https://twitter.com/ROCLEE"><i class="fa fa-twitter-square fa-lg"></i> Twitter</a></li>
+                <li class="list-group-item"><a href="feed/all.atom.xml"><i class="fa fa-rss-square fa-lg"></i> Rss</a></li>
+              </ul>
+            </li>
+
+
+            <li class="list-group-item"><a href="http://blog.game18.net/"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4></a>
+                <ul class="list-group" id="categories">
+                    <li class="list-group-item">
+                        <a href="http://blog.game18.net/category/cocos2d-x">
+                            <i class="fa fa-folder-open fa-lg"></i> Cocos2d-x
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://blog.game18.net/category/python">
+                            <i class="fa fa-folder-open fa-lg"></i> Python
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://blog.game18.net/category/sui-bi">
+                            <i class="fa fa-folder-open fa-lg"></i> 随笔
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="list-group-item"><a href="http://blog.game18.net/tags.html"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-2">
+                        <a href="http://blog.game18.net/tag/android/">
+                            Android
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/beautifulsoup/">
+                            BeautifulSoup
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://blog.game18.net/tag/c/">
+                            C++
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://blog.game18.net/tag/cocos2d-x/">
+                            Cocos2d-x
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/crawl/">
+                            crawl
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/cyanogenmod/">
+                            CyanogenMod
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://blog.game18.net/tag/firehdx/">
+                            FireHDX
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/gaussian-blur/">
+                            Gaussian Blur
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://blog.game18.net/tag/github/">
+                            GitHub
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/html/">
+                            html
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://blog.game18.net/tag/markdown/">
+                            MarkDown
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://blog.game18.net/tag/pelican/">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://blog.game18.net/tag/python/">
+                            Python
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/rendertexture/">
+                            RenderTexture
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://blog.game18.net/tag/root/">
+                            ROOT
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/safestrap/">
+                            Safestrap
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/shader/">
+                            Shader
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://blog.game18.net/tag/xin-qing/">
+                            心情
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/you-xi-kai-fa/">
+                            游戏开发
+                        </a>
+                    </li>
+                </ul>
+            </li>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://cocos.com/" target="_blank">
+                Cocos2d-x
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2015 Roc
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://blog.game18.net/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://blog.game18.net/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://blog.game18.net/theme/js/respond.min.js"></script>
+
+    <script src="http://blog.game18.net/theme/js/bodypadding.js"></script>
+    <!-- Disqus -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'rocmaxscats'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <!-- End Disqus Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-68564285-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
+
+    <!-- add shariff support -->
+    <script src="http://blog.game18.net/theme/js/shariff.min.js"></script>
+</body>
+</html>
