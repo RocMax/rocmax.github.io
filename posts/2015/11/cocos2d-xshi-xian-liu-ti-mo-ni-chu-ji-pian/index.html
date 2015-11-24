@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title>Cocos2d-x实现流体模拟（初级篇） - Roc's Blog</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://blog.game18.net/posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/">
+
+        <meta name="author" content="Roc" />
+        <meta name="keywords" content="Cocos2d-x,C++,Liquid Simulation,物理引擎" />
+        <meta name="description" content="利用Cocos2d-x的物理引擎实现简单的流体模拟" />
+
+        <meta property="og:site_name" content="Roc's Blog" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Cocos2d-x实现流体模拟（初级篇）"/>
+        <meta property="og:url" content="http://blog.game18.net/posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/"/>
+        <meta property="og:description" content="利用Cocos2d-x的物理引擎实现简单的流体模拟"/>
+        <meta property="article:published_time" content="2015-11-22" />
+            <meta property="article:section" content="Cocos2d-x" />
+            <meta property="article:tag" content="Cocos2d-x" />
+            <meta property="article:tag" content="C++" />
+            <meta property="article:tag" content="Liquid Simulation" />
+            <meta property="article:tag" content="物理引擎" />
+            <meta property="article:author" content="Roc" />
+
+    <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@ROCLEE">
+        <meta name="twitter:creator" content="@ROCLEE">
+    <meta name="twitter:domain" content="http://blog.game18.net">
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://blog.game18.net/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="http://blog.game18.net/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://blog.game18.net/theme/css/pygments/monokai.css" rel="stylesheet">
+    <link href="http://blog.game18.net/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://blog.game18.net/theme/css/style.css" type="text/css"/>
+        <link href="http://blog.game18.net/theme/css/shariff/shariff.min.css" rel="stylesheet">
+
+        <link href="http://blog.game18.net/feed/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Roc's Blog ATOM Feed"/>
+        <link href="http://blog.game18.net/feed/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="Roc's Blog RSS Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://blog.game18.net/" class="navbar-brand">
+Roc's Blog            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="http://blog.game18.net/category/cocos2d-x">Cocos2d-x</a>
+                        </li>
+                        <li >
+                            <a href="http://blog.game18.net/category/python">Python</a>
+                        </li>
+                        <li >
+                            <a href="http://blog.game18.net/category/sui-bi">随笔</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><span>
+                <form class="navbar-search" action="/search">
+                  <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input" required>
+                </form></span>
+              </li>
+              <li><a href="http://blog.game18.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <ol class="breadcrumb">
+                <li><a href="http://blog.game18.net" title="Roc's Blog"><i class="fa fa-home fa-lg"></i></a></li>
+                <li><a href="http://blog.game18.net/category/cocos2d-x" title="Cocos2d-x">Cocos2d-x</a></li>
+                <li class="active">Cocos2d-x实现流体模拟（初级篇）</li>
+            </ol>
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://blog.game18.net/posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/"
+                       rel="bookmark"
+                       title="Permalink to Cocos2d-x实现流体模拟（初级篇）">
+                        Cocos2d-x实现流体模拟（初级篇）
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-11-22T03:23:56+08:00"> 2015-11-22(日)</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://blog.game18.net/tag/cocos2d-x/">Cocos2d-x</a>
+        /
+	<a href="http://blog.game18.net/tag/c/">C++</a>
+        /
+	<a href="http://blog.game18.net/tag/liquid-simulation/">Liquid Simulation</a>
+        /
+	<a href="http://blog.game18.net/tag/wu-li-yin-qing/">物理引擎</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <blockquote>
+<p>前一阵在群里讨论的时候说到使用Cocos2d-x做2D水流，我觉得很有挑战性，于是研究了一阵。实际上流体模拟不仅在游戏开发中应用广泛，而且在工程和科研方面也有重要的意义。今天我们就开始探讨如何使用Cocos2d-x实现流体模拟。</p>
+<p>这个系列打算分成三个阶段：</p>
+<ul>
+<li>初级篇：解决流体模拟中几个基本问题，实现基本的流体效果</li>
+<li>中极篇：整合第三方库，实现较好的流体效果</li>
+<li>高级篇：自己编写相关功能，理解原理和算法</li>
+</ul>
+<p>这次先完成初级篇，中级和高级篇需要等搞定代码之后再写，<s>尽量别烂尾</s>。</p>
+<p>这次的参考博客：<a href="http://www.emanueleferonato.com/2012/05/16/simulating-mudslime-with-box2d-bitmaps-and-filters/">Simulating mud/slime with Box2D, bitmaps and filters</a>,我们这次要实现和他差不多的效果。</p>
+</blockquote>
+<h3>准备工作</h3>
+<p>流体模拟需要解决两个关键问题：如何动起来像流体；如何看起来像流体。初级篇中我们使用大量物理刚体粒子模拟流体运动，参考示例博客中的效果，只能说差强人意，不过从0开始也算是前进了一大步。于是乎第一个问题我们使用物理引擎实现。</p>
+<p>当然，看着着一堆粒子想象液体运动是不可接受的。针对第二个问题呢，需要使用一些渲染方面的技巧，类似于<a href="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/">这篇博客</a>中使用的方法。</p>
+<h3>物理引擎</h3>
+<p>Cocos2d-x自带Box2D和chipmunk两种物理引擎，一般来讲Box2D要强大一些，而chipmunk则比较轻量，不过对于今天的任务选哪个都没差。（Cocos2d-x默认使用chipmunk，需要切换的话可以参考<a href="http://www.tairan.com/archives/5431/">这里</a>）</p>
+<ul>
+<li>使用物理引擎时代码和平常有点不同，在创建scene时要这样：</li>
+</ul>
+<div class="highlight"><pre>    <span class="k">auto</span> <span class="n">scene</span> <span class="o">=</span> <span class="n">Scene</span><span class="o">::</span><span class="n">createWithPhysics</span><span class="p">();</span>
+    <span class="n">scene</span><span class="o">-&gt;</span><span class="n">getPhysicsWorld</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">setDebugDrawMask</span><span class="p">(</span><span class="n">PhysicsWorld</span><span class="o">::</span><span class="n">DEBUGDRAW_ALL</span><span class="p">);</span>
+</pre></div>
+
+
+<p>使用<code>createWithPhysics()</code>创建一个含有物理世界的场景，在之后可以使用<code>getPhysicsWorld()</code>获取到物理世界。使用<code>setDebugDrawMask</code>设置DebugDraw的模式，物理节点本身没有显示效果，设置为DEBUGDRAW_ALL方便查看和调试。</p>
+<ul>
+<li>然后使用EdgeBox添加“桶壁”，这种物理节点不受重力影响，一般用来当做外框。</li>
+</ul>
+<div class="highlight"><pre>    <span class="k">auto</span> <span class="n">barrelbody1</span><span class="o">=</span><span class="n">PhysicsBody</span><span class="o">::</span><span class="n">createEdgeBox</span><span class="p">(</span><span class="n">Size</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">450</span><span class="p">));</span>
+    <span class="k">auto</span> <span class="n">barrelbody2</span><span class="o">=</span><span class="n">PhysicsBody</span><span class="o">::</span><span class="n">createEdgeBox</span><span class="p">(</span><span class="n">Size</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
+    <span class="k">auto</span> <span class="n">barrelbody3</span><span class="o">=</span><span class="n">PhysicsBody</span><span class="o">::</span><span class="n">createEdgeBox</span><span class="p">(</span><span class="n">Size</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">500</span><span class="p">));</span>
+
+    <span class="k">auto</span> <span class="n">barrelsp1</span><span class="o">=</span><span class="n">Sprite</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
+    <span class="k">auto</span> <span class="n">barrelsp2</span><span class="o">=</span><span class="n">Sprite</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
+    <span class="k">auto</span> <span class="n">barrelsp3</span><span class="o">=</span><span class="n">Sprite</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
+
+    <span class="n">barrelsp1</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mi">305</span><span class="p">,</span> <span class="mi">685</span><span class="p">));</span>
+    <span class="n">barrelsp2</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mi">375</span><span class="p">,</span> <span class="mi">405</span><span class="p">));</span>
+    <span class="n">barrelsp3</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mi">445</span><span class="p">,</span> <span class="mi">660</span><span class="p">));</span>
+
+    <span class="n">barrelsp1</span><span class="o">-&gt;</span><span class="n">setPhysicsBody</span><span class="p">(</span><span class="n">barrelbody1</span><span class="p">);</span>
+    <span class="n">barrelsp2</span><span class="o">-&gt;</span><span class="n">setPhysicsBody</span><span class="p">(</span><span class="n">barrelbody2</span><span class="p">);</span>
+    <span class="n">barrelsp3</span><span class="o">-&gt;</span><span class="n">setPhysicsBody</span><span class="p">(</span><span class="n">barrelbody3</span><span class="p">);</span>
+
+    <span class="n">addChild</span><span class="p">(</span><span class="n">barrelsp1</span><span class="p">);</span>
+    <span class="n">addChild</span><span class="p">(</span><span class="n">barrelsp2</span><span class="p">);</span>
+    <span class="n">addChild</span><span class="p">(</span><span class="n">barrelsp3</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Cocos2d-x已经将物理节点封装在Node中，使用Node的<code>setPhysicsBody</code>即可添加相应地物理节点。</p>
+<ul>
+<li>下面添加物理粒子,使用<code>schedule</code>调用<code>updateParticle</code>函数，同时限制一下粒子数量，在模拟器中300个以内的粒子基本不会影响帧数。引擎提供了<code>getAllBodies</code>函数，可以方便地遍历所有物理节点。</li>
+</ul>
+<div class="highlight"><pre><span class="kt">void</span> <span class="n">HelloWorld</span><span class="o">::</span><span class="n">addparticle</span><span class="p">(</span><span class="n">cocos2d</span><span class="o">::</span><span class="n">Vec2</span> <span class="n">position</span><span class="p">){</span>
+    <span class="k">auto</span> <span class="n">particleBody</span><span class="o">=</span><span class="n">PhysicsBody</span><span class="o">::</span><span class="n">createCircle</span><span class="p">(</span><span class="mf">8.0f</span><span class="p">,</span><span class="n">bMaterial</span><span class="p">,</span><span class="n">Vec2</span><span class="o">::</span><span class="n">ZERO</span><span class="p">);</span> 
+    <span class="k">auto</span> <span class="n">particleNode</span><span class="o">=</span><span class="n">Node</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
+    <span class="n">particleNode</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">position</span><span class="p">);</span>
+    <span class="n">particleNode</span><span class="o">-&gt;</span><span class="n">setPhysicsBody</span><span class="p">(</span><span class="n">particleBody</span><span class="p">);</span>
+    <span class="n">addChild</span><span class="p">(</span><span class="n">particleNode</span><span class="p">);</span>
+    <span class="n">nodevector</span><span class="p">.</span><span class="n">pushBack</span><span class="p">(</span><span class="n">particleNode</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">HelloWorld</span><span class="o">::</span><span class="n">updateParticle</span><span class="p">(</span><span class="kt">float</span> <span class="n">t</span><span class="p">){</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">nParticle</span><span class="o">&lt;</span><span class="n">MAX_PARTICLE_NUM</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">addparticle</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mi">373</span><span class="o">+</span><span class="n">CCRANDOM_0_1</span><span class="p">()</span><span class="o">*</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">));</span>
+        <span class="n">nParticle</span><span class="o">++</span><span class="p">;</span>
+        <span class="n">nParticleLabel</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="n">StringUtils</span><span class="o">::</span><span class="n">format</span><span class="p">(</span><span class="s">&quot;Particle num:%d&quot;</span><span class="p">,</span><span class="n">nParticle</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">body</span><span class="p">:</span><span class="n">getScene</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getPhysicsWorld</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getAllBodies</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">body</span><span class="o">-&gt;</span><span class="n">getNode</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getPosition</span><span class="p">().</span><span class="n">y</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">nodevector</span><span class="p">.</span><span class="n">eraseObject</span><span class="p">(</span><span class="n">body</span><span class="o">-&gt;</span><span class="n">getNode</span><span class="p">());</span>
+            <span class="n">body</span><span class="o">-&gt;</span><span class="n">getNode</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">removeFromParentAndCleanup</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+            <span class="n">nParticle</span><span class="o">--</span><span class="p">;</span>
+            <span class="n">nParticleLabel</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="n">StringUtils</span><span class="o">::</span><span class="n">format</span><span class="p">(</span><span class="s">&quot;Particle num:%d&quot;</span><span class="p">,</span><span class="n">nParticle</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>其中<code>bMaterial</code>是粒子的材质，它是一个刚性光滑球，具体数值为：</p>
+<div class="highlight"><pre>    <span class="n">bMaterial</span><span class="p">.</span><span class="n">density</span><span class="o">=</span><span class="mf">4.0f</span><span class="p">;</span>     <span class="c1">//密度</span>
+    <span class="n">bMaterial</span><span class="p">.</span><span class="n">friction</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>       <span class="c1">//摩擦力</span>
+    <span class="n">bMaterial</span><span class="p">.</span><span class="n">restitution</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>    <span class="c1">//弹性</span>
+</pre></div>
+
+
+<ul>
+<li>最后，看一下效果，有那么点意思了：</li>
+</ul>
+<p><img alt="PhysicsParticle" src="/imgs/2015/PhysicsParticle.gif" /></p>
+<p>这里我们看到的形状都是<code>DebugDraw</code>绘制的，如果把<code>DEBUGDRAW_ALL</code>改为<code>DEBUGDRAW_NONE</code>则只能看到黑屏。</p>
+<blockquote>
+<p>我们一直没有给物理节点的添加图形是有原因的。物理引擎模拟了物理节点之间的相互作用和运动情况，但我们不能直接将图形绘制在物理节点上，我们需要的只是粒子的位置信息，接下来就利用这些信息解决第二个问题。</p>
+</blockquote>
+<h3>流体渲染</h3>
+<p>从球形的粒子渲染出流体效果需要两步处理：模糊和截断,先把小球模糊成雾状,再对其边缘截断,就可以模拟出液体效果。</p>
+<h4>模糊</h4>
+<p>回想一下上一篇博客<a href="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/">高斯模糊</a>,我们是不是可以按照同样的方法进行模糊呢?答案是不能。在那篇博客中提到了高斯模糊比较消耗系统资源，如果使用相同的方法帧数会大幅下降。</p>
+<p>实际上，那篇博客中提到的方法适用于不知道运行时要模糊什么图像的情况。而当前问题中我们很明确就是要模糊小球嘛，于是直接准备模糊好的素材就行啦：</p>
+<p>模糊前：<img alt="ball" src="/imgs/2015/ball.png" />   模糊后:<img alt="blurball" src="/imgs/2015/blurball.png" /></p>
+<p>那么,现在效果变成了这样（关掉了DEBUGDRAW）:</p>
+<p><img alt="blured" src="/imgs/2015/blurballs.gif" /></p>
+<h4>截断</h4>
+<p>上面的图形依然不是最终结果，所以不能直接渲染在屏幕上。我们可以先把模糊过的小球渲染在RenderTexture中，然后取出整个图像进行截断，再将结果渲染在屏幕上。</p>
+<p>首先创建RenderTexture并取出素材渲染到屏幕：</p>
+<div class="highlight"><pre>    <span class="n">rt</span><span class="o">=</span><span class="n">RenderTexture</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="n">winsize</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">winsize</span><span class="p">.</span><span class="n">height</span><span class="p">);</span>
+    <span class="n">rt</span><span class="o">-&gt;</span><span class="n">retain</span><span class="p">();</span>
+    <span class="n">rtsp</span><span class="o">=</span><span class="n">ShaderSprite</span><span class="o">::</span><span class="n">createWithTexture</span><span class="p">(</span><span class="n">rt</span><span class="o">-&gt;</span><span class="n">getSprite</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getTexture</span><span class="p">(),</span> <span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">winsize</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">winsize</span><span class="p">.</span><span class="n">height</span><span class="p">),</span> <span class="mf">0.1f</span><span class="p">);</span>
+    <span class="n">rtsp</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="n">winsize</span><span class="p">.</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">winsize</span><span class="p">.</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="p">));</span>
+</pre></div>
+
+
+<p>注意其中使用了ShaderSprite,正是在<a href="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/">高斯模糊</a>中自定义的类,只是修改了传参，使用的着色器代码为:</p>
+<div class="highlight"><pre><span class="cp">#ifdef GL_ES</span>
+<span class="n">precision</span> <span class="n">mediump</span> <span class="kt">float</span><span class="p">;</span>
+<span class="cp">#endif</span>
+
+<span class="n">varying</span> <span class="n">vec4</span> <span class="n">v_fragmentColor</span><span class="p">;</span>
+<span class="n">varying</span> <span class="n">vec2</span> <span class="n">v_texCoord</span><span class="p">;</span>
+
+<span class="n">uniform</span> <span class="kt">float</span> <span class="n">limit</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">texture2D</span><span class="p">(</span><span class="n">CC_Texture0</span><span class="p">,</span><span class="n">v_texCoord</span><span class="p">).</span><span class="n">b</span><span class="o">&gt;</span><span class="n">limit</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">gl_FragColor</span> <span class="o">=</span> <span class="n">vec4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>很容易理解，将输入图片中蓝色值大于limit的渲染为绿色，其余丢弃。</p>
+<p>改写<code>updateParticle</code>函数：</p>
+<div class="highlight"><pre><span class="kt">void</span> <span class="n">HelloWorld</span><span class="o">::</span><span class="n">updateParticle</span><span class="p">(</span><span class="kt">float</span> <span class="n">t</span><span class="p">){</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">nParticle</span><span class="o">&lt;</span><span class="n">MAX_PARTICLE_NUM</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">addparticle</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mi">373</span><span class="o">+</span><span class="n">CCRANDOM_0_1</span><span class="p">()</span><span class="o">*</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">));</span>
+        <span class="n">nParticle</span><span class="o">++</span><span class="p">;</span>
+        <span class="n">nParticleLabel</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="n">StringUtils</span><span class="o">::</span><span class="n">format</span><span class="p">(</span><span class="s">&quot;Particle num:%d&quot;</span><span class="p">,</span><span class="n">nParticle</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">body</span><span class="p">:</span><span class="n">getScene</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getPhysicsWorld</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getAllBodies</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">body</span><span class="o">-&gt;</span><span class="n">getNode</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getPosition</span><span class="p">().</span><span class="n">y</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">nodevector</span><span class="p">.</span><span class="n">eraseObject</span><span class="p">(</span><span class="n">body</span><span class="o">-&gt;</span><span class="n">getNode</span><span class="p">());</span>
+            <span class="n">body</span><span class="o">-&gt;</span><span class="n">getNode</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">removeFromParentAndCleanup</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+            <span class="n">nParticle</span><span class="o">--</span><span class="p">;</span>
+            <span class="n">nParticleLabel</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="n">StringUtils</span><span class="o">::</span><span class="n">format</span><span class="p">(</span><span class="s">&quot;Particle num:%d&quot;</span><span class="p">,</span><span class="n">nParticle</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">rt</span><span class="o">-&gt;</span><span class="n">beginWithClear</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">node</span><span class="p">:</span><span class="n">nodevector</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">auto</span> <span class="n">sp</span><span class="o">=</span><span class="n">Sprite</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&quot;blurball.png&quot;</span><span class="p">);</span>
+        <span class="n">sp</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">getPosition</span><span class="p">());</span>
+        <span class="n">sp</span><span class="o">-&gt;</span><span class="n">visit</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">rt</span><span class="o">-&gt;</span><span class="n">end</span><span class="p">();</span>
+    <span class="n">rtsp</span><span class="o">-&gt;</span><span class="n">setTexture</span><span class="p">(</span><span class="n">rt</span><span class="o">-&gt;</span><span class="n">getSprite</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getTexture</span><span class="p">());</span>
+    <span class="n">rtsp</span><span class="o">-&gt;</span><span class="n">setFlippedY</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+
+<span class="p">}</span>
+</pre></div>
+
+
+<p>在每一帧中将模糊过的小球渲染在RenderTexture上，小球的位置对应物理节点的位置。然后取出整个RenderTexture中的材质，替换<code>rtsp</code>的材质。最终渲染在屏幕上的只有一个Sprite，通过不断改变它的材质达到动画效果。</p>
+<p>好了，最终效果：</p>
+<p><img alt="liquid" src="/imgs/2015/liquidsimulate.gif" /></p>
+<p>基本达到了示例博客中的效果，因为显示的其实是一个Sprite，所以可以添加背景图和桶壁等，设置好Zorder即可。</p>
+<blockquote>
+<p>本篇中讲解了最基本的流体模拟处理方法，从结果来看与水流还有很大差距，只能模拟比较粘稠的类似于泥浆的流体。那么从下一篇开始将逐步改进，使其更加逼真。</p>
+<p>在中级篇中，将尝试整合Google出品的开源项目<a href="http://google.github.io/liquidfun/">liquidfun</a>，以求达到更好的效果。</p>
+<p>在高级篇中，将探讨流体模拟相关算法SPH(<a href="https://en.wikipedia.org/wiki/Smoothed-particle_hydrodynamics">Smoothed Particle Hydrodynamics</a>)，弄明白其原理，尝试代码实现。<a href="http://thecodeway.com/blog/?p=83">这里</a>有一篇很好的参考博客。</p>
+<p>当然，前提是我有时间的话。。。</p>
+</blockquote>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://blog.game18.net/posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/">Cocos2d-x放大镜效果</a></li>
+        <li><a href="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/">应用自定义Shader实现高斯模糊</a></li>
+        <li><a href="http://blog.game18.net/posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/">魔塔游戏实现思路</a></li>
+    </ul>
+</section>
+    <hr />
+    <!-- Shariff Button BEGIN -->
+    <div class="shariff"
+        data-lang="en"
+        data-orientation=""
+        data-services = "[&quot;twitter&quot;,&quot;facebook&quot;,&quot;googleplus&quot;]"
+        data-theme="grey"
+        data-twitter-via="ROCLEE"
+        data-url="http://blog.game18.net/posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/"></div>
+    <!-- Shariff Button END -->
+    <hr/>
+    <section class="comments" id="comments">
+        <h2>Comments</h2>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'rocmaxscats'; // required: replace example with your forum shortname
+
+                    var disqus_identifier = 'cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian';
+                var disqus_url = 'http://blog.game18.net/posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/';
+
+            var disqus_config = function () {
+                this.language = "zh";
+            };
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/extra/avatar.png"/>
+        </p>
+    <p>
+        <strong>About Roc</strong><br/>
+        <p>A Mobile Game Developer.</p>            <p>Indie Game : <a style="color: #0066FF" href="https://play.google.com/store/apps/details?id=jp.co.newchar.noteball">NoteBall</a></p>            <p>Using Cocos2d-x Unity3D</p>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="https://github.com/RocMax"><i class="fa fa-github-square fa-lg"></i> GitHub</a></li>
+                <li class="list-group-item"><a href="https://twitter.com/ROCLEE"><i class="fa fa-twitter-square fa-lg"></i> Twitter</a></li>
+                <li class="list-group-item"><a href="feed/all.atom.xml"><i class="fa fa-rss-square fa-lg"></i> Rss</a></li>
+              </ul>
+            </li>
+
+
+            <li class="list-group-item"><a href="http://blog.game18.net/"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4></a>
+                <ul class="list-group" id="categories">
+                    <li class="list-group-item">
+                        <a href="http://blog.game18.net/category/cocos2d-x">
+                            <i class="fa fa-folder-open fa-lg"></i> Cocos2d-x
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://blog.game18.net/category/python">
+                            <i class="fa fa-folder-open fa-lg"></i> Python
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://blog.game18.net/category/sui-bi">
+                            <i class="fa fa-folder-open fa-lg"></i> 随笔
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="list-group-item"><a href="http://blog.game18.net/tags.html"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-2">
+                        <a href="http://blog.game18.net/tag/android/">
+                            Android
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/beautifulsoup/">
+                            BeautifulSoup
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://blog.game18.net/tag/c/">
+                            C++
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://blog.game18.net/tag/cocos2d-x/">
+                            Cocos2d-x
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/crawl/">
+                            crawl
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/cyanogenmod/">
+                            CyanogenMod
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://blog.game18.net/tag/firehdx/">
+                            FireHDX
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/gaussian-blur/">
+                            Gaussian Blur
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://blog.game18.net/tag/github/">
+                            GitHub
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/html/">
+                            html
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/liquid-simulation/">
+                            Liquid Simulation
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://blog.game18.net/tag/markdown/">
+                            MarkDown
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://blog.game18.net/tag/pelican/">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://blog.game18.net/tag/python/">
+                            Python
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/rendertexture/">
+                            RenderTexture
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://blog.game18.net/tag/root/">
+                            ROOT
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/safestrap/">
+                            Safestrap
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/shader/">
+                            Shader
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/wu-li-yin-qing/">
+                            物理引擎
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://blog.game18.net/tag/xin-qing/">
+                            心情
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://blog.game18.net/tag/you-xi-kai-fa/">
+                            游戏开发
+                        </a>
+                    </li>
+                </ul>
+            </li>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://cocos.com/" target="_blank">
+                Cocos2d-x
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2015 Roc
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://blog.game18.net/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://blog.game18.net/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://blog.game18.net/theme/js/respond.min.js"></script>
+
+    <script src="http://blog.game18.net/theme/js/bodypadding.js"></script>
+    <!-- Disqus -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'rocmaxscats'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <!-- End Disqus Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-68564285-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
+
+    <!-- add shariff support -->
+    <script src="http://blog.game18.net/theme/js/shariff.min.js"></script>
+</body>
+</html>

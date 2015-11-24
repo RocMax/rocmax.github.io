@@ -1,5 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Roc's Blog</title><link>http://blog.game18.net/</link><description></description><atom:link href="http://blog.game18.net/feed/all.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 22 Nov 2015 00:00:00 +0800</lastBuildDate><item><title>应用自定义Shader实现高斯模糊</title><link>http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/</link><description>&lt;blockquote&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Roc's Blog</title><link>http://blog.game18.net/</link><description></description><atom:link href="http://blog.game18.net/feed/all.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 24 Nov 2015 00:00:00 +0800</lastBuildDate><item><title>Cocos2d-x实现流体模拟（初级篇）</title><link>http://blog.game18.net/posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/</link><description>&lt;blockquote&gt;
+&lt;p&gt;前一阵在群里讨论的时候说到使用Cocos2d-x做2D水流，我觉得很有挑战性，于是研究了一阵。实际上流体模拟不仅在游戏开发中应用广泛，而且在工程和科研方面也有重要的意义。今天我们就开始探讨如何使用Cocos2d-x实现流体模拟。&lt;/p&gt;
+&lt;p&gt;这个系列打算分成三个阶段：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;初级篇：解决流体模拟中几个基本问题，实现基本的流体效果&lt;/li&gt;
+&lt;li&gt;中极篇：整合第三方库，实现较好的流体效果&lt;/li&gt;
+&lt;li&gt;高级篇：自己编写相关功能，理解原理和算法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这次先完成初级篇，中级和高级篇需要等搞定代码之后再写，&lt;s&gt;尽量别烂尾&lt;/s&gt;。&lt;/p&gt;
+&lt;p&gt;这次的参考博客：&lt;a href="http://www.emanueleferonato.com/2012/05/16/simulating-mudslime-with-box2d-bitmaps-and-filters/"&gt;Simulating mud/slime with Box2D, bitmaps and filters&lt;/a&gt;,我们这次要实现和他差不多的效果。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;准备工作&lt;/h3&gt;
+&lt;p&gt;流体模拟需要解决两个关键问题：如何动起来像流体；如何看起来像流体。初级篇中我们使用大量物理刚体粒子模拟流体运动，参考示例博客中的效果，只能说差强人意，不过从0开始也算是前进了一大步。于是乎第一个问题我们使用物理引擎实现。&lt;/p&gt;
+&lt;p&gt;当然，看着着一堆粒子想象液体运动是不可接受的。针对第二个问题呢，需要使用一些渲染方面的技巧，类似于&lt;a href="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/"&gt;这篇博客&lt;/a&gt;中使用的方法。&lt;/p&gt;
+&lt;h3&gt;物理引擎&lt;/h3&gt;
+&lt;p&gt;Cocos2d-x自带Box2D和chipmunk两种物理引擎，一般来讲Box2D要强大一些，而chipmunk则比较轻量，不过对于今天的任务选哪个都没差。（Cocos2d-x默认使用chipmunk，需要切换的话可以参考&lt;a href="http://www.tairan.com/archives/5431/"&gt;这里&lt;/a&gt;）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用物理引擎时代码和平常有点不同，在创建scene时要这样：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="n"&gt;scene&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Scene&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;createWithPhysics&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;scene&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getPhysicsWorld&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;setDebugDrawMask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PhysicsWorld&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;DEBUGDRAW_ALL&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;使用&lt;code&gt;createWithPhysics()&lt;/code&gt;创建一个含有物理世界的场景，在之后可以使用&lt;code&gt;getPhysicsWorld()&lt;/code&gt;获取到物理世界。使用&lt;code&gt;setDebugDrawMask&lt;/code&gt;设置DebugDraw的模式，物理节点本身没有显示效果，设置为DEBUGDRAW_ALL方便查看和调试。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;然后使用EdgeBox添加“桶壁”，这种物理节点不受重力影响，一般用来当做外框。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="n"&gt;barrelbody1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;PhysicsBody&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;createEdgeBox&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;450&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+    &lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="n"&gt;barrelbody2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;PhysicsBody&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;createEdgeBox&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;150&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+    &lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="n"&gt;barrelbody3&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;PhysicsBody&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;createEdgeBox&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;500&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+
+    &lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="n"&gt;barrelsp1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Sprite&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="n"&gt;barrelsp2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Sprite&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="n"&gt;barrelsp3&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Sprite&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+    &lt;span class="n"&gt;barrelsp1&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;setPosition&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vec2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;305&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;685&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+    &lt;span class="n"&gt;barrelsp2&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;setPosition&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vec2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;375&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;405&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+    &lt;span class="n"&gt;barrelsp3&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;setPosition&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vec2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;445&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;660&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+
+    &lt;span class="n"&gt;barrelsp1&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;setPhysicsBody&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;barrelbody1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;barrelsp2&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;setPhysicsBody&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;barrelbody2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;barrelsp3&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;setPhysicsBody&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;barrelbody3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="n"&gt;addChild&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;barrelsp1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;addChild&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;barrelsp2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;addChild&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;barrelsp3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Cocos2d-x已经将物理节点封装在Node中，使用Node的&lt;code&gt;setPhysicsBody&lt;/code&gt;即可添加相应地物理节点。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;下面添加物理粒子,使用&lt;code&gt;schedule&lt;/code&gt;调用&lt;code&gt;updateParticle&lt;/code&gt;函数，同时限制一下粒子数量，在模拟器中300个以内的粒子基本不会影响帧数。引擎提供了&lt;code&gt;getAllBodies&lt;/code&gt;函数，可以方便地遍历所有物理节点。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;HelloWorld&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;addparticle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cocos2d&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Vec2&lt;/span&gt; &lt;span class="n"&gt;position&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+    &lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="n"&gt;particleBody&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;PhysicsBody&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;createCircle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;8.0f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;bMaterial&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;Vec2&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;ZERO&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
+    &lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="n"&gt;particleNode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Node&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;particleNode&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;setPosition&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;position&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;particleNode&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;setPhysicsBody&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;particleBody&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;addChild&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;particleNode&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;nodevector&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pushBack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;particleNode&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;HelloWorld&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;updateParticle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nParticle&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;MAX_PARTICLE_NUM&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;addparticle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vec2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;373&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;CCRANDOM_0_1&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+        &lt;span class="n"&gt;nParticle&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;nParticleLabel&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;setString&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;StringUtils&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Particle num:%d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;nParticle&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="nl"&gt;body&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;getScene&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getPhysicsWorld&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getAllBodies&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getNode&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getPosition&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;nodevector&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;eraseObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getNode&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+            &lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getNode&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;removeFromParentAndCleanup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="n"&gt;nParticle&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;nParticleLabel&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;setString&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;StringUtils&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Particle num:%d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;nParticle&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;其中&lt;code&gt;bMaterial&lt;/code&gt;是粒子的材质，它是一个刚性光滑球，具体数值为：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;bMaterial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;density&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;4.0f&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;     &lt;span class="c1"&gt;//密度&lt;/span&gt;
+    &lt;span class="n"&gt;bMaterial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;friction&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;       &lt;span class="c1"&gt;//摩擦力&lt;/span&gt;
+    &lt;span class="n"&gt;bMaterial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;restitution&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;    &lt;span class="c1"&gt;//弹性&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;最后，看一下效果，有那么点意思了：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="PhysicsParticle" src="/imgs/2015/PhysicsParticle.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;这里我们看到的形状都是&lt;code&gt;DebugDraw&lt;/code&gt;绘制的，如果把&lt;code&gt;DEBUGDRAW_ALL&lt;/code&gt;改为&lt;code&gt;DEBUGDRAW_NONE&lt;/code&gt;则只能看到黑屏。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我们一直没有给物理节点的添加图形是有原因的。物理引擎模拟了物理节点之间的相互作用和运动情况，但我们不能直接将图形绘制在物理节点上，我们需要的只是粒子的位置信息，接下来就利用这些信息解决第二个问题。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;流体渲染&lt;/h3&gt;
+&lt;p&gt;从球形的粒子渲染出流体效果需要两步处理：模糊和截断,先把小球模糊成雾状,再对其边缘截断,就可以模拟出液体效果。&lt;/p&gt;
+&lt;h4&gt;模糊&lt;/h4&gt;
+&lt;p&gt;回想一下上一篇博客&lt;a href="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/"&gt;高斯模糊&lt;/a&gt;,我们是不是可以按照同样的方法进行模糊呢?答案是不能。在那篇博客中提到了高斯模糊比较消耗系统资源，如果使用相同的方法帧数会大幅下降。&lt;/p&gt;
+&lt;p&gt;实际上，那篇博客中提到的方法适用于不知道运行时要模糊什么图像的情况。而当前问题中我们很明确就是要模糊小球嘛，于是直接准备模糊好的素材就行啦：&lt;/p&gt;
+&lt;p&gt;模糊前：&lt;img alt="ball" src="/imgs/2015/ball.png" /&gt;   模糊后:&lt;img alt="blurball" src="/imgs/2015/blurball.png" /&gt;&lt;/p&gt;
+&lt;p&gt;那么,现在效果变成了这样（关掉了DEBUGDRAW）:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="blured" src="/imgs/2015/blurballs.gif" /&gt;&lt;/p&gt;
+&lt;h4&gt;截断&lt;/h4&gt;
+&lt;p&gt;上面的图形依然不是最终结果，所以不能直接渲染在屏幕上。我们可以先把模糊过的小球渲染在RenderTexture中，然后取出整个图像进行截断，再将结果渲染在屏幕上。&lt;/p&gt;
+&lt;p&gt;首先创建RenderTexture并取出素材渲染到屏幕：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;rt&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;RenderTexture&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;winsize&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;winsize&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;rt&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;retain&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;rtsp&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ShaderSprite&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;createWithTexture&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rt&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getSprite&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getTexture&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;Rect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;winsize&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;winsize&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="mf"&gt;0.1f&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;rtsp&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;setPosition&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vec2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;winsize&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;winsize&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注意其中使用了ShaderSprite,正是在&lt;a href="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/"&gt;高斯模糊&lt;/a&gt;中自定义的类,只是修改了传参，使用的着色器代码为:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#ifdef GL_ES&lt;/span&gt;
+&lt;span class="n"&gt;precision&lt;/span&gt; &lt;span class="n"&gt;mediump&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="cp"&gt;#endif&lt;/span&gt;
+
+&lt;span class="n"&gt;varying&lt;/span&gt; &lt;span class="n"&gt;vec4&lt;/span&gt; &lt;span class="n"&gt;v_fragmentColor&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;varying&lt;/span&gt; &lt;span class="n"&gt;vec2&lt;/span&gt; &lt;span class="n"&gt;v_texCoord&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="n"&gt;uniform&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;limit&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;texture2D&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;CC_Texture0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;v_texCoord&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;limit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;gl_FragColor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vec4&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;很容易理解，将输入图片中蓝色值大于limit的渲染为绿色，其余丢弃。&lt;/p&gt;
+&lt;p&gt;改写&lt;code&gt;updateParticle&lt;/code&gt;函数：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;HelloWorld&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;updateParticle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nParticle&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;MAX_PARTICLE_NUM&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;addparticle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vec2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;373&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;CCRANDOM_0_1&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+        &lt;span class="n"&gt;nParticle&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;nParticleLabel&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;setString&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;StringUtils&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Particle num:%d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;nParticle&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="nl"&gt;body&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;getScene&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getPhysicsWorld&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getAllBodies&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getNode&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getPosition&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;nodevector&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;eraseObject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getNode&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+            &lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getNode&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;removeFromParentAndCleanup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="n"&gt;nParticle&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;nParticleLabel&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;setString&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;StringUtils&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Particle num:%d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;nParticle&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="n"&gt;rt&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;beginWithClear&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="nl"&gt;node&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;nodevector&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="n"&gt;sp&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Sprite&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;blurball.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;sp&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;setPosition&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;node&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getPosition&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+        &lt;span class="n"&gt;sp&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;visit&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="n"&gt;rt&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;rtsp&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;setTexture&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rt&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getSprite&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;getTexture&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+    &lt;span class="n"&gt;rtsp&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;setFlippedY&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在每一帧中将模糊过的小球渲染在RenderTexture上，小球的位置对应物理节点的位置。然后取出整个RenderTexture中的材质，替换&lt;code&gt;rtsp&lt;/code&gt;的材质。最终渲染在屏幕上的只有一个Sprite，通过不断改变它的材质达到动画效果。&lt;/p&gt;
+&lt;p&gt;好了，最终效果：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="liquid" src="/imgs/2015/liquidsimulate.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;基本达到了示例博客中的效果，因为显示的其实是一个Sprite，所以可以添加背景图和桶壁等，设置好Zorder即可。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本篇中讲解了最基本的流体模拟处理方法，从结果来看与水流还有很大差距，只能模拟比较粘稠的类似于泥浆的流体。那么从下一篇开始将逐步改进，使其更加逼真。&lt;/p&gt;
+&lt;p&gt;在中级篇中，将尝试整合Google出品的开源项目&lt;a href="http://google.github.io/liquidfun/"&gt;liquidfun&lt;/a&gt;，以求达到更好的效果。&lt;/p&gt;
+&lt;p&gt;在高级篇中，将探讨流体模拟相关算法SPH(&lt;a href="https://en.wikipedia.org/wiki/Smoothed-particle_hydrodynamics"&gt;Smoothed Particle Hydrodynamics&lt;/a&gt;)，弄明白其原理，尝试代码实现。&lt;a href="http://thecodeway.com/blog/?p=83"&gt;这里&lt;/a&gt;有一篇很好的参考博客。&lt;/p&gt;
+&lt;p&gt;当然，前提是我有时间的话。。。&lt;/p&gt;
+&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Tue, 24 Nov 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-11-22:posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/</guid><category>Cocos2d-x</category><category>C++</category><category>Liquid Simulation</category><category>物理引擎</category></item><item><title>应用自定义Shader实现高斯模糊</title><link>http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/</link><description>&lt;blockquote&gt;
 &lt;p&gt;是时候研究真正的技术了！深入Cocos2d-x引擎核心，利用Shader实现更炫酷的效果。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;掌握了Cocos2d-x的基本应用之后，是不是已经不能满足于基本的精灵和动画效果了？本篇就向游戏引擎的核心迈进一步，利用自定义Shader实现高斯模糊效果。参考文章：&lt;a href="http://discuss.cocos2d-x.org/t/cocos3-8-tutorial-rendertexture-blur/13622"&gt;RenderTexture + Blur&lt;/a&gt;
@@ -266,7 +439,7 @@ point 8 : 0.003799
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Sun, 22 Nov 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-11-12:posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/</guid><category>Cocos2d-x</category><category>C++</category><category>Shader</category><category>Gaussian Blur</category></item><item><title>ROOT FireHDX7 之后的一些问题</title><link>http://blog.game18.net/posts/2015/10/root-firehdx7-zhi-hou-de-yi-xie-wen-ti/</link><description>&lt;blockquote&gt;
+&lt;/script&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Tue, 24 Nov 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-11-12:posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/</guid><category>Cocos2d-x</category><category>C++</category><category>Shader</category><category>Gaussian Blur</category></item><item><title>ROOT FireHDX7 之后的一些问题</title><link>http://blog.game18.net/posts/2015/10/root-firehdx7-zhi-hou-de-yi-xie-wen-ti/</link><description>&lt;blockquote&gt;
 &lt;p&gt;继上一篇Root了Kindle FireHDX 7之后,昨天又研究了一晚,成功运行第三方ROM,生命在于折腾!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;昨天搞定FireHDX的Root之后还是遇到了问题,google play使用几次后就白屏无法载入.试着按照上一篇中参考博客的方法重装了google play,结果更糟糕,重启后显示Google的欢迎界面无法跳过,点下一步就断网,配置好网络再点又断网.如果不跳过欢迎界面会导致底部的navigation bar无法显示,随之而来的就是无法后退,无法回桌面等一系列问题.系统算是被我彻底搞坏了,只好重新来过,这次直接上Safestrap+CyanogenMod,一劳永逸搞定ROM问题.&lt;/p&gt;
@@ -367,7 +540,7 @@ point 8 : 0.003799
 &lt;li&gt;
 &lt;p&gt;宝箱，npc，以及其他收集道具的处理以及npc触发任务的处理有待细化.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Sun, 22 Nov 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-15:posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/</guid><category>Cocos2d-x</category><category>游戏开发</category></item><item><title>Cocos2d-x放大镜效果</title><link>http://blog.game18.net/posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/</link><description>&lt;p&gt;挖一篇以前写的笔记,如何用Cocos2d-x实现放大镜效果.主要思路是使用图片的一部分创建Sprite,然后setscale,将生成的sprite添加到点击位置.如果原图分辨率不够的话也可以使用另外的大图,截取范围按照两张图的分辨率比值设定.如果对ontouchmoved进行响应,改变截取的位置,生成新的texture,然后使用sprite-&amp;gt;settexture即可实现拖动效果.在ontouchended中销毁sprite即可.基本功能实现非常简单,效果如下:&lt;/p&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Tue, 24 Nov 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-15:posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/</guid><category>Cocos2d-x</category><category>游戏开发</category></item><item><title>Cocos2d-x放大镜效果</title><link>http://blog.game18.net/posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/</link><description>&lt;p&gt;挖一篇以前写的笔记,如何用Cocos2d-x实现放大镜效果.主要思路是使用图片的一部分创建Sprite,然后setscale,将生成的sprite添加到点击位置.如果原图分辨率不够的话也可以使用另外的大图,截取范围按照两张图的分辨率比值设定.如果对ontouchmoved进行响应,改变截取的位置,生成新的texture,然后使用sprite-&amp;gt;settexture即可实现拖动效果.在ontouchended中销毁sprite即可.基本功能实现非常简单,效果如下:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="SquareMagnifyingGlass" src="/imgs/2015/squaremagnifyingglass.png" /&gt;&lt;/p&gt;
 &lt;p&gt;实现起来虽然简单,但是方形的放大框非常不自然.下面我们就在Cocos2d-x中实现圆形外框的放大镜效果.先看代码:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Sprite&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;HelloWorld&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;getMaskedSprite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cocos2d&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Rect&lt;/span&gt; &lt;span class="n"&gt;rect&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
@@ -417,9 +590,9 @@ point 8 : 0.003799
 &lt;p&gt;&lt;img alt="RoundMagnifyingGlass1" src="/imgs/2015/roundmagnifyingglass1.png" /&gt;&lt;img alt="RoundMagnifyingGlass2" src="/imgs/2015/roundmagnifyingglass2.png" /&gt;&lt;/p&gt;
 &lt;p&gt;代码见&lt;a href="https://github.com/RocMax/MagnifyingGlassEffect.git"&gt;这里&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;其实稍作改动,我们还可以实现更有趣的效果.比如:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="screenshot" src="/imgs/2015/screenshot.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="screenshot" src="/imgs/2015/funnygirl.gif" /&gt;&lt;/p&gt;
 &lt;p&gt;怎么样,&lt;s&gt;无论从哪个方面来看&lt;/s&gt;效果很不错吧?
-是不是有些小激动呢?（¯﹃¯）嘿嘿嘿嘿....&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Sun, 22 Nov 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-14:posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/</guid><category>Cocos2d-x</category><category>C++</category><category>RenderTexture</category></item><item><title>Python抓取网页数据</title><link>http://blog.game18.net/posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/</link><description>&lt;p&gt;稍微花了点时间学习Python,真是一种好用的语言啊.相对于要求严格的C++,Python非常自由、简单、方便.有时候让我有一种"这么随便会不会出什么问题?"的感觉.基本上稍微看一下文档我就能上手干活了,做了一个抓取网页数据的小工具.感谢&lt;a href="http://cuiqingcai.com/927.html"&gt;静觅的博客&lt;/a&gt;详细讲解了Python爬虫,更棒的是有多个实例供参考.&lt;/p&gt;
+是不是有些小激动呢?（¯﹃¯）嘿嘿嘿嘿....&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Tue, 24 Nov 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-14:posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/</guid><category>Cocos2d-x</category><category>C++</category><category>RenderTexture</category></item><item><title>Python抓取网页数据</title><link>http://blog.game18.net/posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/</link><description>&lt;p&gt;稍微花了点时间学习Python,真是一种好用的语言啊.相对于要求严格的C++,Python非常自由、简单、方便.有时候让我有一种"这么随便会不会出什么问题?"的感觉.基本上稍微看一下文档我就能上手干活了,做了一个抓取网页数据的小工具.感谢&lt;a href="http://cuiqingcai.com/927.html"&gt;静觅的博客&lt;/a&gt;详细讲解了Python爬虫,更棒的是有多个实例供参考.&lt;/p&gt;
 &lt;p&gt;因为上面推荐的博客里讲解已经非常细致,我就直接上代码好了.另外关于html的基本概念可以参考&lt;a href="http://www.w3school.com.cn/html/"&gt;这里&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;我们今天要爬的网站是这个:&lt;a href="http://www.suruga-ya.jp/"&gt;駿河屋&lt;/a&gt;,一个日本的电商网站,我们希望能把商品信息抓出来供以后使用.IDE方面,我使用的是Anaconda家的Pycharm,另外还附带一个网页版的界面叫IPython Notebook(Jupyter),可以随写随运行,写比较小的脚本时很方便.那么好,上代码:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib&lt;/span&gt;
@@ -641,7 +814,7 @@ read to max pageindex,stop
 &lt;blockquote&gt;
 &lt;p&gt;总结:
 Python爬网页数据真方便!&lt;/p&gt;
-&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Sun, 22 Nov 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-12:posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/</guid><category>Python</category><category>crawl</category><category>BeautifulSoup</category><category>html</category></item><item><title>更换博客主题</title><link>http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/</link><description>&lt;p&gt;刚弄好的博客突然间挂掉了.运行&lt;code&gt;make html&lt;/code&gt;的时候所有md文件都报&lt;/p&gt;
+&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Tue, 24 Nov 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-12:posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/</guid><category>Python</category><category>crawl</category><category>BeautifulSoup</category><category>html</category></item><item><title>更换博客主题</title><link>http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/</link><description>&lt;p&gt;刚弄好的博客突然间挂掉了.运行&lt;code&gt;make html&lt;/code&gt;的时候所有md文件都报&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;OSError: [Errno 2] No such file or directory.
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -675,7 +848,7 @@ Python爬网页数据真方便!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;之后有时间继续研究一下这个问题吧.当务之急是让把博客恢复起来.我把官方Git上的所有主题截图都浏览过,喜欢的并不多,有几个虽然看起来很漂亮,但又有点过于文艺范.后来我发现很多博客都在用&lt;a href="https://github.com/DandyDev/pelican-bootstrap3"&gt;pelican-bootstrap3&lt;/a&gt;主题,风格比较简约适合技术博客.&lt;/p&gt;
 &lt;p&gt;按着readme配置了一下,发现这个主题可配置的地方很多,功能比较完善.我最喜欢的是可定制的顶部banner,用了黑猫的图片加上黑白配色,堪称完美.&lt;/p&gt;
-&lt;p&gt;于是Bolg满血复活,测试了几次没发现什么bug,暂且先用这个主题好了.以后研究一下自己学着定制主题吧.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Sun, 22 Nov 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-10:posts/2015/10/geng-huan-bo-ke-zhu-ti/</guid><category>心情</category><category>Pelican</category><category>Python</category></item><item><title>利用Pelican和GitHub Pages打造个性化博客(二)</title><link>http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</link><description>&lt;blockquote&gt;
+&lt;p&gt;于是Bolg满血复活,测试了几次没发现什么bug,暂且先用这个主题好了.以后研究一下自己学着定制主题吧.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Tue, 24 Nov 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-10:posts/2015/10/geng-huan-bo-ke-zhu-ti/</guid><category>心情</category><category>Pelican</category><category>Python</category></item><item><title>利用Pelican和GitHub Pages打造个性化博客(二)</title><link>http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</link><description>&lt;blockquote&gt;
 &lt;p&gt;在上一篇里我们已经完成了Pelican的安装,生成网站并部署到GitHub Pages上.下面我们就继续完善网站的设置.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;1. 更换主题&lt;/h2&gt;
@@ -898,7 +1071,7 @@ git push origin master
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Sun, 22 Nov 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-08:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</guid><category>Pelican</category><category>GitHub</category><category>Python</category><category>MarkDown</category></item><item><title>利用Pelican和GitHub Pages打造个性化博客(一)</title><link>http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</link><description>&lt;h2&gt;1. 配置GitHbu Pages&lt;/h2&gt;
+&lt;/script&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Tue, 24 Nov 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-08:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</guid><category>Pelican</category><category>GitHub</category><category>Python</category><category>MarkDown</category></item><item><title>利用Pelican和GitHub Pages打造个性化博客(一)</title><link>http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</link><description>&lt;h2&gt;1. 配置GitHbu Pages&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;在GitHub中新建一个repository,命名为username.github.io,其中username是github的用户名,我建的是rocmax.github.io.&lt;/p&gt;
@@ -1003,10 +1176,10 @@ git push origin master    #将本地更改同步到远程仓库的master分支
 &lt;p&gt;到这里就把使用Pelican+GitHub Pages搭建个人博客的基本流程介绍完了.生成的博客应该类似于这样:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="PelicanWeb" src="/imgs/2015/PelicanWeb.png" /&gt;
 呃....好像也很丑的样子,而且也没啥功能.
-下一篇我们继续定制这个博客,让它变得既美观又功能强大.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Sun, 22 Nov 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-07:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</guid><category>Pelican</category><category>GitHub</category><category>Python</category><category>MarkDown</category></item><item><title>祝!新博客开张!</title><link>http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/</link><description>&lt;blockquote&gt;
+下一篇我们继续定制这个博客,让它变得既美观又功能强大.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Tue, 24 Nov 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-07:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</guid><category>Pelican</category><category>GitHub</category><category>Python</category><category>MarkDown</category></item><item><title>祝!新博客开张!</title><link>http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/</link><description>&lt;blockquote&gt;
 &lt;p&gt;生命在于折腾!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;不久前刚刚开始使用&lt;a href="http://yellowandblackcats.blogspot.jp/"&gt;Blogger&lt;/a&gt;,为了替换一直使用的印象笔记.用了一段时间发现还是不爽,Blogger对MarkDown的支持并不是太好,也没什么好用的编辑器去配合,而且我费半天劲定制的Blogger界面丑得要死.终于,我下定决心再折腾一遍,搞一个更好用的博客.&lt;/p&gt;
 &lt;p&gt;上网搜一搜,什么博客比较高大上呢?知乎马上给你答案:&lt;a href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt;,GitHub推出了支持静态网页的功能,就是GitHub Pages,程序员当然要用GitHub才算专业嘛.我们现在有md文件写博客内容,只要能把它们转成网页然后发布到GitHub Pages上就大功告成了.在GitHub Pages页面上推荐了&lt;a href="http://jekyllcn.com/"&gt;Jekyll&lt;/a&gt;应该是最有名的静态博客网站转换工具.但Jekyll是基于Ruby的,我不懂也不想学,于是我选择了基于Python的&lt;a href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;来完成这项工作.&lt;/p&gt;
 &lt;p&gt;经过三天的研究,&lt;a href="http://blog.game18.net"&gt;新博客&lt;/a&gt;终于上线了,本篇是随笔所以不写太多技术内容,下一篇详细写搭建流程吧.&lt;/p&gt;
-&lt;p&gt;最后,感谢神奈提供的域名,让博客的&lt;s&gt;B格&lt;/s&gt;更加提高了一点(刚明明说用GitHub才叫专业).感谢&lt;a href="http://oncrashreboot.com/"&gt;Talha Mansoor&lt;/a&gt;开发的&lt;a href="http://oncrashreboot.com/elegant-best-pelican-theme-features"&gt;Elegant&lt;/a&gt;主题,试过了n多个主题以后,发现Elegant果然是当之无愧的&lt;strong&gt;best-pelican-theme&lt;/strong&gt;.我自己也研究了一下Pelican的主题开发,似乎难度并不高,以后有时间自己也弄一套吧.另外,感谢Pelican,感谢Python......&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Sun, 22 Nov 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-07:posts/2015/10/zhu-xin-bo-ke-kai-zhang/</guid><category>心情</category><category>Pelican</category><category>GitHub</category></item></channel></rss>
+&lt;p&gt;最后,感谢神奈提供的域名,让博客的&lt;s&gt;B格&lt;/s&gt;更加提高了一点(刚明明说用GitHub才叫专业).感谢&lt;a href="http://oncrashreboot.com/"&gt;Talha Mansoor&lt;/a&gt;开发的&lt;a href="http://oncrashreboot.com/elegant-best-pelican-theme-features"&gt;Elegant&lt;/a&gt;主题,试过了n多个主题以后,发现Elegant果然是当之无愧的&lt;strong&gt;best-pelican-theme&lt;/strong&gt;.我自己也研究了一下Pelican的主题开发,似乎难度并不高,以后有时间自己也弄一套吧.另外,感谢Pelican,感谢Python......&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Tue, 24 Nov 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-10-07:posts/2015/10/zhu-xin-bo-ke-kai-zhang/</guid><category>心情</category><category>Pelican</category><category>GitHub</category></item></channel></rss>
