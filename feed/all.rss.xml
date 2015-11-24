@@ -11,8 +11,8 @@
 &lt;p&gt;这次的参考博客：&lt;a href="http://www.emanueleferonato.com/2012/05/16/simulating-mudslime-with-box2d-bitmaps-and-filters/"&gt;Simulating mud/slime with Box2D, bitmaps and filters&lt;/a&gt;,我们这次要实现和他差不多的效果。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3&gt;准备工作&lt;/h3&gt;
-&lt;p&gt;流体模拟需要解决两个关键问题：如何动起来像流体；如何看起来像流体。初级篇中我们使用大量物理刚体粒子模拟流体运动，参考示例博客中的效果，只能说差强人意，不过从0开始也算是前进了一大步。于是乎第一个问题我们使用物理引擎实现。&lt;/p&gt;
-&lt;p&gt;当然，看着着一堆粒子想象液体运动是不可接受的。针对第二个问题呢，需要使用一些渲染方面的技巧，类似于&lt;a href="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/"&gt;这篇博客&lt;/a&gt;中使用的方法。&lt;/p&gt;
+&lt;p&gt;流体模拟需要解决两个关键问题：如何动起来像流体；如何看起来像流体。&lt;/p&gt;
+&lt;p&gt;初级篇中我们使用大量物理刚体粒子模拟流体运动，当然，看着着一堆粒子想象液体运动是不可接受的。针对第二个问题呢，需要使用一些渲染方面的技巧。最终实现的效果参考示例博客，说实话差强人意，初级篇嘛，不要要求太高。&lt;/p&gt;
 &lt;h3&gt;物理引擎&lt;/h3&gt;
 &lt;p&gt;Cocos2d-x自带Box2D和chipmunk两种物理引擎，一般来讲Box2D要强大一些，而chipmunk则比较轻量，不过对于今天的任务选哪个都没差。（Cocos2d-x默认使用chipmunk，需要切换的话可以参考&lt;a href="http://www.tairan.com/archives/5431/"&gt;这里&lt;/a&gt;）&lt;/p&gt;
 &lt;ul&gt;
@@ -23,7 +23,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;使用&lt;code&gt;createWithPhysics()&lt;/code&gt;创建一个含有物理世界的场景，在之后可以使用&lt;code&gt;getPhysicsWorld()&lt;/code&gt;获取到物理世界。使用&lt;code&gt;setDebugDrawMask&lt;/code&gt;设置DebugDraw的模式，物理节点本身没有显示效果，设置为DEBUGDRAW_ALL方便查看和调试。&lt;/p&gt;
+&lt;p&gt;使用&lt;code&gt;createWithPhysics()&lt;/code&gt;创建一个含有物理世界的场景，在之后可以使用&lt;code&gt;getPhysicsWorld()&lt;/code&gt;获取到物理世界。使用&lt;code&gt;setDebugDrawMask&lt;/code&gt;设置DebugDraw的模式，物理节点本身没有显示效果，设置为&lt;code&gt;DEBUGDRAW_ALL&lt;/code&gt;方便查看和调试。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;然后使用EdgeBox添加“桶壁”，这种物理节点不受重力影响，一般用来当做外框。&lt;/li&gt;
 &lt;/ul&gt;
@@ -171,7 +171,7 @@
 &lt;p&gt;本篇中讲解了最基本的流体模拟处理方法，从结果来看与水流还有很大差距，只能模拟比较粘稠的类似于泥浆的流体。那么从下一篇开始将逐步改进，使其更加逼真。&lt;/p&gt;
 &lt;p&gt;在中级篇中，将尝试整合Google出品的开源项目&lt;a href="http://google.github.io/liquidfun/"&gt;liquidfun&lt;/a&gt;，以求达到更好的效果。&lt;/p&gt;
 &lt;p&gt;在高级篇中，将探讨流体模拟相关算法SPH(&lt;a href="https://en.wikipedia.org/wiki/Smoothed-particle_hydrodynamics"&gt;Smoothed Particle Hydrodynamics&lt;/a&gt;)，弄明白其原理，尝试代码实现。&lt;a href="http://thecodeway.com/blog/?p=83"&gt;这里&lt;/a&gt;有一篇很好的参考博客。&lt;/p&gt;
-&lt;p&gt;当然，前提是我有时间的话。。。&lt;/p&gt;
+&lt;p&gt;&lt;s&gt;当然，前提是有时间的话。。。&lt;/s&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Tue, 24 Nov 2015 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-11-22:posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/</guid><category>Cocos2d-x</category><category>C++</category><category>Liquid Simulation</category><category>物理引擎</category></item><item><title>应用自定义Shader实现高斯模糊</title><link>http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/</link><description>&lt;blockquote&gt;
 &lt;p&gt;是时候研究真正的技术了！深入Cocos2d-x引擎核心，利用Shader实现更炫酷的效果。&lt;/p&gt;
 &lt;/blockquote&gt;
