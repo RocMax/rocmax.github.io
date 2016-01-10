@@ -5,30 +5,37 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.game18.net/</loc>
-<lastmod>2016-01-10T16:15:23-00:00</lastmod>
+<lastmod>2016-01-10T16:21:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/archives.html</loc>
-<lastmod>2016-01-10T16:15:23-00:00</lastmod>
+<lastmod>2016-01-10T16:21:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tags.html</loc>
-<lastmod>2016-01-10T16:15:23-00:00</lastmod>
+<lastmod>2016-01-10T16:21:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/categories.html</loc>
-<lastmod>2016-01-10T16:15:23-00:00</lastmod>
+<lastmod>2016-01-10T16:21:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://blog.game18.net/posts/2016/01/hao-wu-liao-a/</loc>
+<lastmod>2016-01-10T00:00:00+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
 </url>
 
 <url>
@@ -131,7 +138,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.game18.net/category/sui-bi</loc>
-<lastmod>2016-01-10T00:00:00+08:06</lastmod>
+<lastmod>2016-01-10T16:17:30+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -187,7 +194,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.game18.net/tag/xin-qing/</loc>
-<lastmod>2016-01-10T00:00:00+08:06</lastmod>
+<lastmod>2016-01-10T16:17:30+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -285,7 +292,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.game18.net/author/roc.html</loc>
-<lastmod>2016-01-10T00:00:00+08:06</lastmod>
+<lastmod>2016-01-10T16:17:30+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
