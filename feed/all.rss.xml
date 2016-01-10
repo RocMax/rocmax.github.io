@@ -3,8 +3,8 @@
 &lt;p&gt;说起来我倒也不算µ's的粉丝，成员9人中只是对南條愛乃比较关注。南條一开始很内向，一上台就紧张（anisama走音炮），现在已经在µ's、fripside、声优、电视节目多面开花，成长速度令人欣喜。现在µ's演唱会、广播节目和动漫、周边都很火，不知为什么会突然宣布解散。&lt;/p&gt;
 &lt;p&gt;我这个人好像从来没有强烈地Fan过什么东西，像µ's只是知道一点，听过一些歌，比较喜欢其中一个人这样的程度，而有些粉丝对偶像各种细节的了解程度那是相当厉害。其实想想看我这个人总是有浅尝辄止的毛病，大多数时候知道个皮毛、弄懂大概道理就感觉OK了，不再深入研究，少有对某一个东西真正了如指掌，还是爱不够啊。&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;话说这么多天过去了，我一直在留心相关信息，发现好像也没啥后续消息啊。μ’ｓ各人的twitter还是一片祥和，莫非之前是假消息？
-p.s: 红白南条咋又没出席捏？看来膝盖中箭很严重啊。。。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Sun, 10 Jan 2016 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-12-05:posts/2015/12/ting-shuo-usyao-jie-san/</guid><category>心情</category></item><item><title>Cocos2d-x实现流体模拟（初级篇）</title><link>http://blog.game18.net/posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/</link><description>&lt;blockquote&gt;
+&lt;p&gt;话说这么多天过去了，我一直在留心相关信息，发现好像也没啥后续消息啊。μ’ｓ各人的twitter还是一片祥和，莫非之前是假消息？&lt;/p&gt;
+&lt;p&gt;p.s: 红白南条咋又没出席捏？看来膝盖中箭很严重啊。。。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Sun, 10 Jan 2016 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2015-12-05:posts/2015/12/ting-shuo-usyao-jie-san/</guid><category>心情</category></item><item><title>Cocos2d-x实现流体模拟（初级篇）</title><link>http://blog.game18.net/posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/</link><description>&lt;blockquote&gt;
 &lt;p&gt;前一阵在群里讨论的时候说到使用Cocos2d-x做2D水流，我觉得很有挑战性，于是研究了一阵。实际上流体模拟不仅在游戏开发中应用广泛，而且在工程和科研方面也有重要的意义。今天我们就开始探讨如何使用Cocos2d-x实现流体模拟。&lt;/p&gt;
 &lt;p&gt;这个系列打算分成三个阶段：&lt;/p&gt;
 &lt;ul&gt;
