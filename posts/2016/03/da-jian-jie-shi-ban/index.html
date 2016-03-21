@@ -174,11 +174,11 @@ Roc's Blog            </a>
 
 
 <p>最后使用service vsftpd start开启ftp服务。（也可以加入开机启动，这次仅仅为了上传网站数据，需要用的时候自己开比较安全。）</p>
-<p>尝试过使用wget直接从互联网下载网页文件，但这样下载的文件无法运行。实际上FTP有两种上传模式：ASCII和Binary。ASCII模式会转换一些符号例如回车来适应不同的平台，Binary模式会上传二进制文件并保证上传的文件与本地文件相同。</p>
+<p>尝试过使用wget直接从互联网下载网页文件，但这样下载的文件无法运行。实际上FTP有两种上传模式：ASCII和Binary。ASCII模式会转换一些符号例如回车来适应不同的平台，Binary模式会上传二进制文件并保证上传的文件与本地文件相同。使用wget下载文件类似于Binary模式，会造成代码文件无法执行。</p>
 <h2>部署揭示板</h2>
 <p>准备工作完成，正式开始部署揭示板。从<a href="http://www.kent-web.com/cgi/downld/downld.cgi?id=yybbs">这里</a>下载揭示板程序，它是使用Perl编写的cgi程序。</p>
-<p>使用FTP客户端上传至<code>cgi-bin</code>目录下，<code>.cgi</code>、<code>.pl</code>、<code>.html</code>等代码文件需要使用ASCII模式上传，<code>.png</code>、<code>.ttf</code>等文件需要使用Binary模式上传。
-接着对http服务进行一些必要的配置，使其能够运行cgi文件。打开<code>/etc/httpd/conf/httpd.conf</code>配置以下项目：</p>
+<p>使用FTP客户端上传至<code>cgi-bin</code>目录下，<code>.cgi</code>、<code>.pl</code>、<code>.html</code>等代码文件需要使用ASCII模式上传，<code>.png</code>、<code>.ttf</code>等文件需要使用Binary模式上传。这里推荐使用win下的FlashFXP，自带了ASCII上传过滤列表，非常方便，而MAC下的FTP软件就差远了。</p>
+<p>接着对http服务进行一些必要的配置，使其能够运行cgi文件。打开<code>/etc/httpd/conf/httpd.conf</code>配置以下项目：</p>
 <div class="highlight"><pre>LoadModule cgi_module modules/mod_cgi.so  <span class="c">#载入cgi模块</span>
 
 ScriptAlias /cgi-bin/ <span class="s2">&quot;/var/www/cgi-bin/&quot;</span> <span class="c">#指定可以运行cgi的目录</span>

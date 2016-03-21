@@ -38,11 +38,11 @@
 
 
 &lt;p&gt;最后使用service vsftpd start开启ftp服务。（也可以加入开机启动，这次仅仅为了上传网站数据，需要用的时候自己开比较安全。）&lt;/p&gt;
-&lt;p&gt;尝试过使用wget直接从互联网下载网页文件，但这样下载的文件无法运行。实际上FTP有两种上传模式：ASCII和Binary。ASCII模式会转换一些符号例如回车来适应不同的平台，Binary模式会上传二进制文件并保证上传的文件与本地文件相同。&lt;/p&gt;
+&lt;p&gt;尝试过使用wget直接从互联网下载网页文件，但这样下载的文件无法运行。实际上FTP有两种上传模式：ASCII和Binary。ASCII模式会转换一些符号例如回车来适应不同的平台，Binary模式会上传二进制文件并保证上传的文件与本地文件相同。使用wget下载文件类似于Binary模式，会造成代码文件无法执行。&lt;/p&gt;
 &lt;h2&gt;部署揭示板&lt;/h2&gt;
 &lt;p&gt;准备工作完成，正式开始部署揭示板。从&lt;a href="http://www.kent-web.com/cgi/downld/downld.cgi?id=yybbs"&gt;这里&lt;/a&gt;下载揭示板程序，它是使用Perl编写的cgi程序。&lt;/p&gt;
-&lt;p&gt;使用FTP客户端上传至&lt;code&gt;cgi-bin&lt;/code&gt;目录下，&lt;code&gt;.cgi&lt;/code&gt;、&lt;code&gt;.pl&lt;/code&gt;、&lt;code&gt;.html&lt;/code&gt;等代码文件需要使用ASCII模式上传，&lt;code&gt;.png&lt;/code&gt;、&lt;code&gt;.ttf&lt;/code&gt;等文件需要使用Binary模式上传。
-接着对http服务进行一些必要的配置，使其能够运行cgi文件。打开&lt;code&gt;/etc/httpd/conf/httpd.conf&lt;/code&gt;配置以下项目：&lt;/p&gt;
+&lt;p&gt;使用FTP客户端上传至&lt;code&gt;cgi-bin&lt;/code&gt;目录下，&lt;code&gt;.cgi&lt;/code&gt;、&lt;code&gt;.pl&lt;/code&gt;、&lt;code&gt;.html&lt;/code&gt;等代码文件需要使用ASCII模式上传，&lt;code&gt;.png&lt;/code&gt;、&lt;code&gt;.ttf&lt;/code&gt;等文件需要使用Binary模式上传。这里推荐使用win下的FlashFXP，自带了ASCII上传过滤列表，非常方便，而MAC下的FTP软件就差远了。&lt;/p&gt;
+&lt;p&gt;接着对http服务进行一些必要的配置，使其能够运行cgi文件。打开&lt;code&gt;/etc/httpd/conf/httpd.conf&lt;/code&gt;配置以下项目：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;LoadModule cgi_module modules/mod_cgi.so  &lt;span class="c"&gt;#载入cgi模块&lt;/span&gt;
 
 ScriptAlias /cgi-bin/ &lt;span class="s2"&gt;&amp;quot;/var/www/cgi-bin/&amp;quot;&lt;/span&gt; &lt;span class="c"&gt;#指定可以运行cgi的目录&lt;/span&gt;
