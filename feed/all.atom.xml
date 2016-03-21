@@ -85,8 +85,8 @@ iptables -A INPUT -s 210.56.209.98 -j DROP
 
 
 &lt;h2&gt;大功告成&lt;/h2&gt;
-&lt;p&gt;最后，欢迎访问&lt;a href="http://keijiban.game18.net/"&gt;揭示板&lt;/a&gt;,顺便挂到博客的域名下，但神奈说这个域名像骗钱的，之后会换个新域名(我感觉被猛烈地鄙视了。。。)。
-总之，希望这个项目能成功运行，并给更多的人提供帮助。&lt;/p&gt;</summary><category term="CentOS"></category><category term="vsftpd"></category><category term="apache"></category><category term="yy-bord"></category></entry><entry><title>关于VR游戏的讨论</title><link href="http://blog.game18.net/posts/2016/03/guan-yu-vryou-xi-de-tao-lun/" rel="alternate"></link><updated>2016-03-22T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-03-08:posts/2016/03/guan-yu-vryou-xi-de-tao-lun/</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;最后，欢迎访问&lt;a href="http://keijiban.game18.net/"&gt;揭示板&lt;/a&gt;，顺便挂到博客的域名下，但神奈说这个域名像骗钱的之后会换个新域名。(感觉被猛烈地鄙视了。。。)&lt;/p&gt;
+&lt;p&gt;总之，希望这个项目能成功运行，并给更多的人提供帮助。&lt;/p&gt;</summary><category term="CentOS"></category><category term="vsftpd"></category><category term="apache"></category><category term="yy-bord"></category></entry><entry><title>关于VR游戏的讨论</title><link href="http://blog.game18.net/posts/2016/03/guan-yu-vryou-xi-de-tao-lun/" rel="alternate"></link><updated>2016-03-22T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-03-08:posts/2016/03/guan-yu-vryou-xi-de-tao-lun/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;好久没有更新博客了,从去年12月开始一直在忙业务系统上线的事情.期间写了两三篇跟技术无关的文字,今天想了想还是都删掉了.我决定保持这里的纯洁性,随笔栏目里只记录技术相关的想法,无关的东西可以扔去微博或者twitter.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;前几天跟神奈同学聊天时对VR技术在游戏中的应用问题争论了一番,我俩的意见分歧还是挺大的。后来我在听一个讨论式的播客（IT公论）时想到：不如把这部分内容记录一下，以后再回头看看谁的预测比较准确，应该是一件很有趣的事情。&lt;/p&gt;
