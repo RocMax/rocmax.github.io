@@ -204,7 +204,7 @@ ScriptAlias /cgi-bin/ <span class="s2">&quot;/var/www/cgi-bin/&quot;</span> <spa
 <li><code>ImageMagick-perl</code>提供图片验证码功能</li>
 </ul>
 <p>之后<code>service httpd restart</code>重启http服务。按照<a href="http://www.kent-web.com/bbs/yybbs.html">这里</a>的说明配置文件的访问权限，然后使用浏览器访问<code>check.cgi</code>如果没有<code>NG</code>表明全部配置OK。</p>
-<p>但是在这里我遇到一个诡异的问题，就是在访问<code>yybbs.cgi</code>时总是显示<code>Write Error: .、data/count.dat</code>，即使把<code>count.dat</code>的权限设置为777仍无法写入。这个问题困扰了我好久，最终我发现罪魁祸首是<code>SELinux</code>，网上有如何设置<code>SELinux</code>的介绍，但是大多数人估计会选择关掉它。修改<code>/etc/selinux/config</code>，将<code>SELINUX=enforcing</code>改为<code>ELINUX=disabled</code>重启服务器，揭示板终于可以正常运行了。</p>
+<p>但是在这里我遇到一个诡异的问题，就是在访问<code>yybbs.cgi</code>时总是显示<code>Write Error: ./data/count.dat</code>，即使把<code>count.dat</code>的权限设置为777仍无法写入。这个问题困扰了我好久，最终我发现罪魁祸首是<code>SELinux</code>，网上有如何设置<code>SELinux</code>的介绍，但是大多数人估计会选择关掉它。修改<code>/etc/selinux/config</code>，将<code>SELINUX=enforcing</code>改为<code>ELINUX=disabled</code>重启服务器，揭示板终于可以正常运行了。</p>
 <h2>注意事项</h2>
 <p>打开http服务之后，总是会有人采用各种方式攻击服务器，比如利用cgi漏洞获取管理员账户等。为了防止被攻陷，需要按照网上的资料配置各种安全措施。对于一直尝试攻击的地址索性使用iptables屏蔽掉，比如下面这些：</p>
 <div class="highlight"><pre>iptables -A INPUT -s 89.248.160.132 -j DROP

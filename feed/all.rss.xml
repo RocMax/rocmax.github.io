@@ -68,7 +68,7 @@ ScriptAlias /cgi-bin/ &lt;span class="s2"&gt;&amp;quot;/var/www/cgi-bin/&amp;quo
 &lt;li&gt;&lt;code&gt;ImageMagick-perl&lt;/code&gt;提供图片验证码功能&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;之后&lt;code&gt;service httpd restart&lt;/code&gt;重启http服务。按照&lt;a href="http://www.kent-web.com/bbs/yybbs.html"&gt;这里&lt;/a&gt;的说明配置文件的访问权限，然后使用浏览器访问&lt;code&gt;check.cgi&lt;/code&gt;如果没有&lt;code&gt;NG&lt;/code&gt;表明全部配置OK。&lt;/p&gt;
-&lt;p&gt;但是在这里我遇到一个诡异的问题，就是在访问&lt;code&gt;yybbs.cgi&lt;/code&gt;时总是显示&lt;code&gt;Write Error: .、data/count.dat&lt;/code&gt;，即使把&lt;code&gt;count.dat&lt;/code&gt;的权限设置为777仍无法写入。这个问题困扰了我好久，最终我发现罪魁祸首是&lt;code&gt;SELinux&lt;/code&gt;，网上有如何设置&lt;code&gt;SELinux&lt;/code&gt;的介绍，但是大多数人估计会选择关掉它。修改&lt;code&gt;/etc/selinux/config&lt;/code&gt;，将&lt;code&gt;SELINUX=enforcing&lt;/code&gt;改为&lt;code&gt;ELINUX=disabled&lt;/code&gt;重启服务器，揭示板终于可以正常运行了。&lt;/p&gt;
+&lt;p&gt;但是在这里我遇到一个诡异的问题，就是在访问&lt;code&gt;yybbs.cgi&lt;/code&gt;时总是显示&lt;code&gt;Write Error: ./data/count.dat&lt;/code&gt;，即使把&lt;code&gt;count.dat&lt;/code&gt;的权限设置为777仍无法写入。这个问题困扰了我好久，最终我发现罪魁祸首是&lt;code&gt;SELinux&lt;/code&gt;，网上有如何设置&lt;code&gt;SELinux&lt;/code&gt;的介绍，但是大多数人估计会选择关掉它。修改&lt;code&gt;/etc/selinux/config&lt;/code&gt;，将&lt;code&gt;SELINUX=enforcing&lt;/code&gt;改为&lt;code&gt;ELINUX=disabled&lt;/code&gt;重启服务器，揭示板终于可以正常运行了。&lt;/p&gt;
 &lt;h2&gt;注意事项&lt;/h2&gt;
 &lt;p&gt;打开http服务之后，总是会有人采用各种方式攻击服务器，比如利用cgi漏洞获取管理员账户等。为了防止被攻陷，需要按照网上的资料配置各种安全措施。对于一直尝试攻击的地址索性使用iptables屏蔽掉，比如下面这些：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;iptables -A INPUT -s 89.248.160.132 -j DROP
