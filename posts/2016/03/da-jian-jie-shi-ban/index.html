@@ -223,6 +223,9 @@ iptables -A INPUT -s 210.56.209.98 -j DROP
 <h2>大功告成</h2>
 <p>最后，欢迎访问<a href="http://keijiban.game18.net/">揭示板</a>，顺便挂到博客的域名下，但神奈说这个域名像骗钱的之后会换个新域名。(感觉被猛烈地鄙视了。。。)</p>
 <p>总之，希望这个项目能成功运行，并给更多的人提供帮助。</p>
+<hr />
+<p><strong>补充：</strong> 揭示板上线后，不断遭到发帖机器人的入侵，很是困扰。其实解决方法很简单，提高验证码的难度让机器人无法识别即可。首先确保<code>init.cgi</code>中<code>$cf{use_captcha} = 2;</code>设置验证码使用<code>ImageMagick</code>；然后按照<a href="http://www.kent-web.com/pubc/captcha/">这里</a>的说明设置验证码的复杂度，最重要的是<code>scramble =&gt; 1</code>让数字随机旋转角度，这样就不容易被机器人识别出来了。</p>
+<p>设置完之后果然世界清净了，但不知为什么感觉很寂寞......</p>
             </div>
             <!-- /.entry-content -->
     <hr />
