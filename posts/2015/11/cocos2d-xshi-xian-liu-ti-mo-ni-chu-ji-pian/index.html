@@ -150,7 +150,7 @@ Roc's Blog            </a>
 <p>流体模拟需要解决两个关键问题：如何动起来像流体；如何看起来像流体。</p>
 <p>初级篇中我们使用大量物理刚体粒子模拟流体运动，当然，看着着一堆粒子想象液体运动是不可接受的。针对第二个问题呢，需要使用一些渲染方面的技巧。最终实现的效果参考示例博客，说实话差强人意，初级篇嘛，不要要求太高。</p>
 <h3>物理引擎</h3>
-<p>Cocos2d-x自带Box2D和chipmunk两种物理引擎，一般来讲Box2D要强大一些，而chipmunk则比较轻量，不过对于今天的任务选哪个都没差。<s>（Cocos2d-x默认使用chipmunk，需要切换的话可以参考<a href="http://www.tairan.com/archives/5431/">这里</a>）</s>（Cocos2d-x只深度整合了chipmunk一种引擎，修改编译参数并不能真正切换使用的物理引擎，使用Box2D的方法参见中级篇）</p>
+<p>Cocos2d-x自带Box2D和chipmunk两种物理引擎，一般来讲Box2D要强大一些，而chipmunk则比较轻量，不过对于今天的任务选哪个都没差。<s>（Cocos2d-x默认使用chipmunk，需要切换的话可以参考<a href="http://www.tairan.com/archives/5431/">这里</a>）</s>（Cocos2d-x只深度整合了chipmunk一种引擎，修改编译参数并不能真正切换使用的物理引擎，使用Box2D的方法参见<a href="http://blog.game18.net/posts/2016/04/cocos2d-xshi-xian-liu-ti-mo-ni-zhong-ji-pian/">中级篇</a>）</p>
 <ul>
 <li>使用物理引擎时代码和平常有点不同，在创建scene时要这样：</li>
 </ul>

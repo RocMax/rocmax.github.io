@@ -208,7 +208,7 @@ iptables -A INPUT -s 210.56.209.98 -j DROP
 &lt;p&gt;流体模拟需要解决两个关键问题：如何动起来像流体；如何看起来像流体。&lt;/p&gt;
 &lt;p&gt;初级篇中我们使用大量物理刚体粒子模拟流体运动，当然，看着着一堆粒子想象液体运动是不可接受的。针对第二个问题呢，需要使用一些渲染方面的技巧。最终实现的效果参考示例博客，说实话差强人意，初级篇嘛，不要要求太高。&lt;/p&gt;
 &lt;h3&gt;物理引擎&lt;/h3&gt;
-&lt;p&gt;Cocos2d-x自带Box2D和chipmunk两种物理引擎，一般来讲Box2D要强大一些，而chipmunk则比较轻量，不过对于今天的任务选哪个都没差。&lt;s&gt;（Cocos2d-x默认使用chipmunk，需要切换的话可以参考&lt;a href="http://www.tairan.com/archives/5431/"&gt;这里&lt;/a&gt;）&lt;/s&gt;（Cocos2d-x只深度整合了chipmunk一种引擎，修改编译参数并不能真正切换使用的物理引擎，使用Box2D的方法参见中级篇）&lt;/p&gt;
+&lt;p&gt;Cocos2d-x自带Box2D和chipmunk两种物理引擎，一般来讲Box2D要强大一些，而chipmunk则比较轻量，不过对于今天的任务选哪个都没差。&lt;s&gt;（Cocos2d-x默认使用chipmunk，需要切换的话可以参考&lt;a href="http://www.tairan.com/archives/5431/"&gt;这里&lt;/a&gt;）&lt;/s&gt;（Cocos2d-x只深度整合了chipmunk一种引擎，修改编译参数并不能真正切换使用的物理引擎，使用Box2D的方法参见&lt;a href="http://blog.game18.net/posts/2016/04/cocos2d-xshi-xian-liu-ti-mo-ni-zhong-ji-pian/"&gt;中级篇&lt;/a&gt;）&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;使用物理引擎时代码和平常有点不同，在创建scene时要这样：&lt;/li&gt;
 &lt;/ul&gt;
