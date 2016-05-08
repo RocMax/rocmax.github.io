@@ -32,7 +32,7 @@
 
 
 &lt;p&gt;之后和初级篇差不多，这里不再多讲。主要实现了在点击的位置添加一个小方块，然后自由落下：&lt;/p&gt;
-&lt;p&gt;&lt;img alt="addbrick" src="/img/2016/addbrick.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="addbrick" src="/imgs/2016/addbrick.gif" /&gt;&lt;/p&gt;
 &lt;p&gt;需要注意的是Box2D中使用的长度单位是米，所以需要定义一个与屏幕中像素的对应关系，这里规定32个像素为1米：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;#define PTM_RATIO 32.0f&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;相应的，代码中所有的需要与物理世界中坐标相关的值都需要按照这个比例转化。&lt;/p&gt;
