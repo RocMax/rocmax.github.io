@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>搭建揭示板 - Roc's Blog</title>
+    <title>在Cocos2d-x中使用Box2D物理引擎（中级篇） - Roc's Blog</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -11,23 +11,23 @@
 
 
 
-<link rel="canonical" href="http://blog.game18.net/posts/2016/03/da-jian-jie-shi-ban/">
+<link rel="canonical" href="http://blog.game18.net/posts/2016/04/zai-cocos2d-xzhong-shi-yong-box2dwu-li-yin-qing-zhong-ji-pian/">
 
         <meta name="author" content="Roc" />
-        <meta name="keywords" content="CentOS,vsftpd,apache,yy-bord" />
-        <meta name="description" content="记录搭建揭示板的过程" />
+        <meta name="keywords" content="Cocos2d-x,C++,Box2D,物理引擎" />
+        <meta name="description" content="在Cocos2d-x中使用Box2D物理引擎，为整合LiquidFun做准备。" />
 
         <meta property="og:site_name" content="Roc's Blog" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="搭建揭示板"/>
-        <meta property="og:url" content="http://blog.game18.net/posts/2016/03/da-jian-jie-shi-ban/"/>
-        <meta property="og:description" content="记录搭建揭示板的过程"/>
-        <meta property="article:published_time" content="2016-03-20" />
-            <meta property="article:section" content="网页技术" />
-            <meta property="article:tag" content="CentOS" />
-            <meta property="article:tag" content="vsftpd" />
-            <meta property="article:tag" content="apache" />
-            <meta property="article:tag" content="yy-bord" />
+        <meta property="og:title" content="在Cocos2d-x中使用Box2D物理引擎（中级篇）"/>
+        <meta property="og:url" content="http://blog.game18.net/posts/2016/04/zai-cocos2d-xzhong-shi-yong-box2dwu-li-yin-qing-zhong-ji-pian/"/>
+        <meta property="og:description" content="在Cocos2d-x中使用Box2D物理引擎，为整合LiquidFun做准备。"/>
+        <meta property="article:published_time" content="2016-04-14" />
+            <meta property="article:section" content="Cocos2d-x" />
+            <meta property="article:tag" content="Cocos2d-x" />
+            <meta property="article:tag" content="C++" />
+            <meta property="article:tag" content="Box2D" />
+            <meta property="article:tag" content="物理引擎" />
             <meta property="article:author" content="Roc" />
 
     <meta name="twitter:card" content="summary">
@@ -66,7 +66,7 @@ Roc's Blog            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                        <li >
+                        <li class="active">
                             <a href="http://blog.game18.net/category/cocos2d-x">Cocos2d-x</a>
                         </li>
                         <li >
@@ -75,7 +75,7 @@ Roc's Blog            </a>
                         <li >
                             <a href="http://blog.game18.net/category/sui-bi">随笔</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="http://blog.game18.net/category/wang-ye-ji-zhu">网页技术</a>
                         </li>
             </ul>
@@ -98,18 +98,18 @@ Roc's Blog            </a>
         <div class="col-sm-9">
             <ol class="breadcrumb">
                 <li><a href="http://blog.game18.net" title="Roc's Blog"><i class="fa fa-home fa-lg"></i></a></li>
-                <li><a href="http://blog.game18.net/category/wang-ye-ji-zhu" title="网页技术">网页技术</a></li>
-                <li class="active">搭建揭示板</li>
+                <li><a href="http://blog.game18.net/category/cocos2d-x" title="Cocos2d-x">Cocos2d-x</a></li>
+                <li class="active">在Cocos2d-x中使用Box2D物理引擎（中级篇）</li>
             </ol>
 
     <section id="content">
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://blog.game18.net/posts/2016/03/da-jian-jie-shi-ban/"
+                    <a href="http://blog.game18.net/posts/2016/04/zai-cocos2d-xzhong-shi-yong-box2dwu-li-yin-qing-zhong-ji-pian/"
                        rel="bookmark"
-                       title="Permalink to 搭建揭示板">
-                        搭建揭示板
+                       title="Permalink to 在Cocos2d-x中使用Box2D物理引擎（中级篇）">
+                        在Cocos2d-x中使用Box2D物理引擎（中级篇）
                     </a>
                 </h1>
             </header>
@@ -119,115 +119,120 @@ Roc's Blog            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2016-03-20T14:50:36+08:00"> 2016-03-20(日)</time>
+        <i class="fa fa-calendar"></i><time datetime="2016-04-14T16:27:28+08:00"> 2016-04-14(四)</time>
     </span>
 
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://blog.game18.net/tag/centos/">CentOS</a>
+	<a href="http://blog.game18.net/tag/cocos2d-x/">Cocos2d-x</a>
         /
-	<a href="http://blog.game18.net/tag/vsftpd/">vsftpd</a>
+	<a href="http://blog.game18.net/tag/c/">C++</a>
         /
-	<a href="http://blog.game18.net/tag/apache/">apache</a>
+	<a href="http://blog.game18.net/tag/box2d/">Box2D</a>
         /
-	<a href="http://blog.game18.net/tag/yy-bord/">yy-bord</a>
+	<a href="http://blog.game18.net/tag/wu-li-yin-qing/">物理引擎</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <blockquote>
-<p>近日，神奈同学说需要做一个揭示板。起因是神奈在日本经常各处旅游，途中发现很多日本人开的商店为了吸引中国游客会做一些中文的招牌。由于语言不通，招牌文字只能借助google翻译，翻译质量可想而知。语句不通就罢了，很多时候还会闹笑话甚至造成误解。为了给店家提供帮助，同时也为了方便中国游客，神奈同学决定使用揭示板帮助翻译招牌。</p>
-<p>我觉得这是一项很有意义的活动，于是接下了搭建揭示板的任务。在这里把搭建过程记录一下。</p>
+<p>继Cocos2d-x实现流体模拟（初级篇）之后，终于有时间完成中级篇，将LiquidFun整合进Cocos2d-x中，实现较好的流体模拟效果。</p>
 </blockquote>
-<h2>关于揭示板</h2>
-<p>神奈的需求是告诉店家一个地址让他把要翻译的日语贴上来，神奈翻译好后回帖，对方就可以复制去排版打印。这次选择的揭示板是由KENT开发的<a href="http://www.kent-web.com/bbs/yybbs.html">YY-BORD</a>,相较于bbs来说更加轻量级，不需要配置数据库，而且完全可以满足需求。</p>
-<h2>网页服务</h2>
-<p>正好手头有一台樱花的VPS（架设了VPN，科学上网你懂的），我看了一下后台，日常负荷并不重，所以打算利用一下剩余价值。VPS安装的是CentOS系统，首先安需要装网页服务Apache，安装后开启服务，具体的配置后面细说。正常开启服务后用浏览器访问服务器IP会返回Apache的介绍页面，证明服务正常。</p>
-<h2>FTP服务</h2>
-<p>为了方便网站日常管理，需要在服务器上配置FTP服务，我用的是vsftpd。yum安装后需要配置<code>vsftpd.conf</code>,配置方法可以参考<a href="http://linux.vbird.org/linux_server/0410vsftpd.php#server">鳥哥的 Linux 私房菜</a>。下面讲解下每一项的含义：</p>
-<div class="highlight"><pre><span class="nv">anonymous_enable</span><span class="o">=</span>NO       <span class="c">#禁止匿名登录</span>
-<span class="nv">local_enable</span><span class="o">=</span>YES          <span class="c">#本地用户可登录，例如ftp账户</span>
-<span class="nv">write_enable</span><span class="o">=</span>YES          <span class="c">#可写</span>
-<span class="nv">local_umask</span><span class="o">=</span><span class="m">022</span>           <span class="c">#新建目录拥有（777-022=755）新建文件拥有（666-022=644）权限</span>
-<span class="nv">anon_upload_enable</span><span class="o">=</span>NO     <span class="c">#禁止匿名用户上传</span>
-<span class="nv">anon_mkdir_write_enable</span><span class="o">=</span>NO  <span class="c">#禁止匿名用户写入/创建目录</span>
-<span class="nv">dirmessage_enable</span><span class="o">=</span>YES     <span class="c">#如果目录下有.message文件则显示其内容</span>
-<span class="nv">xferlog_enable</span><span class="o">=</span>YES        <span class="c">#启用日志记录</span>
-<span class="nv">connect_from_port_20</span><span class="o">=</span>YES  <span class="c">#支持主动式连接</span>
-<span class="nv">xferlog_file</span><span class="o">=</span>/var/log/xferlog  <span class="c">#日志存放路径</span>
-<span class="nv">nopriv_user</span><span class="o">=</span>nobody        <span class="c">#预设以nobody为ftp服务的执行者</span>
-<span class="nv">ascii_upload_enable</span><span class="o">=</span>YES   <span class="c">#允许ASCII模式上传</span>
-<span class="nv">ascii_download_enable</span><span class="o">=</span>YES <span class="c">#允许ASCII模式下载</span>
-<span class="nv">ftpd_banner</span><span class="o">=</span>FTP service <span class="k">for</span> yybord,Welcome!  <span class="c">#欢迎信息</span>
-<span class="nv">chroot_local_user</span><span class="o">=</span>YES     <span class="c">#将本地用户限制下ftp目录内，无法访问以外的目录</span>
-<span class="nv">chroot_list_enable</span><span class="o">=</span>YES    <span class="c">#使用不被chroot的用户列表</span>
-<span class="nv">chroot_list_file</span><span class="o">=</span>/etc/vsftpd/chroot_list <span class="c">#此列表中的用户不受chroot限制，即使不写也要存在一个此名字的空文件</span>
-<span class="nv">listen</span><span class="o">=</span>YES                <span class="c">#以standalone的方式启动ftp</span>
-<span class="nv">pam_service_name</span><span class="o">=</span>vsftpd   <span class="c">#服务名</span>
-<span class="nv">userlist_enable</span><span class="o">=</span>YES       <span class="c">#使用user_list限制用户登陆</span>
-<span class="nv">userlist_deny</span><span class="o">=</span>NO          <span class="c">#设置列表中的用户作为允许用户（白名单）</span>
-<span class="nv">userlist_file</span><span class="o">=</span>/etc/vsftpd/user_list   <span class="c">#用户列表文件</span>
-<span class="nv">use_localtime</span><span class="o">=</span>YES         <span class="c">#使用本地时间</span>
-<span class="nv">tcp_wrappers</span><span class="o">=</span>YES          <span class="c">#支持TCP wrappers，（那是什么？）</span>
-<span class="nv">local_root</span><span class="o">=</span>/var/www/      <span class="c">#本地用户登录时的根目录，设置为网页服务器的根目录</span>
-</pre></div>
-
-
-<p>最后使用service vsftpd start开启ftp服务。（也可以加入开机启动，这次仅仅为了上传网站数据，需要用的时候自己开比较安全。）</p>
-<p>尝试过使用wget直接从互联网下载网页文件，但这样下载的文件无法运行。实际上FTP有两种上传模式：ASCII和Binary。ASCII模式会转换一些符号例如回车来适应不同的平台，Binary模式会上传二进制文件并保证上传的文件与本地文件相同。使用wget下载文件类似于Binary模式，会造成代码文件无法执行。</p>
-<h2>部署揭示板</h2>
-<p>准备工作完成，正式开始部署揭示板。从<a href="http://www.kent-web.com/cgi/downld/downld.cgi?id=yybbs">这里</a>下载揭示板程序，它是使用Perl编写的cgi程序。</p>
-<p>使用FTP客户端上传至<code>cgi-bin</code>目录下，<code>.cgi</code>、<code>.pl</code>、<code>.html</code>等代码文件需要使用ASCII模式上传，<code>.png</code>、<code>.ttf</code>等文件需要使用Binary模式上传。这里推荐使用win下的FlashFXP，自带了ASCII上传过滤列表，非常方便，而MAC下的FTP软件就差远了。</p>
-<p>接着对http服务进行一些必要的配置，使其能够运行cgi文件。打开<code>/etc/httpd/conf/httpd.conf</code>配置以下项目：</p>
-<div class="highlight"><pre>LoadModule cgi_module modules/mod_cgi.so  <span class="c">#载入cgi模块</span>
-
-ScriptAlias /cgi-bin/ <span class="s2">&quot;/var/www/cgi-bin/&quot;</span> <span class="c">#指定可以运行cgi的目录</span>
-
-&lt;Directory <span class="s2">&quot;/var/www/cgi-bin&quot;</span>&gt;  <span class="c">#对cgi运行目录进行配置</span>
-    AllowOverride None
-    Options ExecCGI             <span class="c">#允许执行cgi</span>
-    AddHandler cgi-script .pl .cgi    <span class="c">#添加执行各种文件的Handler</span>
-    AddHandler text/css .css
-    AddHandler text/javascript .js
-    AddHandler text/html .html
-    AddHandler image/png .png
-    AddHandler image/gif .gif
-    Order allow,deny
-    Allow from all
-&lt;/Directory&gt;
-</pre></div>
-
-
-<p>另外，还有两个软件包需要安装：</p>
-<ul>
-<li><code>perl-CGI</code>解决<code>use CGI::Carp qw(fatalsToBrowser);</code>报错问题</li>
-<li><code>ImageMagick-perl</code>提供图片验证码功能</li>
-</ul>
-<p>之后<code>service httpd restart</code>重启http服务。按照<a href="http://www.kent-web.com/bbs/yybbs.html">这里</a>的说明配置文件的访问权限，然后使用浏览器访问<code>check.cgi</code>如果没有<code>NG</code>表明全部配置OK。</p>
-<p>但是在这里我遇到一个诡异的问题，就是在访问<code>yybbs.cgi</code>时总是显示<code>Write Error: ./data/count.dat</code>，即使把<code>count.dat</code>的权限设置为777仍无法写入。这个问题困扰了我好久，最终我发现罪魁祸首是<code>SELinux</code>，网上有如何设置<code>SELinux</code>的介绍，但是大多数人估计会选择关掉它。修改<code>/etc/selinux/config</code>，将<code>SELINUX=enforcing</code>改为<code>ELINUX=disabled</code>重启服务器，揭示板终于可以正常运行了。</p>
-<h2>注意事项</h2>
-<p>打开http服务之后，总是会有人采用各种方式攻击服务器，比如利用cgi漏洞获取管理员账户等。为了防止被攻陷，需要按照网上的资料配置各种安全措施。对于一直尝试攻击的地址索性使用iptables屏蔽掉，比如下面这些：</p>
-<div class="highlight"><pre>iptables -A INPUT -s 89.248.160.132 -j DROP
-iptables -A INPUT -s 61.160.213.32 -j DROP
-iptables -A INPUT -s 61.160.213.55 -j DROP
-iptables -A INPUT -s 61.160.213.56 -j DROP
-iptables -A INPUT -s 61.160.213.247 -j DROP
-iptables -A INPUT -s 137.226.113.7 -j DROP
-iptables -A INPUT -s 91.196.50.33 -j DROP
-iptables -A INPUT -s 119.188.4.3 -j DROP
-iptables -A INPUT -s 168.160.249.233 -j DROP
-iptables -A INPUT -s 210.56.209.98 -j DROP
-</pre></div>
-
-
-<h2>大功告成</h2>
-<p>最后，欢迎访问<a href="http://keijiban.game18.net/">揭示板</a>，顺便挂到博客的域名下，但神奈说这个域名像骗钱的之后会换个新域名。(感觉被猛烈地鄙视了。。。)</p>
-<p>总之，希望这个项目能成功运行，并给更多的人提供帮助。</p>
+<p><a href="http://google.github.io/liquidfun/">LiquidFun</a>是Google开发的Box2D扩展库，它在Box2D基础上增加了流体模拟的粒子系统。Google出品自然不会差，首页上就有几个示例，效果看起来非常不错。</p>
+<p>在之前的博客中曾经说过，Cocos2d-x整合了Box2D和Chipmunk两种物理引擎。但我仔细看了代码，实际上真正整合的只有Chipmunk，调用Scene的<code>createWithPhysics()</code>方法时，引擎在后台使用Chipmunk创建物理世界。Cocos2d-x并没有同样在代码层面整合Box2D，而只是将Box2D拷贝了一份放在引擎中（一种放置Play的概念）。所以即使像<a href="http://blog.game18.net/posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/">初级篇</a>中说的修改编译参数，实际上底层使用的仍是Chipmunk。</p>
+<p>既然Cocos2d-x没有帮我们做，那只好自己搞定。回顾一下初级篇很容易发现，实际上：<strong>物理引擎主要负责提供物体的位置和运动信息，其它方面跟游戏场景关联并不大，唯一需要保证的是游戏场景中<code>Node</code>与物理世界中的物体之间的对应关系。</strong>从这个角度看来，所谓的“整合”意义并不大，称之为“连接”可能更加贴切。</p>
 <hr />
-<p><strong>补充：</strong> 揭示板上线后，不断遭到发帖机器人的入侵，很是困扰。其实解决方法很简单，提高验证码的难度让机器人无法识别即可。首先确保<code>init.cgi</code>中<code>$cf{use_captcha} = 2;</code>设置验证码使用<code>ImageMagick</code>；然后按照<a href="http://www.kent-web.com/pubc/captcha/">这里</a>的说明设置验证码的复杂度，最重要的是<code>scramble =&gt; 1</code>让数字随机旋转角度，这样就不容易被机器人识别出来了。</p>
-<p>设置完之后果然世界清净了，但不知为什么感觉很寂寞......</p>
+<p>扯了不少闲话，下面就开始干活。既然Cocos2d-x中已经有Box2D，我们只要使用LiquidFun中的文件替换掉原有的即可。首先需要下载一套源码版Cocos2d-x。如果下载的是预编译过的版本，较为节省编译时间，但无法修改源码，所以需要下载源码版本。导入Xcode，在资源目录中找到Box2D。</p>
+<p><img alt="Box2Dindex" src="/img/2016/index.png" /></p>
+<p>拷贝LiquidFun中Box2D目录下的：</p>
+<ul>
+<li>Box2d.h</li>
+<li>Collision</li>
+<li>Common</li>
+<li>Dynamics</li>
+<li>Rope</li>
+<li>Particle</li>
+</ul>
+<p>到工程内，同名内容替换。然后还需要将Particle目录下的：</p>
+<ul>
+<li>b2ParticleAssembly.h</li>
+<li>b2ParticleAssembly.neon.s</li>
+<li>b2ParticleAssembly.cpp</li>
+</ul>
+<p>三个文件删除之后即可正常编译。编译无误的话说明LiquidFun的代码已成功包含进Cocos2d-x工程中。</p>
+<p>前面说过，使用<code>createWithPhysics()</code>并不能调用Box2D创建物理世界，所以我们需要手动创建。先引用Box2D头文件，注意路径:</p>
+<p><code>#include "Box2D/Box2D.h"</code></p>
+<div class="highlight"><pre><span class="n">world</span> <span class="o">=</span><span class="k">new</span> <span class="n">b2World</span><span class="p">(</span><span class="n">b2Vec2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">10.0</span><span class="p">));</span>
+<span class="n">world</span><span class="o">-&gt;</span><span class="n">SetAllowSleeping</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</pre></div>
+
+
+<p>之后和初级篇差不多，这里不再多讲。主要实现了在点击的位置添加一个小方块，然后自由落下：</p>
+<p><img alt="addbrick" src="/img/2016/addbrick.gif" /></p>
+<p>需要注意的是Box2D中使用的长度单位是米，所以需要定义一个与屏幕中像素的对应关系，这里规定32个像素为1米：</p>
+<p><code>#define PTM_RATIO 32.0f</code></p>
+<p>相应的，代码中所有的需要与物理世界中坐标相关的值都需要按照这个比例转化。</p>
+<p>另外，Box2D中的Body也提供了一个void型指针<code>m_userData</code>，在创建的时候我们应当将对应的Node的指针赋给它，以保存游戏场景与物理世界中物体的对应关系。</p>
+<p>然后我们添加流体粒子，LiquidFun的用法可以参考官方网页。向世界中添加粒子的方式较为特别，并不是一个一个添加的。而是定义一个初始形状，引擎会自动在形状中填满粒子，之后的行动就靠物理规律来支配了。</p>
+<div class="highlight"><pre><span class="n">b2ParticleSystemDef</span> <span class="n">particleSystemDef</span><span class="p">;</span>
+<span class="n">particleSystemDef</span><span class="p">.</span><span class="n">radius</span> <span class="o">=</span> <span class="mf">8.0</span><span class="o">/</span><span class="n">PTM_RATIO</span><span class="p">;</span>  <span class="c1">//粒子大小</span>
+<span class="n">b2ParticleSystem</span> <span class="o">*</span> <span class="n">particleSystem</span> <span class="o">=</span> <span class="n">world</span><span class="o">-&gt;</span><span class="n">CreateParticleSystem</span><span class="p">(</span><span class="o">&amp;</span><span class="n">particleSystemDef</span><span class="p">);</span> <span class="c1">//添加粒子系统至物理世界</span>
+<span class="k">auto</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">Vec2</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>  
+<span class="n">b2PolygonShape</span><span class="o">*</span> <span class="n">shape</span> <span class="o">=</span> <span class="k">new</span> <span class="n">b2PolygonShape</span><span class="p">();</span>
+<span class="n">shape</span><span class="o">-&gt;</span><span class="n">SetAsBox</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="o">*</span><span class="mf">0.25</span><span class="o">/</span><span class="n">PTM_RATIO</span><span class="p">,</span> <span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="o">*</span><span class="mf">0.1</span><span class="o">/</span><span class="n">PTM_RATIO</span><span class="p">);</span>  <span class="c1">//形状大小</span>
+<span class="n">b2ParticleGroupDef</span> <span class="n">groupDef</span><span class="p">;</span>
+<span class="n">groupDef</span><span class="p">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">shape</span><span class="p">;</span>
+<span class="n">groupDef</span><span class="p">.</span><span class="n">flags</span> <span class="o">=</span> <span class="n">b2_waterParticle</span><span class="p">;</span>  <span class="c1">//粒子类别</span>
+<span class="c1">//groupDef.color = b2ParticleColor(100,150,255,255);</span>
+<span class="n">groupDef</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">pos</span><span class="p">.</span><span class="n">x</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">,</span> <span class="n">pos</span><span class="p">.</span><span class="n">y</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">);</span>  <span class="c1">//形状初始位置</span>
+<span class="n">particleSystem</span><span class="o">-&gt;</span><span class="n">CreateParticleGroup</span><span class="p">(</span><span class="n">groupDef</span><span class="p">);</span>
+</pre></div>
+
+
+<p>上面的代码生成了一组粒子，但并不能在屏幕上看到它们，只是方块掉到地面的时候有一些浮动的效果，说明它们确实存在。当然，按照初级篇中的做法，我们可以给每一个粒子对应添加一个Sprite，然后离屏渲染并截断，最终生成流体效果。在<a href="https://retro.moe/2014/07/30/integrating-liquidfun-with-cocos2d-x-part-ii/">这个教程</a>）中作者推荐使用Point而不是ParticleSystemQuad来渲染材质以求更好的性能。那么使用Sprite的性能可能会更差，但是方法大同小异。</p>
+<p>为了能直观地看到流体粒子，下面我们为LiquidFun添加DebugDraw，在LiquidFun的源码中Common目录下可以找到b2Draw类，但它是一个抽象类，要求我们实现下面几个方法：</p>
+<div class="highlight"><pre>    <span class="c1">/// Draw a closed polygon provided in CCW order.</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">DrawPolygon</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span><span class="o">*</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">int32</span> <span class="n">vertexCount</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="c1">/// Draw a solid closed polygon provided in CCW order.</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">DrawSolidPolygon</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span><span class="o">*</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">int32</span> <span class="n">vertexCount</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="c1">/// Draw a circle.</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">DrawCircle</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span><span class="o">&amp;</span> <span class="n">center</span><span class="p">,</span> <span class="n">float32</span> <span class="n">radius</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="c1">/// Draw a solid circle.</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">DrawSolidCircle</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span><span class="o">&amp;</span> <span class="n">center</span><span class="p">,</span> <span class="n">float32</span> <span class="n">radius</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Vec2</span><span class="o">&amp;</span> <span class="n">axis</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="c1">/// Draw a particle array</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">DrawParticles</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span> <span class="o">*</span><span class="n">centers</span><span class="p">,</span> <span class="n">float32</span> <span class="n">radius</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2ParticleColor</span> <span class="o">*</span><span class="n">colors</span><span class="p">,</span> <span class="n">int32</span> <span class="n">count</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="c1">/// Draw a line segment.</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">DrawSegment</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span><span class="o">&amp;</span> <span class="n">p1</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Vec2</span><span class="o">&amp;</span> <span class="n">p2</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="c1">/// Draw a transform. Choose your own length scale.</span>
+    <span class="c1">/// @param xf a transform.</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">DrawTransform</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Transform</span><span class="o">&amp;</span> <span class="n">xf</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div>
+
+
+<p>在<a href="https://retro.moe/2014/07/30/integrating-liquidfun-with-cocos2d-x-part-ii/">参考博客</a>作者写的<a href="https://github.com/cocos2d/cocos2d-x-samples/">代码</a>中，已经有实现好的DebugDraw类（<code>LiquidFun-EyeCandy</code>项目内的<code>GLESDebugDraw.cpp</code>），直接拿来用即可。在LiquidFun自带的testbed项目下有一个<code>Render.cpp</code>文件，已经实现了上述的方法，是基于freeglut的。而Cocos2d-x的test工程中<code>Box2DTestBed</code>中也有<code>GLES-Render.cpp</code>文件，这个是基于GLES的，但少了<code>DrawParticles</code>方法。应该是博客作者参考LiquidFun的代码实现了渲染粒子的方法。</p>
+<p>我对照了一下，LiquidFun中做法是用程序生成了一个64*64的仿高斯模糊的材质，中心alpha高，越靠边alpha越低，然后在每个粒子的中心点位置渲染一个GL_POINT,材质使用前面说的模糊方块。渲染时BlendFunc使用叠加方式，使得水体内部不透明，而边缘透明。</p>
+<p>而参考博客中的实现方法相对简单，使用了alpha统一为0.35的方块而不是渐变方块，其他操作基本相同。</p>
+<p>我发现看别人写的GL程序基本能看懂，但是自己写还是有些难度，看来OpenGL这块还得继续学习。</p>
+<p>最后，在代码中添加了是否显示DebugDraw和Sprite的按钮，完成效果如图：</p>
+<p><img alt="finaleffect" src="/imgs/2016/finaleffect.gif" /></p>
+<p>效果已经比初级篇中好了很多，但是我发现两个问题，一是使用LiqudiFun依然十分耗资源，上面的例子中帧数已经下降到15左右，这还没有做离屏渲染，不知道真机上跑情况如何。二是水体不稳定，放置一段时间后仍有跳动现象。</p>
+<p><a href="https://github.com/RocMax/Integrate-LiquidFun-into-Cocos2d-x">代码参考</a></p>
             </div>
             <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://blog.game18.net/posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/">Cocos2d-x实现流体模拟（初级篇）</a></li>
+        <li><a href="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/">应用自定义Shader实现高斯模糊</a></li>
+        <li><a href="http://blog.game18.net/posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/">Cocos2d-x放大镜效果</a></li>
+    </ul>
+</section>
     <hr />
     <!-- Shariff Button BEGIN -->
     <div class="shariff"
@@ -236,7 +241,7 @@ iptables -A INPUT -s 210.56.209.98 -j DROP
         data-services = "[&quot;twitter&quot;,&quot;facebook&quot;,&quot;googleplus&quot;]"
         data-theme="grey"
         data-twitter-via="ROCLEE"
-        data-url="http://blog.game18.net/posts/2016/03/da-jian-jie-shi-ban/"></div>
+        data-url="http://blog.game18.net/posts/2016/04/zai-cocos2d-xzhong-shi-yong-box2dwu-li-yin-qing-zhong-ji-pian/"></div>
     <!-- Shariff Button END -->
     <hr/>
     <section class="comments" id="comments">
@@ -247,8 +252,8 @@ iptables -A INPUT -s 210.56.209.98 -j DROP
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'rocmaxscats'; // required: replace example with your forum shortname
 
-                    var disqus_identifier = 'da-jian-jie-shi-ban';
-                var disqus_url = 'http://blog.game18.net/posts/2016/03/da-jian-jie-shi-ban/';
+                    var disqus_identifier = 'zai-cocos2d-xzhong-shi-yong-box2dwu-li-yin-qing-zhong-ji-pian';
+                var disqus_url = 'http://blog.game18.net/posts/2016/04/zai-cocos2d-xzhong-shi-yong-box2dwu-li-yin-qing-zhong-ji-pian/';
 
             var disqus_config = function () {
                 this.language = "zh";

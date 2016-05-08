@@ -1,5 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Roc's Blog</title><link href="http://blog.game18.net/" rel="alternate"></link><link href="http://blog.game18.net/feed/all.atom.xml" rel="self"></link><id>http://blog.game18.net/</id><updated>2016-03-30T00:00:00+08:00</updated><entry><title>搭建揭示板</title><link href="http://blog.game18.net/posts/2016/03/da-jian-jie-shi-ban/" rel="alternate"></link><updated>2016-03-30T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-03-20:posts/2016/03/da-jian-jie-shi-ban/</id><summary type="html">&lt;blockquote&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Roc's Blog</title><link href="http://blog.game18.net/" rel="alternate"></link><link href="http://blog.game18.net/feed/all.atom.xml" rel="self"></link><id>http://blog.game18.net/</id><updated>2016-05-08T00:00:00+08:00</updated><entry><title>在Cocos2d-x中使用Box2D物理引擎（中级篇）</title><link href="http://blog.game18.net/posts/2016/04/zai-cocos2d-xzhong-shi-yong-box2dwu-li-yin-qing-zhong-ji-pian/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-04-14:posts/2016/04/zai-cocos2d-xzhong-shi-yong-box2dwu-li-yin-qing-zhong-ji-pian/</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;继Cocos2d-x实现流体模拟（初级篇）之后，终于有时间完成中级篇，将LiquidFun整合进Cocos2d-x中，实现较好的流体模拟效果。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="http://google.github.io/liquidfun/"&gt;LiquidFun&lt;/a&gt;是Google开发的Box2D扩展库，它在Box2D基础上增加了流体模拟的粒子系统。Google出品自然不会差，首页上就有几个示例，效果看起来非常不错。&lt;/p&gt;
+&lt;p&gt;在之前的博客中曾经说过，Cocos2d-x整合了Box2D和Chipmunk两种物理引擎。但我仔细看了代码，实际上真正整合的只有Chipmunk，调用Scene的&lt;code&gt;createWithPhysics()&lt;/code&gt;方法时，引擎在后台使用Chipmunk创建物理世界。Cocos2d-x并没有同样在代码层面整合Box2D，而只是将Box2D拷贝了一份放在引擎中（一种放置Play的概念）。所以即使像&lt;a href="http://blog.game18.net/posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/"&gt;初级篇&lt;/a&gt;中说的修改编译参数，实际上底层使用的仍是Chipmunk。&lt;/p&gt;
+&lt;p&gt;既然Cocos2d-x没有帮我们做，那只好自己搞定。回顾一下初级篇很容易发现，实际上：&lt;strong&gt;物理引擎主要负责提供物体的位置和运动信息，其它方面跟游戏场景关联并不大，唯一需要保证的是游戏场景中&lt;code&gt;Node&lt;/code&gt;与物理世界中的物体之间的对应关系。&lt;/strong&gt;从这个角度看来，所谓的“整合”意义并不大，称之为“连接”可能更加贴切。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;扯了不少闲话，下面就开始干活。既然Cocos2d-x中已经有Box2D，我们只要使用LiquidFun中的文件替换掉原有的即可。首先需要下载一套源码版Cocos2d-x。如果下载的是预编译过的版本，较为节省编译时间，但无法修改源码，所以需要下载源码版本。导入Xcode，在资源目录中找到Box2D。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Box2Dindex" src="/img/2016/index.png" /&gt;&lt;/p&gt;
+&lt;p&gt;拷贝LiquidFun中Box2D目录下的：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Box2d.h&lt;/li&gt;
+&lt;li&gt;Collision&lt;/li&gt;
+&lt;li&gt;Common&lt;/li&gt;
+&lt;li&gt;Dynamics&lt;/li&gt;
+&lt;li&gt;Rope&lt;/li&gt;
+&lt;li&gt;Particle&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;到工程内，同名内容替换。然后还需要将Particle目录下的：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;b2ParticleAssembly.h&lt;/li&gt;
+&lt;li&gt;b2ParticleAssembly.neon.s&lt;/li&gt;
+&lt;li&gt;b2ParticleAssembly.cpp&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;三个文件删除之后即可正常编译。编译无误的话说明LiquidFun的代码已成功包含进Cocos2d-x工程中。&lt;/p&gt;
+&lt;p&gt;前面说过，使用&lt;code&gt;createWithPhysics()&lt;/code&gt;并不能调用Box2D创建物理世界，所以我们需要手动创建。先引用Box2D头文件，注意路径:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;#include "Box2D/Box2D.h"&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;world&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;b2World&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b2Vec2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;10.0&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;span class="n"&gt;world&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;SetAllowSleeping&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;之后和初级篇差不多，这里不再多讲。主要实现了在点击的位置添加一个小方块，然后自由落下：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="addbrick" src="/img/2016/addbrick.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;需要注意的是Box2D中使用的长度单位是米，所以需要定义一个与屏幕中像素的对应关系，这里规定32个像素为1米：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;#define PTM_RATIO 32.0f&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;相应的，代码中所有的需要与物理世界中坐标相关的值都需要按照这个比例转化。&lt;/p&gt;
+&lt;p&gt;另外，Box2D中的Body也提供了一个void型指针&lt;code&gt;m_userData&lt;/code&gt;，在创建的时候我们应当将对应的Node的指针赋给它，以保存游戏场景与物理世界中物体的对应关系。&lt;/p&gt;
+&lt;p&gt;然后我们添加流体粒子，LiquidFun的用法可以参考官方网页。向世界中添加粒子的方式较为特别，并不是一个一个添加的。而是定义一个初始形状，引擎会自动在形状中填满粒子，之后的行动就靠物理规律来支配了。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;b2ParticleSystemDef&lt;/span&gt; &lt;span class="n"&gt;particleSystemDef&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;particleSystemDef&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;radius&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;8.0&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;PTM_RATIO&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;//粒子大小&lt;/span&gt;
+&lt;span class="n"&gt;b2ParticleSystem&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;particleSystem&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;world&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;CreateParticleSystem&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;particleSystemDef&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//添加粒子系统至物理世界&lt;/span&gt;
+&lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Vec2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  
+&lt;span class="n"&gt;b2PolygonShape&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;shape&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;b2PolygonShape&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;SetAsBox&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mf"&gt;0.25&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;PTM_RATIO&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;PTM_RATIO&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  &lt;span class="c1"&gt;//形状大小&lt;/span&gt;
+&lt;span class="n"&gt;b2ParticleGroupDef&lt;/span&gt; &lt;span class="n"&gt;groupDef&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;groupDef&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;groupDef&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flags&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;b2_waterParticle&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;//粒子类别&lt;/span&gt;
+&lt;span class="c1"&gt;//groupDef.color = b2ParticleColor(100,150,255,255);&lt;/span&gt;
+&lt;span class="n"&gt;groupDef&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;position&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pos&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;PTM_RATIO&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;PTM_RATIO&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  &lt;span class="c1"&gt;//形状初始位置&lt;/span&gt;
+&lt;span class="n"&gt;particleSystem&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;CreateParticleGroup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;groupDef&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;上面的代码生成了一组粒子，但并不能在屏幕上看到它们，只是方块掉到地面的时候有一些浮动的效果，说明它们确实存在。当然，按照初级篇中的做法，我们可以给每一个粒子对应添加一个Sprite，然后离屏渲染并截断，最终生成流体效果。在&lt;a href="https://retro.moe/2014/07/30/integrating-liquidfun-with-cocos2d-x-part-ii/"&gt;这个教程&lt;/a&gt;）中作者推荐使用Point而不是ParticleSystemQuad来渲染材质以求更好的性能。那么使用Sprite的性能可能会更差，但是方法大同小异。&lt;/p&gt;
+&lt;p&gt;为了能直观地看到流体粒子，下面我们为LiquidFun添加DebugDraw，在LiquidFun的源码中Common目录下可以找到b2Draw类，但它是一个抽象类，要求我们实现下面几个方法：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="c1"&gt;/// Draw a closed polygon provided in CCW order.&lt;/span&gt;
+    &lt;span class="k"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;DrawPolygon&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;b2Vec2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;vertices&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;int32&lt;/span&gt; &lt;span class="n"&gt;vertexCount&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;b2Color&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="c1"&gt;/// Draw a solid closed polygon provided in CCW order.&lt;/span&gt;
+    &lt;span class="k"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;DrawSolidPolygon&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;b2Vec2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;vertices&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;int32&lt;/span&gt; &lt;span class="n"&gt;vertexCount&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;b2Color&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="c1"&gt;/// Draw a circle.&lt;/span&gt;
+    &lt;span class="k"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;DrawCircle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;b2Vec2&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;center&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;float32&lt;/span&gt; &lt;span class="n"&gt;radius&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;b2Color&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="c1"&gt;/// Draw a solid circle.&lt;/span&gt;
+    &lt;span class="k"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;DrawSolidCircle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;b2Vec2&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;center&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;float32&lt;/span&gt; &lt;span class="n"&gt;radius&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;b2Vec2&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;b2Color&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="c1"&gt;/// Draw a particle array&lt;/span&gt;
+    &lt;span class="k"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;DrawParticles&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;b2Vec2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;centers&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;float32&lt;/span&gt; &lt;span class="n"&gt;radius&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;b2ParticleColor&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;colors&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;int32&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="c1"&gt;/// Draw a line segment.&lt;/span&gt;
+    &lt;span class="k"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;DrawSegment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;b2Vec2&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;b2Vec2&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;b2Color&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="c1"&gt;/// Draw a transform. Choose your own length scale.&lt;/span&gt;
+    &lt;span class="c1"&gt;/// @param xf a transform.&lt;/span&gt;
+    &lt;span class="k"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;DrawTransform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;b2Transform&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;xf&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在&lt;a href="https://retro.moe/2014/07/30/integrating-liquidfun-with-cocos2d-x-part-ii/"&gt;参考博客&lt;/a&gt;作者写的&lt;a href="https://github.com/cocos2d/cocos2d-x-samples/"&gt;代码&lt;/a&gt;中，已经有实现好的DebugDraw类（&lt;code&gt;LiquidFun-EyeCandy&lt;/code&gt;项目内的&lt;code&gt;GLESDebugDraw.cpp&lt;/code&gt;），直接拿来用即可。在LiquidFun自带的testbed项目下有一个&lt;code&gt;Render.cpp&lt;/code&gt;文件，已经实现了上述的方法，是基于freeglut的。而Cocos2d-x的test工程中&lt;code&gt;Box2DTestBed&lt;/code&gt;中也有&lt;code&gt;GLES-Render.cpp&lt;/code&gt;文件，这个是基于GLES的，但少了&lt;code&gt;DrawParticles&lt;/code&gt;方法。应该是博客作者参考LiquidFun的代码实现了渲染粒子的方法。&lt;/p&gt;
+&lt;p&gt;我对照了一下，LiquidFun中做法是用程序生成了一个64*64的仿高斯模糊的材质，中心alpha高，越靠边alpha越低，然后在每个粒子的中心点位置渲染一个GL_POINT,材质使用前面说的模糊方块。渲染时BlendFunc使用叠加方式，使得水体内部不透明，而边缘透明。&lt;/p&gt;
+&lt;p&gt;而参考博客中的实现方法相对简单，使用了alpha统一为0.35的方块而不是渐变方块，其他操作基本相同。&lt;/p&gt;
+&lt;p&gt;我发现看别人写的GL程序基本能看懂，但是自己写还是有些难度，看来OpenGL这块还得继续学习。&lt;/p&gt;
+&lt;p&gt;最后，在代码中添加了是否显示DebugDraw和Sprite的按钮，完成效果如图：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="finaleffect" src="/imgs/2016/finaleffect.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;效果已经比初级篇中好了很多，但是我发现两个问题，一是使用LiqudiFun依然十分耗资源，上面的例子中帧数已经下降到15左右，这还没有做离屏渲染，不知道真机上跑情况如何。二是水体不稳定，放置一段时间后仍有跳动现象。&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/RocMax/Integrate-LiquidFun-into-Cocos2d-x"&gt;代码参考&lt;/a&gt;&lt;/p&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="Box2D"></category><category term="物理引擎"></category></entry><entry><title>搭建揭示板</title><link href="http://blog.game18.net/posts/2016/03/da-jian-jie-shi-ban/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-03-20:posts/2016/03/da-jian-jie-shi-ban/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;近日，神奈同学说需要做一个揭示板。起因是神奈在日本经常各处旅游，途中发现很多日本人开的商店为了吸引中国游客会做一些中文的招牌。由于语言不通，招牌文字只能借助google翻译，翻译质量可想而知。语句不通就罢了，很多时候还会闹笑话甚至造成误解。为了给店家提供帮助，同时也为了方便中国游客，神奈同学决定使用揭示板帮助翻译招牌。&lt;/p&gt;
 &lt;p&gt;我觉得这是一项很有意义的活动，于是接下了搭建揭示板的任务。在这里把搭建过程记录一下。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -89,7 +176,7 @@ iptables -A INPUT -s 210.56.209.98 -j DROP
 &lt;p&gt;总之，希望这个项目能成功运行，并给更多的人提供帮助。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;补充：&lt;/strong&gt; 揭示板上线后，不断遭到发帖机器人的入侵，很是困扰。其实解决方法很简单，提高验证码的难度让机器人无法识别即可。首先确保&lt;code&gt;init.cgi&lt;/code&gt;中&lt;code&gt;$cf{use_captcha} = 2;&lt;/code&gt;设置验证码使用&lt;code&gt;ImageMagick&lt;/code&gt;；然后按照&lt;a href="http://www.kent-web.com/pubc/captcha/"&gt;这里&lt;/a&gt;的说明设置验证码的复杂度，最重要的是&lt;code&gt;scramble =&amp;gt; 1&lt;/code&gt;让数字随机旋转角度，这样就不容易被机器人识别出来了。&lt;/p&gt;
-&lt;p&gt;设置完之后果然世界清净了，但不知为什么感觉很寂寞......&lt;/p&gt;</summary><category term="CentOS"></category><category term="vsftpd"></category><category term="apache"></category><category term="yy-bord"></category></entry><entry><title>关于VR游戏的讨论</title><link href="http://blog.game18.net/posts/2016/03/guan-yu-vryou-xi-de-tao-lun/" rel="alternate"></link><updated>2016-03-30T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-03-08:posts/2016/03/guan-yu-vryou-xi-de-tao-lun/</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;设置完之后果然世界清净了，但不知为什么感觉很寂寞......&lt;/p&gt;</summary><category term="CentOS"></category><category term="vsftpd"></category><category term="apache"></category><category term="yy-bord"></category></entry><entry><title>关于VR游戏的讨论</title><link href="http://blog.game18.net/posts/2016/03/guan-yu-vryou-xi-de-tao-lun/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-03-08:posts/2016/03/guan-yu-vryou-xi-de-tao-lun/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;好久没有更新博客了,从去年12月开始一直在忙业务系统上线的事情.期间写了两三篇跟技术无关的文字,今天想了想还是都删掉了.我决定保持这里的纯洁性,随笔栏目里只记录技术相关的想法,无关的东西可以扔去微博或者twitter.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;前几天跟神奈同学聊天时对VR技术在游戏中的应用问题争论了一番,我俩的意见分歧还是挺大的。后来我在听一个讨论式的播客（IT公论）时想到：不如把这部分内容记录一下，以后再回头看看谁的预测比较准确，应该是一件很有趣的事情。&lt;/p&gt;
@@ -106,7 +193,7 @@ iptables -A INPUT -s 210.56.209.98 -j DROP
 &lt;p&gt;从预定发售的游戏看来，第二种情况居多，基本上都是保留现有的游戏方式，借助VR提供3D视觉效果，那么VR系统就退化成了穿戴式3D显示器。我认为VR更重要的是交互方式的改进，现在的技术还达不到能让用户穿戴上VR设备后随意移动，而且也很难提供视觉以外的其他感觉反馈。仅仅停留在提供3D视觉和音效的程度，只能说离真正的VR还相去甚远。&lt;/p&gt;
 &lt;h2&gt;VR适合的游戏类型&lt;/h2&gt;
 &lt;p&gt;FPS游戏应该是天然适合使用VR技术的游戏，类似地，第一人称动作类的游戏也很适合。RPG游戏除了非常强调自由度的类型外，基本上会希望玩家按照游戏安排进行，有时候视角的控制是必要的，否则玩家错过了重要的线索会导致游戏难以进行。&lt;/p&gt;
-&lt;p&gt;这里引出另外一个问题，相对于在显示器上显示的3D效果，VR设备在视角移动时带来的眩晕值异常高。可能视觉反馈越真实，与其他感觉的冲突就越大。从这方面看来，MineCraft的扩增实境反而是更合理的实现方式。&lt;/p&gt;</summary><category term="游戏感想"></category></entry><entry><title>Cocos2d-x实现流体模拟（初级篇）</title><link href="http://blog.game18.net/posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/" rel="alternate"></link><updated>2016-03-30T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-11-22:posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;这里引出另外一个问题，相对于在显示器上显示的3D效果，VR设备在视角移动时带来的眩晕值异常高。可能视觉反馈越真实，与其他感觉的冲突就越大。从这方面看来，MineCraft的扩增实境反而是更合理的实现方式。&lt;/p&gt;</summary><category term="游戏感想"></category></entry><entry><title>Cocos2d-x实现流体模拟（初级篇）</title><link href="http://blog.game18.net/posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-11-22:posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;前一阵在群里讨论的时候说到使用Cocos2d-x做2D水流，我觉得很有挑战性，于是研究了一阵。实际上流体模拟不仅在游戏开发中应用广泛，而且在工程和科研方面也有重要的意义。今天我们就开始探讨如何使用Cocos2d-x实现流体模拟。&lt;/p&gt;
 &lt;p&gt;这个系列打算分成三个阶段：&lt;/p&gt;
 &lt;ul&gt;
@@ -121,7 +208,7 @@ iptables -A INPUT -s 210.56.209.98 -j DROP
 &lt;p&gt;流体模拟需要解决两个关键问题：如何动起来像流体；如何看起来像流体。&lt;/p&gt;
 &lt;p&gt;初级篇中我们使用大量物理刚体粒子模拟流体运动，当然，看着着一堆粒子想象液体运动是不可接受的。针对第二个问题呢，需要使用一些渲染方面的技巧。最终实现的效果参考示例博客，说实话差强人意，初级篇嘛，不要要求太高。&lt;/p&gt;
 &lt;h3&gt;物理引擎&lt;/h3&gt;
-&lt;p&gt;Cocos2d-x自带Box2D和chipmunk两种物理引擎，一般来讲Box2D要强大一些，而chipmunk则比较轻量，不过对于今天的任务选哪个都没差。（Cocos2d-x默认使用chipmunk，需要切换的话可以参考&lt;a href="http://www.tairan.com/archives/5431/"&gt;这里&lt;/a&gt;）&lt;/p&gt;
+&lt;p&gt;Cocos2d-x自带Box2D和chipmunk两种物理引擎，一般来讲Box2D要强大一些，而chipmunk则比较轻量，不过对于今天的任务选哪个都没差。&lt;s&gt;（Cocos2d-x默认使用chipmunk，需要切换的话可以参考&lt;a href="http://www.tairan.com/archives/5431/"&gt;这里&lt;/a&gt;）&lt;/s&gt;（Cocos2d-x只深度整合了chipmunk一种引擎，修改编译参数并不能真正切换使用的物理引擎，使用Box2D的方法参见中级篇）&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;使用物理引擎时代码和平常有点不同，在创建scene时要这样：&lt;/li&gt;
 &lt;/ul&gt;
@@ -279,7 +366,7 @@ iptables -A INPUT -s 210.56.209.98 -j DROP
 &lt;p&gt;在中级篇中，将尝试整合Google出品的开源项目&lt;a href="http://google.github.io/liquidfun/"&gt;liquidfun&lt;/a&gt;，以求达到更好的效果。&lt;/p&gt;
 &lt;p&gt;在高级篇中，将探讨流体模拟相关算法SPH(&lt;a href="https://en.wikipedia.org/wiki/Smoothed-particle_hydrodynamics"&gt;Smoothed Particle Hydrodynamics&lt;/a&gt;)，弄明白其原理，尝试代码实现。&lt;a href="http://thecodeway.com/blog/?p=83"&gt;这里&lt;/a&gt;有一篇很好的参考博客。&lt;/p&gt;
 &lt;p&gt;&lt;s&gt;当然，前提是我有时间的话...这些工程量有点大。&lt;/s&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="Liquid Simulation"></category><category term="物理引擎"></category></entry><entry><title>应用自定义Shader实现高斯模糊</title><link href="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/" rel="alternate"></link><updated>2016-03-30T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-11-12:posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/</id><summary type="html">&lt;blockquote&gt;
+&lt;/blockquote&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="Liquid Simulation"></category><category term="物理引擎"></category></entry><entry><title>应用自定义Shader实现高斯模糊</title><link href="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-11-12:posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;是时候研究真正的技术了！深入Cocos2d-x引擎核心，利用Shader实现更炫酷的效果。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;掌握了Cocos2d-x的基本应用之后，是不是已经不能满足于基本的精灵和动画效果了？本篇就向游戏引擎的核心迈进一步，利用自定义Shader实现高斯模糊效果。参考文章：&lt;a href="http://discuss.cocos2d-x.org/t/cocos3-8-tutorial-rendertexture-blur/13622"&gt;RenderTexture + Blur&lt;/a&gt;
@@ -594,7 +681,7 @@ point 8 : 0.003799
 &lt;li&gt;重启&lt;/li&gt;
 &lt;li&gt;在&lt;a href="https://mega.co.nz/#F!8Q10yAiZ!4GVoGr7FJtXauVI3kvPSMQ"&gt;这里&lt;/a&gt;下载GApps,逐个安装&lt;/li&gt;
 &lt;li&gt;Login GooglePlay And Enjoy !&lt;/li&gt;
-&lt;/ol&gt;</summary><category term="Android"></category><category term="FireHDX"></category><category term="ROOT"></category></entry><entry><title>魔塔游戏实现思路</title><link href="http://blog.game18.net/posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/" rel="alternate"></link><updated>2016-03-30T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-15:posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/</id><summary type="html">&lt;blockquote&gt;
+&lt;/ol&gt;</summary><category term="Android"></category><category term="FireHDX"></category><category term="ROOT"></category></entry><entry><title>魔塔游戏实现思路</title><link href="http://blog.game18.net/posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-15:posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;发现一款游戏叫《魔塔》，是一个8bit风格的RPG游戏，主人公出生在一个多层迷宫里，各层迷宫之间通过楼梯相连，每层迷宫中有怪物，门，钥匙，血瓶等，不同颜色的门需要对应颜色的钥匙开启，遇到怪物会开启战斗，最终目标是消灭某一层的boss。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;从功能点上来看与之前实现的RPG游戏Demo重合度很高。先分析记录一下实现思路,如果以后有时间和兴趣的话考虑自己做一下.&lt;/p&gt;
@@ -647,7 +734,7 @@ point 8 : 0.003799
 &lt;li&gt;
 &lt;p&gt;宝箱，npc，以及其他收集道具的处理以及npc触发任务的处理有待细化.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Cocos2d-x"></category><category term="游戏开发"></category></entry><entry><title>Cocos2d-x放大镜效果</title><link href="http://blog.game18.net/posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/" rel="alternate"></link><updated>2016-03-30T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-14:posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/</id><summary type="html">&lt;p&gt;挖一篇以前写的笔记,如何用Cocos2d-x实现放大镜效果.主要思路是使用图片的一部分创建Sprite,然后setscale,将生成的sprite添加到点击位置.如果原图分辨率不够的话也可以使用另外的大图,截取范围按照两张图的分辨率比值设定.如果对ontouchmoved进行响应,改变截取的位置,生成新的texture,然后使用sprite-&amp;gt;settexture即可实现拖动效果.在ontouchended中销毁sprite即可.基本功能实现非常简单,效果如下:&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="Cocos2d-x"></category><category term="游戏开发"></category></entry><entry><title>Cocos2d-x放大镜效果</title><link href="http://blog.game18.net/posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-14:posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/</id><summary type="html">&lt;p&gt;挖一篇以前写的笔记,如何用Cocos2d-x实现放大镜效果.主要思路是使用图片的一部分创建Sprite,然后setscale,将生成的sprite添加到点击位置.如果原图分辨率不够的话也可以使用另外的大图,截取范围按照两张图的分辨率比值设定.如果对ontouchmoved进行响应,改变截取的位置,生成新的texture,然后使用sprite-&amp;gt;settexture即可实现拖动效果.在ontouchended中销毁sprite即可.基本功能实现非常简单,效果如下:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="SquareMagnifyingGlass" src="/imgs/2015/squaremagnifyingglass.png" /&gt;&lt;/p&gt;
 &lt;p&gt;实现起来虽然简单,但是方形的放大框非常不自然.下面我们就在Cocos2d-x中实现圆形外框的放大镜效果.先看代码:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Sprite&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;HelloWorld&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;getMaskedSprite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cocos2d&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Rect&lt;/span&gt; &lt;span class="n"&gt;rect&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
@@ -699,7 +786,7 @@ point 8 : 0.003799
 &lt;p&gt;其实稍作改动,我们还可以实现更有趣的效果.比如:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="screenshot" src="/imgs/2015/funnygirl.gif" /&gt;&lt;/p&gt;
 &lt;p&gt;怎么样,&lt;s&gt;无论从哪个方面来看&lt;/s&gt;效果很不错吧?
-是不是有些小激动呢?（¯﹃¯）嘿嘿嘿嘿....&lt;/p&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="RenderTexture"></category></entry><entry><title>Python抓取网页数据</title><link href="http://blog.game18.net/posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/" rel="alternate"></link><updated>2016-03-30T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-12:posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/</id><summary type="html">&lt;p&gt;稍微花了点时间学习Python,真是一种好用的语言啊.相对于要求严格的C++,Python非常自由、简单、方便.有时候让我有一种"这么随便会不会出什么问题?"的感觉.基本上稍微看一下文档我就能上手干活了,做了一个抓取网页数据的小工具.感谢&lt;a href="http://cuiqingcai.com/927.html"&gt;静觅的博客&lt;/a&gt;详细讲解了Python爬虫,更棒的是有多个实例供参考.&lt;/p&gt;
+是不是有些小激动呢?（¯﹃¯）嘿嘿嘿嘿....&lt;/p&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="RenderTexture"></category></entry><entry><title>Python抓取网页数据</title><link href="http://blog.game18.net/posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-12:posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/</id><summary type="html">&lt;p&gt;稍微花了点时间学习Python,真是一种好用的语言啊.相对于要求严格的C++,Python非常自由、简单、方便.有时候让我有一种"这么随便会不会出什么问题?"的感觉.基本上稍微看一下文档我就能上手干活了,做了一个抓取网页数据的小工具.感谢&lt;a href="http://cuiqingcai.com/927.html"&gt;静觅的博客&lt;/a&gt;详细讲解了Python爬虫,更棒的是有多个实例供参考.&lt;/p&gt;
 &lt;p&gt;因为上面推荐的博客里讲解已经非常细致,我就直接上代码好了.另外关于html的基本概念可以参考&lt;a href="http://www.w3school.com.cn/html/"&gt;这里&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;我们今天要爬的网站是这个:&lt;a href="http://www.suruga-ya.jp/"&gt;駿河屋&lt;/a&gt;,一个日本的电商网站,我们希望能把商品信息抓出来供以后使用.IDE方面,我使用的是Anaconda家的Pycharm,另外还附带一个网页版的界面叫IPython Notebook(Jupyter),可以随写随运行,写比较小的脚本时很方便.那么好,上代码:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib&lt;/span&gt;
@@ -921,7 +1008,7 @@ read to max pageindex,stop
 &lt;blockquote&gt;
 &lt;p&gt;总结:
 Python爬网页数据真方便!&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="Python"></category><category term="crawl"></category><category term="BeautifulSoup"></category><category term="html"></category></entry><entry><title>更换博客主题</title><link href="http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/" rel="alternate"></link><updated>2016-03-30T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-10:posts/2015/10/geng-huan-bo-ke-zhu-ti/</id><summary type="html">&lt;p&gt;刚弄好的博客突然间挂掉了.运行&lt;code&gt;make html&lt;/code&gt;的时候所有md文件都报&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="Python"></category><category term="crawl"></category><category term="BeautifulSoup"></category><category term="html"></category></entry><entry><title>更换博客主题</title><link href="http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-10:posts/2015/10/geng-huan-bo-ke-zhu-ti/</id><summary type="html">&lt;p&gt;刚弄好的博客突然间挂掉了.运行&lt;code&gt;make html&lt;/code&gt;的时候所有md文件都报&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;OSError: [Errno 2] No such file or directory.
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -955,7 +1042,7 @@ Python爬网页数据真方便!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;之后有时间继续研究一下这个问题吧.当务之急是让把博客恢复起来.我把官方Git上的所有主题截图都浏览过,喜欢的并不多,有几个虽然看起来很漂亮,但又有点过于文艺范.后来我发现很多博客都在用&lt;a href="https://github.com/DandyDev/pelican-bootstrap3"&gt;pelican-bootstrap3&lt;/a&gt;主题,风格比较简约适合技术博客.&lt;/p&gt;
 &lt;p&gt;按着readme配置了一下,发现这个主题可配置的地方很多,功能比较完善.我最喜欢的是可定制的顶部banner,用了黑猫的图片加上黑白配色,堪称完美.&lt;/p&gt;
-&lt;p&gt;于是Bolg满血复活,测试了几次没发现什么bug,暂且先用这个主题好了.以后研究一下自己学着定制主题吧.&lt;/p&gt;</summary><category term="心情"></category><category term="Pelican"></category><category term="Python"></category></entry><entry><title>利用Pelican和GitHub Pages打造个性化博客(二)</title><link href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/" rel="alternate"></link><updated>2016-03-30T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-08:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;于是Bolg满血复活,测试了几次没发现什么bug,暂且先用这个主题好了.以后研究一下自己学着定制主题吧.&lt;/p&gt;</summary><category term="心情"></category><category term="Pelican"></category><category term="Python"></category></entry><entry><title>利用Pelican和GitHub Pages打造个性化博客(二)</title><link href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-08:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;在上一篇里我们已经完成了Pelican的安装,生成网站并部署到GitHub Pages上.下面我们就继续完善网站的设置.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;1. 更换主题&lt;/h2&gt;
@@ -1178,7 +1265,7 @@ git push origin master
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="Pelican"></category><category term="GitHub"></category><category term="Python"></category><category term="MarkDown"></category></entry><entry><title>利用Pelican和GitHub Pages打造个性化博客(一)</title><link href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/" rel="alternate"></link><updated>2016-03-30T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-07:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</id><summary type="html">&lt;h2&gt;1. 配置GitHbu Pages&lt;/h2&gt;
+&lt;/script&gt;</summary><category term="Pelican"></category><category term="GitHub"></category><category term="Python"></category><category term="MarkDown"></category></entry><entry><title>利用Pelican和GitHub Pages打造个性化博客(一)</title><link href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-07:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</id><summary type="html">&lt;h2&gt;1. 配置GitHbu Pages&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;在GitHub中新建一个repository,命名为username.github.io,其中username是github的用户名,我建的是rocmax.github.io.&lt;/p&gt;
@@ -1283,7 +1370,7 @@ git push origin master    #将本地更改同步到远程仓库的master分支
 &lt;p&gt;到这里就把使用Pelican+GitHub Pages搭建个人博客的基本流程介绍完了.生成的博客应该类似于这样:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="PelicanWeb" src="/imgs/2015/PelicanWeb.png" /&gt;
 呃....好像也很丑的样子,而且也没啥功能.
-下一篇我们继续定制这个博客,让它变得既美观又功能强大.&lt;/p&gt;</summary><category term="Pelican"></category><category term="GitHub"></category><category term="Python"></category><category term="MarkDown"></category></entry><entry><title>祝!新博客开张!</title><link href="http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/" rel="alternate"></link><updated>2016-03-30T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-07:posts/2015/10/zhu-xin-bo-ke-kai-zhang/</id><summary type="html">&lt;blockquote&gt;
+下一篇我们继续定制这个博客,让它变得既美观又功能强大.&lt;/p&gt;</summary><category term="Pelican"></category><category term="GitHub"></category><category term="Python"></category><category term="MarkDown"></category></entry><entry><title>祝!新博客开张!</title><link href="http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-07:posts/2015/10/zhu-xin-bo-ke-kai-zhang/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;生命在于折腾!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;不久前刚刚开始使用&lt;a href="http://yellowandblackcats.blogspot.jp/"&gt;Blogger&lt;/a&gt;,为了替换一直使用的印象笔记.用了一段时间发现还是不爽,Blogger对MarkDown的支持并不是太好,也没什么好用的编辑器去配合,而且我费半天劲定制的Blogger界面丑得要死.终于,我下定决心再折腾一遍,搞一个更好用的博客.&lt;/p&gt;
