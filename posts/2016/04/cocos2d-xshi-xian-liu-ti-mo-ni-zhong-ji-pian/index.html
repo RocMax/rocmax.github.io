@@ -189,7 +189,7 @@ Roc's Blog            </a>
 </pre></div>
 
 
-<p>上面的代码生成了一组粒子，但并不能在屏幕上看到它们，只是方块掉到地面的时候有一些浮动的效果，说明它们确实存在。当然，按照初级篇中的做法，我们可以给每一个粒子对应添加一个Sprite，然后离屏渲染并截断，最终生成流体效果。在<a href="https://retro.moe/2014/07/30/integrating-liquidfun-with-cocos2d-x-part-ii/">这个教程</a>）中作者推荐使用Point而不是ParticleSystemQuad来渲染材质以求更好的性能。那么使用Sprite的性能可能会更差，但是方法大同小异。</p>
+<p>上面的代码生成了一组粒子，但并不能在屏幕上看到它们，只是方块掉到地面的时候有一些浮动的效果，说明它们确实存在。当然，按照初级篇中的做法，我们可以给每一个粒子对应添加一个Sprite，然后离屏渲染并截断，最终生成流体效果。在<a href="https://retro.moe/2014/07/30/integrating-liquidfun-with-cocos2d-x-part-ii/">这个教程</a>中作者推荐使用Point而不是ParticleSystemQuad来渲染材质以求更好的性能。那么使用Sprite的性能可能会更差，但是方法大同小异。</p>
 <p>为了能直观地看到流体粒子，下面我们为LiquidFun添加DebugDraw，在LiquidFun的源码中Common目录下可以找到b2Draw类，但它是一个抽象类，要求我们实现下面几个方法：</p>
 <div class="highlight"><pre>    <span class="c1">/// Draw a closed polygon provided in CCW order.</span>
     <span class="k">virtual</span> <span class="kt">void</span> <span class="n">DrawPolygon</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span><span class="o">*</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">int32</span> <span class="n">vertexCount</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
