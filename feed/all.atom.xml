@@ -7,7 +7,7 @@
 &lt;p&gt;既然Cocos2d-x没有帮我们做，那只好自己搞定。回顾一下初级篇很容易发现，实际上：&lt;strong&gt;物理引擎主要负责提供物体的位置和运动信息，其它方面跟游戏场景关联并不大，唯一需要保证的是游戏场景中&lt;code&gt;Node&lt;/code&gt;与物理世界中的物体之间的对应关系。&lt;/strong&gt;从这个角度看来，所谓的“整合”意义并不大，称之为“连接”可能更加贴切。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;扯了不少闲话，下面就开始干活。既然Cocos2d-x中已经有Box2D，我们只要使用LiquidFun中的文件替换掉原有的即可。首先需要下载一套源码版Cocos2d-x。如果下载的是预编译过的版本，较为节省编译时间，但无法修改源码，所以需要下载源码版本。导入Xcode，在资源目录中找到Box2D。&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Box2Dindex" src="/img/2016/index.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Box2Dindex" src="/imgs/2016/index.png" /&gt;&lt;/p&gt;
 &lt;p&gt;拷贝LiquidFun中Box2D目录下的：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Box2d.h&lt;/li&gt;
