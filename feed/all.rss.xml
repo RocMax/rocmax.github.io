@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Roc's Blog</title><link>http://blog.game18.net/</link><description></description><atom:link href="http://blog.game18.net/feed/all.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 08 May 2016 00:00:00 +0800</lastBuildDate><item><title>在Cocos2d-x中使用Box2D物理引擎（中级篇）</title><link>http://blog.game18.net/posts/2016/04/zai-cocos2d-xzhong-shi-yong-box2dwu-li-yin-qing-zhong-ji-pian/</link><description>&lt;blockquote&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Roc's Blog</title><link>http://blog.game18.net/</link><description></description><atom:link href="http://blog.game18.net/feed/all.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 08 May 2016 00:00:00 +0800</lastBuildDate><item><title>Cocos2d-x实现流体模拟（中级篇）</title><link>http://blog.game18.net/posts/2016/04/cocos2d-xshi-xian-liu-ti-mo-ni-zhong-ji-pian/</link><description>&lt;blockquote&gt;
 &lt;p&gt;继Cocos2d-x实现流体模拟（初级篇）之后，终于有时间完成中级篇，将LiquidFun整合进Cocos2d-x中，实现较好的流体模拟效果。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;a href="http://google.github.io/liquidfun/"&gt;LiquidFun&lt;/a&gt;是Google开发的Box2D扩展库，它在Box2D基础上增加了流体模拟的粒子系统。Google出品自然不会差，首页上就有几个示例，效果看起来非常不错。&lt;/p&gt;
@@ -86,7 +86,7 @@
 &lt;p&gt;最后，在代码中添加了是否显示DebugDraw和Sprite的按钮，完成效果如图：&lt;/p&gt;
 &lt;p&gt;&lt;img alt="finaleffect" src="/imgs/2016/finaleffect.gif" /&gt;&lt;/p&gt;
 &lt;p&gt;效果已经比初级篇中好了很多，但是我发现两个问题，一是使用LiqudiFun依然十分耗资源，上面的例子中帧数已经下降到15左右，这还没有做离屏渲染，不知道真机上跑情况如何。二是水体不稳定，放置一段时间后仍有跳动现象。&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/RocMax/Integrate-LiquidFun-into-Cocos2d-x"&gt;代码参考&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Sun, 08 May 2016 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2016-04-14:posts/2016/04/zai-cocos2d-xzhong-shi-yong-box2dwu-li-yin-qing-zhong-ji-pian/</guid><category>Cocos2d-x</category><category>C++</category><category>Box2D</category><category>物理引擎</category></item><item><title>搭建揭示板</title><link>http://blog.game18.net/posts/2016/03/da-jian-jie-shi-ban/</link><description>&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/RocMax/Integrate-LiquidFun-into-Cocos2d-x"&gt;代码参考&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Roc</dc:creator><pubDate>Sun, 08 May 2016 00:00:00 +0800</pubDate><guid>tag:blog.game18.net,2016-04-14:posts/2016/04/cocos2d-xshi-xian-liu-ti-mo-ni-zhong-ji-pian/</guid><category>Cocos2d-x</category><category>C++</category><category>Box2D</category><category>物理引擎</category></item><item><title>搭建揭示板</title><link>http://blog.game18.net/posts/2016/03/da-jian-jie-shi-ban/</link><description>&lt;blockquote&gt;
 &lt;p&gt;近日，神奈同学说需要做一个揭示板。起因是神奈在日本经常各处旅游，途中发现很多日本人开的商店为了吸引中国游客会做一些中文的招牌。由于语言不通，招牌文字只能借助google翻译，翻译质量可想而知。语句不通就罢了，很多时候还会闹笑话甚至造成误解。为了给店家提供帮助，同时也为了方便中国游客，神奈同学决定使用揭示板帮助翻译招牌。&lt;/p&gt;
 &lt;p&gt;我觉得这是一项很有意义的活动，于是接下了搭建揭示板的任务。在这里把搭建过程记录一下。&lt;/p&gt;
 &lt;/blockquote&gt;
