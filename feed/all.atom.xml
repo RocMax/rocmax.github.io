@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Roc's Blog</title><link href="http://blog.game18.net/" rel="alternate"></link><link href="http://blog.game18.net/feed/all.atom.xml" rel="self"></link><id>http://blog.game18.net/</id><updated>2016-05-08T00:00:00+08:00</updated><entry><title>Cocos2d-x实现流体模拟（中级篇）</title><link href="http://blog.game18.net/posts/2016/04/cocos2d-xshi-xian-liu-ti-mo-ni-zhong-ji-pian/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-04-14:posts/2016/04/cocos2d-xshi-xian-liu-ti-mo-ni-zhong-ji-pian/</id><summary type="html">&lt;blockquote&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Roc's Blog</title><link href="http://blog.game18.net/" rel="alternate"></link><link href="http://blog.game18.net/feed/all.atom.xml" rel="self"></link><id>http://blog.game18.net/</id><updated>2016-05-14T00:00:00+08:00</updated><entry><title>程序员的自我修养</title><link href="http://blog.game18.net/posts/2016/05/cheng-xu-yuan-de-zi-wo-xiu-yang/" rel="alternate"></link><updated>2016-05-14T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-05-13:posts/2016/05/cheng-xu-yuan-de-zi-wo-xiu-yang/</id><summary type="html">&lt;h3&gt;Github与百度爬虫&lt;/h3&gt;
+&lt;p&gt;自从在GitHub建博客以来，访问量一直少得可怜，而且从Analytics的数据看，来访的大多是国外IP，估计是由于语言不通大多不会停留很久。出现这种情况当然最应该反省的是博客内容质量。但无意中得知由于前一阵的&lt;a href="https://zh.wikipedia.org/wiki/%E5%A4%A7%E7%82%AE_(%E4%B8%AD%E5%9C%8B%E7%B6%B2%E8%B7%AF%E5%AF%A9%E6%9F%A5)#.E5.A6.82.E4.BD.95.E8.AE.A4.E5.AE.9A.E4.B8.8E.E4.B8.AD.E5.9B.BD.E6.94.BF.E5.BA.9C.E6.9C.89.E5.85.B3"&gt;Great Cannon&lt;/a&gt;事件，Github封禁了百度的爬虫。尝试在百度搜索博客的关键词，果然一无所获。虽然我对百度无甚好感，但国内的现状就是这样，互联网市场无底线的竞争带来逆向淘汰，进而导致平台和渠道被流氓公司控制，于是我就愉快地甩锅了。&lt;/p&gt;
+&lt;p&gt;锅甩完，问题还是得解决，学习了一下，现在有两条路可走：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在国内的&lt;a href="https://gitcafe.com/"&gt;GitCafe&lt;/a&gt;(现已迁移至&lt;a href="https://coding.net/"&gt;CODING&lt;/a&gt;)建立镜像，在推送Github更新的同时推送给镜像站。&lt;/li&gt;
+&lt;li&gt;在VPS上建立镜像，利用&lt;code&gt;Webhook&lt;/code&gt;实现博客更新时同步镜像。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;目前我比较倾向于第二种方式，但我买的VPS是低配乞丐版，搭载的东西越来越多不知道能不能撑得住，有时间折腾下试试看吧。&lt;/p&gt;
+&lt;h3&gt;千里码&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://www.qlcoder.com/home"&gt;千里码&lt;/a&gt;是一个提升程序员自我修养的网站，里面把程序员在实际工作中经常用到的技术点，或者比较有意义的问题以题目的形式重现，总之就是一个做题网站。&lt;/p&gt;
+&lt;p&gt;上周利用闲暇时间我把初级题目扫了扫，现在我的技能树是这样：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="skilltree" src="/imgs/2016/skilltree.png" /&gt;&lt;/p&gt;
+&lt;p&gt;看着技能书不断扩展果然很有成就感呢。而且网站还提供了奖品，答题积分可以换个机械键盘什么的，个别难题通关的话甚至能拿到MacBook，比如&lt;a href="http://www.qlcoder.com/task/760b"&gt;这一题&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;安利完了，再说点感想：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;做题的时候发现Python真是越来越可爱了，关注于解决问题，不用考虑外围的很多杂事。C++和Python就像双持武器，要方便就用Python，要性能就上C++，战斗起来得心应手。&lt;/li&gt;
+&lt;li&gt;作为一个半路出家的Coder，最初搞定一个问题，学会一点知识就觉得很了不起。后来发现知道的越多，周边的未知也越多。就像技能树一样，学会了一个节点，旁边就会拓展出更多节点，一个分支深入到尽头尚且不能，何况还有那么多分枝。每当这么想的时候就觉得以往浪费太多时间了，应该抓紧时间去学习。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;诶？甲铁城有更新？先看完再说吧。。。&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="千里码"></category><category term="Python"></category><category term="Baidu"></category><category term="Github"></category></entry><entry><title>Cocos2d-x实现流体模拟（中级篇）</title><link href="http://blog.game18.net/posts/2016/04/cocos2d-xshi-xian-liu-ti-mo-ni-zhong-ji-pian/" rel="alternate"></link><updated>2016-05-14T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-04-14:posts/2016/04/cocos2d-xshi-xian-liu-ti-mo-ni-zhong-ji-pian/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;继Cocos2d-x实现流体模拟（初级篇）之后，终于有时间完成中级篇，将LiquidFun整合进Cocos2d-x中，实现较好的流体模拟效果。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;a href="http://google.github.io/liquidfun/"&gt;LiquidFun&lt;/a&gt;是Google开发的Box2D扩展库，它在Box2D基础上增加了流体模拟的粒子系统。Google出品自然不会差，首页上就有几个示例，效果看起来非常不错。&lt;/p&gt;
@@ -86,7 +106,7 @@
 &lt;p&gt;最后，在代码中添加了是否显示DebugDraw和Sprite的按钮，完成效果如图：&lt;/p&gt;
 &lt;p&gt;&lt;img alt="finaleffect" src="/imgs/2016/finaleffect.gif" /&gt;&lt;/p&gt;
 &lt;p&gt;效果已经比初级篇中好了很多，但是我发现两个问题，一是使用LiqudiFun依然十分耗资源，上面的例子中帧数已经下降到15左右，这还没有做离屏渲染，不知道真机上跑情况如何。二是水体不稳定，放置一段时间后仍有跳动现象。&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/RocMax/Integrate-LiquidFun-into-Cocos2d-x"&gt;代码参考&lt;/a&gt;&lt;/p&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="Box2D"></category><category term="物理引擎"></category></entry><entry><title>搭建揭示板</title><link href="http://blog.game18.net/posts/2016/03/da-jian-jie-shi-ban/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-03-20:posts/2016/03/da-jian-jie-shi-ban/</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/RocMax/Integrate-LiquidFun-into-Cocos2d-x"&gt;代码参考&lt;/a&gt;&lt;/p&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="Box2D"></category><category term="物理引擎"></category></entry><entry><title>搭建揭示板</title><link href="http://blog.game18.net/posts/2016/03/da-jian-jie-shi-ban/" rel="alternate"></link><updated>2016-05-14T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-03-20:posts/2016/03/da-jian-jie-shi-ban/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;近日，神奈同学说需要做一个揭示板。起因是神奈在日本经常各处旅游，途中发现很多日本人开的商店为了吸引中国游客会做一些中文的招牌。由于语言不通，招牌文字只能借助google翻译，翻译质量可想而知。语句不通就罢了，很多时候还会闹笑话甚至造成误解。为了给店家提供帮助，同时也为了方便中国游客，神奈同学决定使用揭示板帮助翻译招牌。&lt;/p&gt;
 &lt;p&gt;我觉得这是一项很有意义的活动，于是接下了搭建揭示板的任务。在这里把搭建过程记录一下。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -176,7 +196,7 @@ iptables -A INPUT -s 210.56.209.98 -j DROP
 &lt;p&gt;总之，希望这个项目能成功运行，并给更多的人提供帮助。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;补充：&lt;/strong&gt; 揭示板上线后，不断遭到发帖机器人的入侵，很是困扰。其实解决方法很简单，提高验证码的难度让机器人无法识别即可。首先确保&lt;code&gt;init.cgi&lt;/code&gt;中&lt;code&gt;$cf{use_captcha} = 2;&lt;/code&gt;设置验证码使用&lt;code&gt;ImageMagick&lt;/code&gt;；然后按照&lt;a href="http://www.kent-web.com/pubc/captcha/"&gt;这里&lt;/a&gt;的说明设置验证码的复杂度，最重要的是&lt;code&gt;scramble =&amp;gt; 1&lt;/code&gt;让数字随机旋转角度，这样就不容易被机器人识别出来了。&lt;/p&gt;
-&lt;p&gt;设置完之后果然世界清净了，但不知为什么感觉很寂寞......&lt;/p&gt;</summary><category term="CentOS"></category><category term="vsftpd"></category><category term="apache"></category><category term="yy-bord"></category></entry><entry><title>关于VR游戏的讨论</title><link href="http://blog.game18.net/posts/2016/03/guan-yu-vryou-xi-de-tao-lun/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-03-08:posts/2016/03/guan-yu-vryou-xi-de-tao-lun/</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;设置完之后果然世界清净了，但不知为什么感觉很寂寞......&lt;/p&gt;</summary><category term="CentOS"></category><category term="vsftpd"></category><category term="apache"></category><category term="yy-bord"></category></entry><entry><title>关于VR游戏的讨论</title><link href="http://blog.game18.net/posts/2016/03/guan-yu-vryou-xi-de-tao-lun/" rel="alternate"></link><updated>2016-05-14T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-03-08:posts/2016/03/guan-yu-vryou-xi-de-tao-lun/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;好久没有更新博客了,从去年12月开始一直在忙业务系统上线的事情.期间写了两三篇跟技术无关的文字,今天想了想还是都删掉了.我决定保持这里的纯洁性,随笔栏目里只记录技术相关的想法,无关的东西可以扔去微博或者twitter.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;前几天跟神奈同学聊天时对VR技术在游戏中的应用问题争论了一番,我俩的意见分歧还是挺大的。后来我在听一个讨论式的播客（IT公论）时想到：不如把这部分内容记录一下，以后再回头看看谁的预测比较准确，应该是一件很有趣的事情。&lt;/p&gt;
@@ -193,7 +213,7 @@ iptables -A INPUT -s 210.56.209.98 -j DROP
 &lt;p&gt;从预定发售的游戏看来，第二种情况居多，基本上都是保留现有的游戏方式，借助VR提供3D视觉效果，那么VR系统就退化成了穿戴式3D显示器。我认为VR更重要的是交互方式的改进，现在的技术还达不到能让用户穿戴上VR设备后随意移动，而且也很难提供视觉以外的其他感觉反馈。仅仅停留在提供3D视觉和音效的程度，只能说离真正的VR还相去甚远。&lt;/p&gt;
 &lt;h2&gt;VR适合的游戏类型&lt;/h2&gt;
 &lt;p&gt;FPS游戏应该是天然适合使用VR技术的游戏，类似地，第一人称动作类的游戏也很适合。RPG游戏除了非常强调自由度的类型外，基本上会希望玩家按照游戏安排进行，有时候视角的控制是必要的，否则玩家错过了重要的线索会导致游戏难以进行。&lt;/p&gt;
-&lt;p&gt;这里引出另外一个问题，相对于在显示器上显示的3D效果，VR设备在视角移动时带来的眩晕值异常高。可能视觉反馈越真实，与其他感觉的冲突就越大。从这方面看来，MineCraft的扩增实境反而是更合理的实现方式。&lt;/p&gt;</summary><category term="游戏感想"></category></entry><entry><title>Cocos2d-x实现流体模拟（初级篇）</title><link href="http://blog.game18.net/posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-11-22:posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;这里引出另外一个问题，相对于在显示器上显示的3D效果，VR设备在视角移动时带来的眩晕值异常高。可能视觉反馈越真实，与其他感觉的冲突就越大。从这方面看来，MineCraft的扩增实境反而是更合理的实现方式。&lt;/p&gt;</summary><category term="游戏感想"></category></entry><entry><title>Cocos2d-x实现流体模拟（初级篇）</title><link href="http://blog.game18.net/posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/" rel="alternate"></link><updated>2016-05-14T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-11-22:posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;前一阵在群里讨论的时候说到使用Cocos2d-x做2D水流，我觉得很有挑战性，于是研究了一阵。实际上流体模拟不仅在游戏开发中应用广泛，而且在工程和科研方面也有重要的意义。今天我们就开始探讨如何使用Cocos2d-x实现流体模拟。&lt;/p&gt;
 &lt;p&gt;这个系列打算分成三个阶段：&lt;/p&gt;
 &lt;ul&gt;
@@ -366,7 +386,7 @@ iptables -A INPUT -s 210.56.209.98 -j DROP
 &lt;p&gt;在中级篇中，将尝试整合Google出品的开源项目&lt;a href="http://google.github.io/liquidfun/"&gt;liquidfun&lt;/a&gt;，以求达到更好的效果。&lt;/p&gt;
 &lt;p&gt;在高级篇中，将探讨流体模拟相关算法SPH(&lt;a href="https://en.wikipedia.org/wiki/Smoothed-particle_hydrodynamics"&gt;Smoothed Particle Hydrodynamics&lt;/a&gt;)，弄明白其原理，尝试代码实现。&lt;a href="http://thecodeway.com/blog/?p=83"&gt;这里&lt;/a&gt;有一篇很好的参考博客。&lt;/p&gt;
 &lt;p&gt;&lt;s&gt;当然，前提是我有时间的话...这些工程量有点大。&lt;/s&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="Liquid Simulation"></category><category term="物理引擎"></category></entry><entry><title>应用自定义Shader实现高斯模糊</title><link href="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-11-12:posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/</id><summary type="html">&lt;blockquote&gt;
+&lt;/blockquote&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="Liquid Simulation"></category><category term="物理引擎"></category></entry><entry><title>应用自定义Shader实现高斯模糊</title><link href="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/" rel="alternate"></link><updated>2016-05-14T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-11-12:posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;是时候研究真正的技术了！深入Cocos2d-x引擎核心，利用Shader实现更炫酷的效果。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;掌握了Cocos2d-x的基本应用之后，是不是已经不能满足于基本的精灵和动画效果了？本篇就向游戏引擎的核心迈进一步，利用自定义Shader实现高斯模糊效果。参考文章：&lt;a href="http://discuss.cocos2d-x.org/t/cocos3-8-tutorial-rendertexture-blur/13622"&gt;RenderTexture + Blur&lt;/a&gt;
@@ -681,7 +701,7 @@ point 8 : 0.003799
 &lt;li&gt;重启&lt;/li&gt;
 &lt;li&gt;在&lt;a href="https://mega.co.nz/#F!8Q10yAiZ!4GVoGr7FJtXauVI3kvPSMQ"&gt;这里&lt;/a&gt;下载GApps,逐个安装&lt;/li&gt;
 &lt;li&gt;Login GooglePlay And Enjoy !&lt;/li&gt;
-&lt;/ol&gt;</summary><category term="Android"></category><category term="FireHDX"></category><category term="ROOT"></category></entry><entry><title>魔塔游戏实现思路</title><link href="http://blog.game18.net/posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-15:posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/</id><summary type="html">&lt;blockquote&gt;
+&lt;/ol&gt;</summary><category term="Android"></category><category term="FireHDX"></category><category term="ROOT"></category></entry><entry><title>魔塔游戏实现思路</title><link href="http://blog.game18.net/posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/" rel="alternate"></link><updated>2016-05-14T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-15:posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;发现一款游戏叫《魔塔》，是一个8bit风格的RPG游戏，主人公出生在一个多层迷宫里，各层迷宫之间通过楼梯相连，每层迷宫中有怪物，门，钥匙，血瓶等，不同颜色的门需要对应颜色的钥匙开启，遇到怪物会开启战斗，最终目标是消灭某一层的boss。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;从功能点上来看与之前实现的RPG游戏Demo重合度很高。先分析记录一下实现思路,如果以后有时间和兴趣的话考虑自己做一下.&lt;/p&gt;
@@ -734,7 +754,7 @@ point 8 : 0.003799
 &lt;li&gt;
 &lt;p&gt;宝箱，npc，以及其他收集道具的处理以及npc触发任务的处理有待细化.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Cocos2d-x"></category><category term="游戏开发"></category></entry><entry><title>Cocos2d-x放大镜效果</title><link href="http://blog.game18.net/posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-14:posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/</id><summary type="html">&lt;p&gt;挖一篇以前写的笔记,如何用Cocos2d-x实现放大镜效果.主要思路是使用图片的一部分创建Sprite,然后setscale,将生成的sprite添加到点击位置.如果原图分辨率不够的话也可以使用另外的大图,截取范围按照两张图的分辨率比值设定.如果对ontouchmoved进行响应,改变截取的位置,生成新的texture,然后使用sprite-&amp;gt;settexture即可实现拖动效果.在ontouchended中销毁sprite即可.基本功能实现非常简单,效果如下:&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="Cocos2d-x"></category><category term="游戏开发"></category></entry><entry><title>Cocos2d-x放大镜效果</title><link href="http://blog.game18.net/posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/" rel="alternate"></link><updated>2016-05-14T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-14:posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/</id><summary type="html">&lt;p&gt;挖一篇以前写的笔记,如何用Cocos2d-x实现放大镜效果.主要思路是使用图片的一部分创建Sprite,然后setscale,将生成的sprite添加到点击位置.如果原图分辨率不够的话也可以使用另外的大图,截取范围按照两张图的分辨率比值设定.如果对ontouchmoved进行响应,改变截取的位置,生成新的texture,然后使用sprite-&amp;gt;settexture即可实现拖动效果.在ontouchended中销毁sprite即可.基本功能实现非常简单,效果如下:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="SquareMagnifyingGlass" src="/imgs/2015/squaremagnifyingglass.png" /&gt;&lt;/p&gt;
 &lt;p&gt;实现起来虽然简单,但是方形的放大框非常不自然.下面我们就在Cocos2d-x中实现圆形外框的放大镜效果.先看代码:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Sprite&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;HelloWorld&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;getMaskedSprite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cocos2d&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Rect&lt;/span&gt; &lt;span class="n"&gt;rect&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
@@ -786,7 +806,7 @@ point 8 : 0.003799
 &lt;p&gt;其实稍作改动,我们还可以实现更有趣的效果.比如:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="screenshot" src="/imgs/2015/funnygirl.gif" /&gt;&lt;/p&gt;
 &lt;p&gt;怎么样,&lt;s&gt;无论从哪个方面来看&lt;/s&gt;效果很不错吧?
-是不是有些小激动呢?（¯﹃¯）嘿嘿嘿嘿....&lt;/p&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="RenderTexture"></category></entry><entry><title>Python抓取网页数据</title><link href="http://blog.game18.net/posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-12:posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/</id><summary type="html">&lt;p&gt;稍微花了点时间学习Python,真是一种好用的语言啊.相对于要求严格的C++,Python非常自由、简单、方便.有时候让我有一种"这么随便会不会出什么问题?"的感觉.基本上稍微看一下文档我就能上手干活了,做了一个抓取网页数据的小工具.感谢&lt;a href="http://cuiqingcai.com/927.html"&gt;静觅的博客&lt;/a&gt;详细讲解了Python爬虫,更棒的是有多个实例供参考.&lt;/p&gt;
+是不是有些小激动呢?（¯﹃¯）嘿嘿嘿嘿....&lt;/p&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="RenderTexture"></category></entry><entry><title>Python抓取网页数据</title><link href="http://blog.game18.net/posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/" rel="alternate"></link><updated>2016-05-14T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-12:posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/</id><summary type="html">&lt;p&gt;稍微花了点时间学习Python,真是一种好用的语言啊.相对于要求严格的C++,Python非常自由、简单、方便.有时候让我有一种"这么随便会不会出什么问题?"的感觉.基本上稍微看一下文档我就能上手干活了,做了一个抓取网页数据的小工具.感谢&lt;a href="http://cuiqingcai.com/927.html"&gt;静觅的博客&lt;/a&gt;详细讲解了Python爬虫,更棒的是有多个实例供参考.&lt;/p&gt;
 &lt;p&gt;因为上面推荐的博客里讲解已经非常细致,我就直接上代码好了.另外关于html的基本概念可以参考&lt;a href="http://www.w3school.com.cn/html/"&gt;这里&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;我们今天要爬的网站是这个:&lt;a href="http://www.suruga-ya.jp/"&gt;駿河屋&lt;/a&gt;,一个日本的电商网站,我们希望能把商品信息抓出来供以后使用.IDE方面,我使用的是Anaconda家的Pycharm,另外还附带一个网页版的界面叫IPython Notebook(Jupyter),可以随写随运行,写比较小的脚本时很方便.那么好,上代码:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib&lt;/span&gt;
@@ -1008,7 +1028,7 @@ read to max pageindex,stop
 &lt;blockquote&gt;
 &lt;p&gt;总结:
 Python爬网页数据真方便!&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="Python"></category><category term="crawl"></category><category term="BeautifulSoup"></category><category term="html"></category></entry><entry><title>更换博客主题</title><link href="http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-10:posts/2015/10/geng-huan-bo-ke-zhu-ti/</id><summary type="html">&lt;p&gt;刚弄好的博客突然间挂掉了.运行&lt;code&gt;make html&lt;/code&gt;的时候所有md文件都报&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="Python"></category><category term="crawl"></category><category term="BeautifulSoup"></category><category term="html"></category></entry><entry><title>更换博客主题</title><link href="http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/" rel="alternate"></link><updated>2016-05-14T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-10:posts/2015/10/geng-huan-bo-ke-zhu-ti/</id><summary type="html">&lt;p&gt;刚弄好的博客突然间挂掉了.运行&lt;code&gt;make html&lt;/code&gt;的时候所有md文件都报&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;OSError: [Errno 2] No such file or directory.
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -1042,7 +1062,7 @@ Python爬网页数据真方便!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;之后有时间继续研究一下这个问题吧.当务之急是让把博客恢复起来.我把官方Git上的所有主题截图都浏览过,喜欢的并不多,有几个虽然看起来很漂亮,但又有点过于文艺范.后来我发现很多博客都在用&lt;a href="https://github.com/DandyDev/pelican-bootstrap3"&gt;pelican-bootstrap3&lt;/a&gt;主题,风格比较简约适合技术博客.&lt;/p&gt;
 &lt;p&gt;按着readme配置了一下,发现这个主题可配置的地方很多,功能比较完善.我最喜欢的是可定制的顶部banner,用了黑猫的图片加上黑白配色,堪称完美.&lt;/p&gt;
-&lt;p&gt;于是Bolg满血复活,测试了几次没发现什么bug,暂且先用这个主题好了.以后研究一下自己学着定制主题吧.&lt;/p&gt;</summary><category term="心情"></category><category term="Pelican"></category><category term="Python"></category></entry><entry><title>利用Pelican和GitHub Pages打造个性化博客(二)</title><link href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-08:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;于是Bolg满血复活,测试了几次没发现什么bug,暂且先用这个主题好了.以后研究一下自己学着定制主题吧.&lt;/p&gt;</summary><category term="心情"></category><category term="Pelican"></category><category term="Python"></category></entry><entry><title>利用Pelican和GitHub Pages打造个性化博客(二)</title><link href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/" rel="alternate"></link><updated>2016-05-14T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-08:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;在上一篇里我们已经完成了Pelican的安装,生成网站并部署到GitHub Pages上.下面我们就继续完善网站的设置.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;1. 更换主题&lt;/h2&gt;
@@ -1265,7 +1285,7 @@ git push origin master
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="Pelican"></category><category term="GitHub"></category><category term="Python"></category><category term="MarkDown"></category></entry><entry><title>利用Pelican和GitHub Pages打造个性化博客(一)</title><link href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-07:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</id><summary type="html">&lt;h2&gt;1. 配置GitHbu Pages&lt;/h2&gt;
+&lt;/script&gt;</summary><category term="Pelican"></category><category term="GitHub"></category><category term="Python"></category><category term="MarkDown"></category></entry><entry><title>利用Pelican和GitHub Pages打造个性化博客(一)</title><link href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/" rel="alternate"></link><updated>2016-05-14T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-07:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</id><summary type="html">&lt;h2&gt;1. 配置GitHbu Pages&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;在GitHub中新建一个repository,命名为username.github.io,其中username是github的用户名,我建的是rocmax.github.io.&lt;/p&gt;
@@ -1370,7 +1390,7 @@ git push origin master    #将本地更改同步到远程仓库的master分支
 &lt;p&gt;到这里就把使用Pelican+GitHub Pages搭建个人博客的基本流程介绍完了.生成的博客应该类似于这样:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="PelicanWeb" src="/imgs/2015/PelicanWeb.png" /&gt;
 呃....好像也很丑的样子,而且也没啥功能.
-下一篇我们继续定制这个博客,让它变得既美观又功能强大.&lt;/p&gt;</summary><category term="Pelican"></category><category term="GitHub"></category><category term="Python"></category><category term="MarkDown"></category></entry><entry><title>祝!新博客开张!</title><link href="http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/" rel="alternate"></link><updated>2016-05-08T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-07:posts/2015/10/zhu-xin-bo-ke-kai-zhang/</id><summary type="html">&lt;blockquote&gt;
+下一篇我们继续定制这个博客,让它变得既美观又功能强大.&lt;/p&gt;</summary><category term="Pelican"></category><category term="GitHub"></category><category term="Python"></category><category term="MarkDown"></category></entry><entry><title>祝!新博客开张!</title><link href="http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/" rel="alternate"></link><updated>2016-05-14T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-07:posts/2015/10/zhu-xin-bo-ke-kai-zhang/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;生命在于折腾!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;不久前刚刚开始使用&lt;a href="http://yellowandblackcats.blogspot.jp/"&gt;Blogger&lt;/a&gt;,为了替换一直使用的印象笔记.用了一段时间发现还是不爽,Blogger对MarkDown的支持并不是太好,也没什么好用的编辑器去配合,而且我费半天劲定制的Blogger界面丑得要死.终于,我下定决心再折腾一遍,搞一个更好用的博客.&lt;/p&gt;
