@@ -1,5 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Roc's Blog</title><link href="http://blog.game18.net/" rel="alternate"></link><link href="http://blog.game18.net/feed/all.atom.xml" rel="self"></link><id>http://blog.game18.net/</id><updated>2016-05-23T00:00:00+08:00</updated><entry><title>霍夫曼编码</title><link href="http://blog.game18.net/posts/2016/05/huo-fu-man-bian-ma/" rel="alternate"></link><updated>2016-05-23T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-05-23:posts/2016/05/huo-fu-man-bian-ma/</id><summary type="html">&lt;p&gt;&lt;strong&gt;霍夫曼编码&lt;/strong&gt;的概念可以参考&lt;a href="https://zh.wikipedia.org/wiki/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81"&gt;wiki&lt;/a&gt;，道理很容易理解。Easier said than done，还是自己敲一遍比较好。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Roc's Blog</title><link href="http://blog.game18.net/" rel="alternate"></link><link href="http://blog.game18.net/feed/all.atom.xml" rel="self"></link><id>http://blog.game18.net/</id><updated>2017-01-26T00:00:00+08:00</updated><entry><title>日语等级考试N2通过！</title><link href="http://blog.game18.net/posts/2017/01/ri-yu-deng-ji-kao-shi-n2tong-guo/" rel="alternate"></link><updated>2017-01-26T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2017-01-26:posts/2017/01/ri-yu-deng-ji-kao-shi-n2tong-guo/</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;前天，我在会议室边被领导虐边改材料，抽空瞟了一眼手机发现早道日语的公众号发了个日语等级考试成绩查询链接。本以为3月份才出成绩的，看来这年还真不一定能好好过了。赶紧点进去一查，哇哈哈哈。。。。。。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;容我晒一波先&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="成绩单" src="/imgs/2017/N2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;第一次参加日语等级考试，原本感觉应该100分左右低空飘过，这个分数真有点出乎预料。从16年9月份决定考N2，到12月4号考试共计3个月时间，能拿到这样的成绩令我十分满意。总结回顾一下这几个月的复习过程，希望对其他准备考试的人有所帮助。&lt;/p&gt;
+&lt;h2&gt;背景&lt;/h2&gt;
+&lt;p&gt;12年下半年开始在日语学校利用周末学习了0-N4的日语培训课程，教材是新版标准日本语初级上下册。初级上册我还算是认真跟着老师学习了，13年初开始教下册的时候日语学校从写字楼搬到居民楼里，教室非常狭窄，同学水平也参差不齐，几个90后的孩子完全就是来玩的，课堂纪律很差。又加上13年我工作出差多，还得准备工程硕士的毕设，下册学的断断续续，很不扎实。当时日语水平也就N5以上，N4未满的程度。&lt;/p&gt;
+&lt;p&gt;我建议刚接触日语的初学者最好报一个辅导班，因为学习一门全新的语言一定要打好基础，班上的老师会发现并纠正学员的发音以及一些错误的学习习惯，看视频教材则缺乏这方面的互动。入门以后就可以按照自己的节奏自学提高，不必再去学习班迁就别人的学习进度。&lt;/p&gt;
+&lt;h2&gt;复习&lt;/h2&gt;
+&lt;p&gt;当前新版日语考试等级分为N1-N5共5个等级，与旧版N1-N3等级的对应关系大概如下：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;旧版&lt;/th&gt;
+&lt;th&gt;新版&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;N1&lt;/td&gt;
+&lt;td&gt;N1（略高于旧版N1）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;N2&lt;/td&gt;
+&lt;td&gt;N2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;N3（新设）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;N3&lt;/td&gt;
+&lt;td&gt;N4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;N4&lt;/td&gt;
+&lt;td&gt;N5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;9月份做了决定，对自己狠一点，直接报考N2。基于当时的日语水平，我安排了三个月的复习计划：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;9月：复习巩固之前学过的知识，把标日上下两册内容过一遍；&lt;/li&gt;
+&lt;li&gt;10月：学习标日中级上下册，同时开始背N2单词；&lt;/li&gt;
+&lt;li&gt;11月：针对性地加强语法，阅读，听力方面的学习，利用往年真题进行训练。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;复初级上下册感觉挺轻松，跟着新东方唐顿老师的视频教学很快地过了一遍。课文不难，语法点也不多，要点是背单词和牢记词形变化。&lt;/p&gt;
+&lt;p&gt;学习课本的同时，背单词也不能放松。这方面我向来苦手，捧着单词书无论如何看不过2页。这里推荐一个APP：沪江开心词场，每天上下班地铁上背一点单词，日积月累成果还不错。&lt;/p&gt;
+&lt;p&gt;十一放假前我上网买了一套&lt;strong&gt;正版&lt;/strong&gt;的《新版中日交流标准日本语(中级)》，重点强调&lt;strong&gt;正版&lt;/strong&gt;是因为它附赠了标准日本语手机APP的激活码。这个APP可以说是把整本书原汁原味地纳入进去，而且还有音频朗读，感觉直接买APP就好了书什么的根本不需要。推荐使用标准日本语教材的同学多花点钱买本正版书，绝对物有所值。&lt;/p&gt;
+&lt;p&gt;这一阶段我跟的是早道日语迷加老师的课程，感觉讲的很好，对于知识点有适度的展开和加强。中级教材的难度较初级上了一个台阶，学习速度就慢了下来。10月过了2/3才学完中级上册，如果继续学习下册的话显然会拖到11月份。我当时对考试还一无所知，心里没底，感觉应该尽早开始有针对性的考前冲刺阶段。于是10月下旬放弃学习中级下册，进入专项复习。&lt;/p&gt;
+&lt;p&gt;专项复习阶段我使用的教材是《新完全掌握日语能力考试(N2级)》，这套教材分为汉字，词汇，语法，听力，阅读5册，其中汉字中国人不需要学。早道日语也有配合这套教材的视频教学，边看边学效率比较高。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;词汇：由于时间关系，这本书我没有学习，词汇一方面靠日常背单词，另一方面在做题时对遇到的生词注意收集。&lt;/li&gt;
+&lt;li&gt;语法：相比于标日课本中散乱的语法点来说，完全掌握这本书对语法点做了分类总结，能让读者快速建构语法体系。日语的语法大多是句型，其中包括含义，接续，特性，例句等知识点。新版日语等级考试中重点考察对含义和用法的掌握，很少专门考察接续。所以如果感觉熟记上百个句型的接续很困难的话，至少要保证知道每个句型的含义，尤其是相似句型之间的用法差异。当然，能记住接续的话更好，这样在做题时能够很快排除错误答案。&lt;/li&gt;
+&lt;li&gt;听力：相比英语听力来说日语等级考试的听力难度要高许多，因为录音&lt;strong&gt;只放一遍&lt;/strong&gt;，更不幸的是有些题连选项都没印在卷子上。要让自己适应这种新的考试方式，就一定要多练习。虽然做听力题时有一些小技巧可以帮助我们快速捕捉到答案，但日语听力最大的诀窍莫过于：&lt;strong&gt;做笔记&lt;/strong&gt;。如果能在听的同时能把内容简要记录下来，自然就能选出正确答案。&lt;/li&gt;
+&lt;li&gt;阅读：阅读是日语水平的集中体现，没有单词和语法知识的支持，很难快速准确地掌握文章含义。所以提高阅读水平除了多读多练以外，也要从基本功的提升做起。在阅读中遇到不懂的地方不要放过，每读完一篇文章就要掌握里面出现的所有单词和句型，这样才能快速全面地提高日语水平。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最后说一下真题，&lt;strong&gt;真题是宝贵的资源&lt;/strong&gt;，一定要珍惜使用。日语等级考试改版后的出题方向变化很大，故改版之前的真题不建议参考。自2010年改版以来，到2016年7月共计13份真题。由于考试规定不能带试卷出考场，所以网上也很难全部找到，我下载到了不到10份。真题千万不要当成一般练习题随手就做，最好抽出专门时间按照考试的要求做题，做完后对照答案判分，然后找网上真题讲解视频认真地再过一遍，对做错的题目重点学习。这样一方面能对自己的水平有所了解，更重要的是把握考试的出题方向和做题节奏。日语等级考试的时间并不宽裕，如果平常习惯慢悠悠的做题，到考场上不能合理分配时间的话就出大问题了。&lt;/p&gt;
+&lt;p&gt;作为一个上班族，利用业余时间学习，三个月也可以搞定N2考试，所以准备参加考试的同学一定要对自己有信心.N2考试及格线小分1/3，总分1/2的要求实在不算高，只要肯努力，通过是很容易的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;插播广告：《新完全掌握日语能力考试(N2级)》全套半价出售，北京有想要的小伙伴可以在评论联系我面交&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;考试&lt;/h2&gt;
+&lt;p&gt;考试这部分打算讲一些注意事项，卷子上的事网上有真题有讲解，这里就不多说。&lt;/p&gt;
+&lt;h3&gt;报名&lt;/h3&gt;
+&lt;p&gt;日语等级考试每年7月和12月各举行1次，报名和考试信息见&lt;a href="https://jlpt.etest.net.cn/index.do"&gt;教育部考试中心网站&lt;/a&gt;。报名时要选择考场，我这次选的是清华大学。不同考场的设施有差异，尤其是播放设备会影响听力的发挥。据说北京最好的考场是外国语大学，在听力教室考有耳麦（未证实），清华就用学校播广播的木头盒子放的，效果一般。而有些考场秩序较差最好别选，比如神奈同学在语言文化大学考试，听说考场很混乱，抄袭作弊情况非常严重，监考老师也不管。清华的考场秩序一般，虽然较安静，但坐前面的小姑娘全程不断转身抄我的卷子，很烦。建议大家还是要认真学习，学校考试你能坐在学霸旁边沾光，社会考试谁知道周围的人是啥水平，450元的考试费不便宜，靠自己才是王道。&lt;/p&gt;
+&lt;h3&gt;考前&lt;/h3&gt;
+&lt;p&gt;考试前10天左右就可以打印准考证了，还是在上面那个网站，建议多打几份以免丢失，另外考完记得保存一份领成绩单用。临近考试的前几天就不要熬夜了，调整作息，放松心情，把做过的真题拿出来翻翻，错题着重看看，语法点梳理一下。我专门请了几天假在家复习，因为晚上看书效率高就经常黑白颠倒，结果考前一晚加上心情紧张果然失眠了，第二天困的要命。。。&lt;/p&gt;
+&lt;p&gt;准备好考试要带的东西：&lt;strong&gt;准考证&lt;/strong&gt;，&lt;strong&gt;身份证&lt;/strong&gt;，&lt;strong&gt;铅笔&lt;/strong&gt;，&lt;strong&gt;橡皮&lt;/strong&gt;共计4种。铅笔买最普通的HB或2B即可，我买了涂机读卡专用的方形扁芯铅笔，结果发下卷子一看，机读卡的空格-是-圆-的。考场上有的妹子准备很充分：纸巾，水杯，零食。。。相信我，你根本没时间用那些东西，放那只会分散注意力，万一遇到严格的监考老师，只要那些东西上有字就能判你作弊。普通手表可以备一块，以防考场上没有挂钟，AppleWatch啥的还是放家里吧。&lt;/p&gt;
+&lt;h3&gt;考试当天&lt;/h3&gt;
+&lt;p&gt;日语等级考试非常人性化地安排在下午1点钟入场，省的起大早了，路程不远的话早上晚点起，吃完饭出发，提早点到考场。再次强调要带的东西：&lt;strong&gt;准考证&lt;/strong&gt;，&lt;strong&gt;身份证&lt;/strong&gt;，&lt;strong&gt;铅笔&lt;/strong&gt;，&lt;strong&gt;橡皮&lt;/strong&gt;共计4种。1点钟核对证件开始入场，考试1点半正式开始。&lt;/p&gt;
+&lt;p&gt;N2考试分为两部分，第一卷为文字，词汇和阅读；第二卷为听力。第一卷考试时间105分钟，题量较大，集中精神以最快速度做题，遇到不会的就先pass，因为最后的信息检索题很简单，如果来不及做就可惜了。做题时顺便涂机读卡，不要等最后涂。我做完大概还剩10分钟，也就检查一下卡涂的对不对，有没有漏的就该交卷了。&lt;/p&gt;
+&lt;p&gt;中场休息虽然有近20分钟，但收完卷子也就剩10分钟左右，赶紧去趟WC，听力考试更是一场硬仗。&lt;/p&gt;
+&lt;p&gt;第二卷听力考试时间50分钟，再强调一次：听力&lt;strong&gt;只放一遍&lt;/strong&gt;，所以放完录音马上就收卷，听的时候千万直接把答案涂在卡上，最后没有涂卡时间的。想象一下前一天晚上因为紧张睡不着觉，本来就很困的我，在一天中最容易犯困的午后做了将近2小时的题，然后还要聚精会神听一个小时的听力，那酸爽。。。&lt;/p&gt;
+&lt;p&gt;所以说日语等级考试不仅是知识水平的检测，更是体力和毅力的试炼。英明的我早就意识到了这个问题，于是提前买了元気ドリンク--力保健。考前1瓶中场休息再来1瓶，虽然没感觉有啥明显变化，怎么也能有点心理暗示作用吧。。。（平日不常喝的小伙伴最好考前先体验一下，有人喝了反应比较大，考场上喝出问题就不好了）&lt;/p&gt;
+&lt;h3&gt;考后&lt;/h3&gt;
+&lt;p&gt;考试前一天正好《君の名は》上映，本来打算考完看电影的，结果考完听力整个人感觉被掏空，只想回家睡觉。&lt;/p&gt;
+&lt;p&gt;查分和领证书的通知都见上面那个网站，早道微信号之类的都是搬运工，在这些渠道查分的同时你的信息也就被他们记下了，所以还是去官网查吧。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;今天是农历腊月29，休息在家码了些字，希望对准备考试的同学能有所帮助。明天中午就要回家过年了，在这里就先祝大家鸡年大吉&lt;s&gt;吧&lt;/s&gt;!&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="心情"></category><category term="日语"></category><category term="N2"></category></entry><entry><title>霍夫曼编码</title><link href="http://blog.game18.net/posts/2016/05/huo-fu-man-bian-ma/" rel="alternate"></link><updated>2017-01-26T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-05-23:posts/2016/05/huo-fu-man-bian-ma/</id><summary type="html">&lt;p&gt;&lt;strong&gt;霍夫曼编码&lt;/strong&gt;的概念可以参考&lt;a href="https://zh.wikipedia.org/wiki/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81"&gt;wiki&lt;/a&gt;，道理很容易理解。Easier said than done，还是自己敲一遍比较好。&lt;/p&gt;
 &lt;h2&gt;1. 分析字符频率&lt;/h2&gt;
 &lt;p&gt;构建霍夫曼树首先需要分析文本中字符的出现频率，出现频率越高的字符编码越短，这样才能最大程度上压缩长度。频率分析的代码很简单：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#分析字符频率&lt;/span&gt;
@@ -139,7 +218,7 @@
 &lt;li&gt;将原树中的节点的父节点改为每种排列中的对应节点的父节点&lt;/li&gt;
 &lt;li&gt;使用新生成的树解码&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;输出所有可能性后人肉应该就能找到需要的结果。（还没有实际测试，之后再补结果吧）&lt;/p&gt;</summary><category term="Huffman"></category><category term="千里码"></category></entry><entry><title>程序员的自我修养</title><link href="http://blog.game18.net/posts/2016/05/cheng-xu-yuan-de-zi-wo-xiu-yang/" rel="alternate"></link><updated>2016-05-23T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-05-13:posts/2016/05/cheng-xu-yuan-de-zi-wo-xiu-yang/</id><summary type="html">&lt;h3&gt;Github与百度爬虫&lt;/h3&gt;
+&lt;p&gt;输出所有可能性后人肉应该就能找到需要的结果。（还没有实际测试，之后再补结果吧）&lt;/p&gt;</summary><category term="Huffman"></category><category term="千里码"></category></entry><entry><title>程序员的自我修养</title><link href="http://blog.game18.net/posts/2016/05/cheng-xu-yuan-de-zi-wo-xiu-yang/" rel="alternate"></link><updated>2017-01-26T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-05-13:posts/2016/05/cheng-xu-yuan-de-zi-wo-xiu-yang/</id><summary type="html">&lt;h3&gt;Github与百度爬虫&lt;/h3&gt;
 &lt;p&gt;自从在GitHub建博客以来，访问量一直少得可怜，而且从Analytics的数据看，来访的大多是国外IP，估计是由于语言不通基本不会停留很久。出现这种情况当然最应该反省的是博客内容质量。但无意中得知由于前一阵的&lt;a href="https://zh.wikipedia.org/wiki/%E5%A4%A7%E7%82%AE_(%E4%B8%AD%E5%9C%8B%E7%B6%B2%E8%B7%AF%E5%AF%A9%E6%9F%A5)#.E5.A6.82.E4.BD.95.E8.AE.A4.E5.AE.9A.E4.B8.8E.E4.B8.AD.E5.9B.BD.E6.94.BF.E5.BA.9C.E6.9C.89.E5.85.B3"&gt;Great Cannon&lt;/a&gt;事件，Github封禁了百度的爬虫。尝试在百度搜索博客的关键词，果然一无所获。国内的现状就是这样，互联网市场无底线的竞争带来逆向淘汰，进而导致平台和渠道被流氓公司控制。虽然我支持Github的做法，但不让百度爬虫爬到的话国内用户基本不可能知道有这个博客。&lt;/p&gt;
 &lt;p&gt;锅甩完，问题还是得解决，学习了一下，现在有两条路可走：&lt;/p&gt;
 &lt;ul&gt;
@@ -159,7 +238,7 @@
 &lt;/ul&gt;
 &lt;blockquote&gt;
 &lt;p&gt;诶？甲铁城有更新？先看完再说吧。。。&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="千里码"></category><category term="Python"></category><category term="Baidu"></category><category term="Github"></category></entry><entry><title>Cocos2d-x实现流体模拟（中级篇）</title><link href="http://blog.game18.net/posts/2016/04/cocos2d-xshi-xian-liu-ti-mo-ni-zhong-ji-pian/" rel="alternate"></link><updated>2016-05-23T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-04-14:posts/2016/04/cocos2d-xshi-xian-liu-ti-mo-ni-zhong-ji-pian/</id><summary type="html">&lt;blockquote&gt;
+&lt;/blockquote&gt;</summary><category term="千里码"></category><category term="Python"></category><category term="Baidu"></category><category term="Github"></category></entry><entry><title>Cocos2d-x实现流体模拟（中级篇）</title><link href="http://blog.game18.net/posts/2016/04/cocos2d-xshi-xian-liu-ti-mo-ni-zhong-ji-pian/" rel="alternate"></link><updated>2017-01-26T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-04-14:posts/2016/04/cocos2d-xshi-xian-liu-ti-mo-ni-zhong-ji-pian/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;继Cocos2d-x实现流体模拟（初级篇）之后，终于有时间完成中级篇，将LiquidFun整合进Cocos2d-x中，实现较好的流体模拟效果。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;a href="http://google.github.io/liquidfun/"&gt;LiquidFun&lt;/a&gt;是Google开发的Box2D扩展库，它在Box2D基础上增加了流体模拟的粒子系统。Google出品自然不会差，首页上就有几个示例，效果看起来非常不错。&lt;/p&gt;
@@ -246,7 +325,7 @@
 &lt;p&gt;最后，在代码中添加了是否显示DebugDraw和Sprite的按钮，完成效果如图：&lt;/p&gt;
 &lt;p&gt;&lt;img alt="finaleffect" src="/imgs/2016/finaleffect.gif" /&gt;&lt;/p&gt;
 &lt;p&gt;效果已经比初级篇中好了很多，但是我发现两个问题，一是使用LiqudiFun依然十分耗资源，上面的例子中帧数已经下降到15左右，这还没有做离屏渲染，不知道真机上跑情况如何。二是水体不稳定，放置一段时间后仍有跳动现象。&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/RocMax/Integrate-LiquidFun-into-Cocos2d-x"&gt;代码参考&lt;/a&gt;&lt;/p&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="Box2D"></category><category term="物理引擎"></category></entry><entry><title>搭建揭示板</title><link href="http://blog.game18.net/posts/2016/03/da-jian-jie-shi-ban/" rel="alternate"></link><updated>2016-05-23T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-03-20:posts/2016/03/da-jian-jie-shi-ban/</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/RocMax/Integrate-LiquidFun-into-Cocos2d-x"&gt;代码参考&lt;/a&gt;&lt;/p&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="Box2D"></category><category term="物理引擎"></category></entry><entry><title>搭建揭示板</title><link href="http://blog.game18.net/posts/2016/03/da-jian-jie-shi-ban/" rel="alternate"></link><updated>2017-01-26T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-03-20:posts/2016/03/da-jian-jie-shi-ban/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;近日，神奈同学说需要做一个揭示板。起因是神奈在日本经常各处旅游，途中发现很多日本人开的商店为了吸引中国游客会做一些中文的招牌。由于语言不通，招牌文字只能借助google翻译，翻译质量可想而知。语句不通就罢了，很多时候还会闹笑话甚至造成误解。为了给店家提供帮助，同时也为了方便中国游客，神奈同学决定使用揭示板帮助翻译招牌。&lt;/p&gt;
 &lt;p&gt;我觉得这是一项很有意义的活动，于是接下了搭建揭示板的任务。在这里把搭建过程记录一下。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -336,7 +415,7 @@ iptables -A INPUT -s 210.56.209.98 -j DROP
 &lt;p&gt;总之，希望这个项目能成功运行，并给更多的人提供帮助。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;补充：&lt;/strong&gt; 揭示板上线后，不断遭到发帖机器人的入侵，很是困扰。其实解决方法很简单，提高验证码的难度让机器人无法识别即可。首先确保&lt;code&gt;init.cgi&lt;/code&gt;中&lt;code&gt;$cf{use_captcha} = 2;&lt;/code&gt;设置验证码使用&lt;code&gt;ImageMagick&lt;/code&gt;；然后按照&lt;a href="http://www.kent-web.com/pubc/captcha/"&gt;这里&lt;/a&gt;的说明设置验证码的复杂度，最重要的是&lt;code&gt;scramble =&amp;gt; 1&lt;/code&gt;让数字随机旋转角度，这样就不容易被机器人识别出来了。&lt;/p&gt;
-&lt;p&gt;设置完之后果然世界清净了，但不知为什么感觉很寂寞......&lt;/p&gt;</summary><category term="CentOS"></category><category term="vsftpd"></category><category term="apache"></category><category term="yy-bord"></category></entry><entry><title>关于VR游戏的讨论</title><link href="http://blog.game18.net/posts/2016/03/guan-yu-vryou-xi-de-tao-lun/" rel="alternate"></link><updated>2016-05-23T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-03-08:posts/2016/03/guan-yu-vryou-xi-de-tao-lun/</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;设置完之后果然世界清净了，但不知为什么感觉很寂寞......&lt;/p&gt;</summary><category term="CentOS"></category><category term="vsftpd"></category><category term="apache"></category><category term="yy-bord"></category></entry><entry><title>关于VR游戏的讨论</title><link href="http://blog.game18.net/posts/2016/03/guan-yu-vryou-xi-de-tao-lun/" rel="alternate"></link><updated>2017-01-26T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2016-03-08:posts/2016/03/guan-yu-vryou-xi-de-tao-lun/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;好久没有更新博客了,从去年12月开始一直在忙业务系统上线的事情.期间写了两三篇跟技术无关的文字,今天想了想还是都删掉了.我决定保持这里的纯洁性,随笔栏目里只记录技术相关的想法,无关的东西可以扔去微博或者twitter.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;前几天跟神奈同学聊天时对VR技术在游戏中的应用问题争论了一番,我俩的意见分歧还是挺大的。后来我在听一个讨论式的播客（IT公论）时想到：不如把这部分内容记录一下，以后再回头看看谁的预测比较准确，应该是一件很有趣的事情。&lt;/p&gt;
@@ -353,7 +432,7 @@ iptables -A INPUT -s 210.56.209.98 -j DROP
 &lt;p&gt;从预定发售的游戏看来，第二种情况居多，基本上都是保留现有的游戏方式，借助VR提供3D视觉效果，那么VR系统就退化成了穿戴式3D显示器。我认为VR更重要的是交互方式的改进，现在的技术还达不到能让用户穿戴上VR设备后随意移动，而且也很难提供视觉以外的其他感觉反馈。仅仅停留在提供3D视觉和音效的程度，只能说离真正的VR还相去甚远。&lt;/p&gt;
 &lt;h2&gt;VR适合的游戏类型&lt;/h2&gt;
 &lt;p&gt;FPS游戏应该是天然适合使用VR技术的游戏，类似地，第一人称动作类的游戏也很适合。RPG游戏除了非常强调自由度的类型外，基本上会希望玩家按照游戏安排进行，有时候视角的控制是必要的，否则玩家错过了重要的线索会导致游戏难以进行。&lt;/p&gt;
-&lt;p&gt;这里引出另外一个问题，相对于在显示器上显示的3D效果，VR设备在视角移动时带来的眩晕值异常高。可能视觉反馈越真实，与其他感觉的冲突就越大。从这方面看来，MineCraft的扩增实境反而是更合理的实现方式。&lt;/p&gt;</summary><category term="游戏感想"></category></entry><entry><title>Cocos2d-x实现流体模拟（初级篇）</title><link href="http://blog.game18.net/posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/" rel="alternate"></link><updated>2016-05-23T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-11-22:posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;这里引出另外一个问题，相对于在显示器上显示的3D效果，VR设备在视角移动时带来的眩晕值异常高。可能视觉反馈越真实，与其他感觉的冲突就越大。从这方面看来，MineCraft的扩增实境反而是更合理的实现方式。&lt;/p&gt;</summary><category term="游戏感想"></category></entry><entry><title>Cocos2d-x实现流体模拟（初级篇）</title><link href="http://blog.game18.net/posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/" rel="alternate"></link><updated>2017-01-26T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-11-22:posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;前一阵在群里讨论的时候说到使用Cocos2d-x做2D水流，我觉得很有挑战性，于是研究了一阵。实际上流体模拟不仅在游戏开发中应用广泛，而且在工程和科研方面也有重要的意义。今天我们就开始探讨如何使用Cocos2d-x实现流体模拟。&lt;/p&gt;
 &lt;p&gt;这个系列打算分成三个阶段：&lt;/p&gt;
 &lt;ul&gt;
@@ -526,7 +605,7 @@ iptables -A INPUT -s 210.56.209.98 -j DROP
 &lt;p&gt;在中级篇中，将尝试整合Google出品的开源项目&lt;a href="http://google.github.io/liquidfun/"&gt;liquidfun&lt;/a&gt;，以求达到更好的效果。&lt;/p&gt;
 &lt;p&gt;在高级篇中，将探讨流体模拟相关算法SPH(&lt;a href="https://en.wikipedia.org/wiki/Smoothed-particle_hydrodynamics"&gt;Smoothed Particle Hydrodynamics&lt;/a&gt;)，弄明白其原理，尝试代码实现。&lt;a href="http://thecodeway.com/blog/?p=83"&gt;这里&lt;/a&gt;有一篇很好的参考博客。&lt;/p&gt;
 &lt;p&gt;&lt;s&gt;当然，前提是我有时间的话...这些工程量有点大。&lt;/s&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="Liquid Simulation"></category><category term="物理引擎"></category></entry><entry><title>应用自定义Shader实现高斯模糊</title><link href="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/" rel="alternate"></link><updated>2016-05-23T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-11-12:posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/</id><summary type="html">&lt;blockquote&gt;
+&lt;/blockquote&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="Liquid Simulation"></category><category term="物理引擎"></category></entry><entry><title>应用自定义Shader实现高斯模糊</title><link href="http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/" rel="alternate"></link><updated>2017-01-26T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-11-12:posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;是时候研究真正的技术了！深入Cocos2d-x引擎核心，利用Shader实现更炫酷的效果。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;掌握了Cocos2d-x的基本应用之后，是不是已经不能满足于基本的精灵和动画效果了？本篇就向游戏引擎的核心迈进一步，利用自定义Shader实现高斯模糊效果。参考文章：&lt;a href="http://discuss.cocos2d-x.org/t/cocos3-8-tutorial-rendertexture-blur/13622"&gt;RenderTexture + Blur&lt;/a&gt;
@@ -841,7 +920,7 @@ point 8 : 0.003799
 &lt;li&gt;重启&lt;/li&gt;
 &lt;li&gt;在&lt;a href="https://mega.co.nz/#F!8Q10yAiZ!4GVoGr7FJtXauVI3kvPSMQ"&gt;这里&lt;/a&gt;下载GApps,逐个安装&lt;/li&gt;
 &lt;li&gt;Login GooglePlay And Enjoy !&lt;/li&gt;
-&lt;/ol&gt;</summary><category term="Android"></category><category term="FireHDX"></category><category term="ROOT"></category></entry><entry><title>魔塔游戏实现思路</title><link href="http://blog.game18.net/posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/" rel="alternate"></link><updated>2016-05-23T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-15:posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/</id><summary type="html">&lt;blockquote&gt;
+&lt;/ol&gt;</summary><category term="Android"></category><category term="FireHDX"></category><category term="ROOT"></category></entry><entry><title>魔塔游戏实现思路</title><link href="http://blog.game18.net/posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/" rel="alternate"></link><updated>2017-01-26T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-15:posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;发现一款游戏叫《魔塔》，是一个8bit风格的RPG游戏，主人公出生在一个多层迷宫里，各层迷宫之间通过楼梯相连，每层迷宫中有怪物，门，钥匙，血瓶等，不同颜色的门需要对应颜色的钥匙开启，遇到怪物会开启战斗，最终目标是消灭某一层的boss。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;从功能点上来看与之前实现的RPG游戏Demo重合度很高。先分析记录一下实现思路,如果以后有时间和兴趣的话考虑自己做一下.&lt;/p&gt;
@@ -894,7 +973,7 @@ point 8 : 0.003799
 &lt;li&gt;
 &lt;p&gt;宝箱，npc，以及其他收集道具的处理以及npc触发任务的处理有待细化.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Cocos2d-x"></category><category term="游戏开发"></category></entry><entry><title>Cocos2d-x放大镜效果</title><link href="http://blog.game18.net/posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/" rel="alternate"></link><updated>2016-05-23T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-14:posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/</id><summary type="html">&lt;p&gt;挖一篇以前写的笔记,如何用Cocos2d-x实现放大镜效果.主要思路是使用图片的一部分创建Sprite,然后setscale,将生成的sprite添加到点击位置.如果原图分辨率不够的话也可以使用另外的大图,截取范围按照两张图的分辨率比值设定.如果对ontouchmoved进行响应,改变截取的位置,生成新的texture,然后使用sprite-&amp;gt;settexture即可实现拖动效果.在ontouchended中销毁sprite即可.基本功能实现非常简单,效果如下:&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="Cocos2d-x"></category><category term="游戏开发"></category></entry><entry><title>Cocos2d-x放大镜效果</title><link href="http://blog.game18.net/posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/" rel="alternate"></link><updated>2017-01-26T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-14:posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/</id><summary type="html">&lt;p&gt;挖一篇以前写的笔记,如何用Cocos2d-x实现放大镜效果.主要思路是使用图片的一部分创建Sprite,然后setscale,将生成的sprite添加到点击位置.如果原图分辨率不够的话也可以使用另外的大图,截取范围按照两张图的分辨率比值设定.如果对ontouchmoved进行响应,改变截取的位置,生成新的texture,然后使用sprite-&amp;gt;settexture即可实现拖动效果.在ontouchended中销毁sprite即可.基本功能实现非常简单,效果如下:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="SquareMagnifyingGlass" src="/imgs/2015/squaremagnifyingglass.png" /&gt;&lt;/p&gt;
 &lt;p&gt;实现起来虽然简单,但是方形的放大框非常不自然.下面我们就在Cocos2d-x中实现圆形外框的放大镜效果.先看代码:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Sprite&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;HelloWorld&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;getMaskedSprite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cocos2d&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Rect&lt;/span&gt; &lt;span class="n"&gt;rect&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
@@ -946,7 +1025,7 @@ point 8 : 0.003799
 &lt;p&gt;其实稍作改动,我们还可以实现更有趣的效果.比如:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="screenshot" src="/imgs/2015/funnygirl.gif" /&gt;&lt;/p&gt;
 &lt;p&gt;怎么样,&lt;s&gt;无论从哪个方面来看&lt;/s&gt;效果很不错吧?
-是不是有些小激动呢?（¯﹃¯）嘿嘿嘿嘿....&lt;/p&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="RenderTexture"></category></entry><entry><title>Python抓取网页数据</title><link href="http://blog.game18.net/posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/" rel="alternate"></link><updated>2016-05-23T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-12:posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/</id><summary type="html">&lt;p&gt;稍微花了点时间学习Python,真是一种好用的语言啊.相对于要求严格的C++,Python非常自由、简单、方便.有时候让我有一种"这么随便会不会出什么问题?"的感觉.基本上稍微看一下文档我就能上手干活了,做了一个抓取网页数据的小工具.感谢&lt;a href="http://cuiqingcai.com/927.html"&gt;静觅的博客&lt;/a&gt;详细讲解了Python爬虫,更棒的是有多个实例供参考.&lt;/p&gt;
+是不是有些小激动呢?（¯﹃¯）嘿嘿嘿嘿....&lt;/p&gt;</summary><category term="Cocos2d-x"></category><category term="C++"></category><category term="RenderTexture"></category></entry><entry><title>Python抓取网页数据</title><link href="http://blog.game18.net/posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/" rel="alternate"></link><updated>2017-01-26T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-12:posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/</id><summary type="html">&lt;p&gt;稍微花了点时间学习Python,真是一种好用的语言啊.相对于要求严格的C++,Python非常自由、简单、方便.有时候让我有一种"这么随便会不会出什么问题?"的感觉.基本上稍微看一下文档我就能上手干活了,做了一个抓取网页数据的小工具.感谢&lt;a href="http://cuiqingcai.com/927.html"&gt;静觅的博客&lt;/a&gt;详细讲解了Python爬虫,更棒的是有多个实例供参考.&lt;/p&gt;
 &lt;p&gt;因为上面推荐的博客里讲解已经非常细致,我就直接上代码好了.另外关于html的基本概念可以参考&lt;a href="http://www.w3school.com.cn/html/"&gt;这里&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;我们今天要爬的网站是这个:&lt;a href="http://www.suruga-ya.jp/"&gt;駿河屋&lt;/a&gt;,一个日本的电商网站,我们希望能把商品信息抓出来供以后使用.IDE方面,我使用的是Anaconda家的Pycharm,另外还附带一个网页版的界面叫IPython Notebook(Jupyter),可以随写随运行,写比较小的脚本时很方便.那么好,上代码:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib&lt;/span&gt;
@@ -1168,7 +1247,7 @@ read to max pageindex,stop
 &lt;blockquote&gt;
 &lt;p&gt;总结:
 Python爬网页数据真方便!&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="Python"></category><category term="crawl"></category><category term="BeautifulSoup"></category><category term="html"></category></entry><entry><title>更换博客主题</title><link href="http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/" rel="alternate"></link><updated>2016-05-23T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-10:posts/2015/10/geng-huan-bo-ke-zhu-ti/</id><summary type="html">&lt;p&gt;刚弄好的博客突然间挂掉了.运行&lt;code&gt;make html&lt;/code&gt;的时候所有md文件都报&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="Python"></category><category term="crawl"></category><category term="BeautifulSoup"></category><category term="html"></category></entry><entry><title>更换博客主题</title><link href="http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/" rel="alternate"></link><updated>2017-01-26T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-10:posts/2015/10/geng-huan-bo-ke-zhu-ti/</id><summary type="html">&lt;p&gt;刚弄好的博客突然间挂掉了.运行&lt;code&gt;make html&lt;/code&gt;的时候所有md文件都报&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;OSError: [Errno 2] No such file or directory.
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -1202,7 +1281,7 @@ Python爬网页数据真方便!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;之后有时间继续研究一下这个问题吧.当务之急是让把博客恢复起来.我把官方Git上的所有主题截图都浏览过,喜欢的并不多,有几个虽然看起来很漂亮,但又有点过于文艺范.后来我发现很多博客都在用&lt;a href="https://github.com/DandyDev/pelican-bootstrap3"&gt;pelican-bootstrap3&lt;/a&gt;主题,风格比较简约适合技术博客.&lt;/p&gt;
 &lt;p&gt;按着readme配置了一下,发现这个主题可配置的地方很多,功能比较完善.我最喜欢的是可定制的顶部banner,用了黑猫的图片加上黑白配色,堪称完美.&lt;/p&gt;
-&lt;p&gt;于是Bolg满血复活,测试了几次没发现什么bug,暂且先用这个主题好了.以后研究一下自己学着定制主题吧.&lt;/p&gt;</summary><category term="心情"></category><category term="Pelican"></category><category term="Python"></category></entry><entry><title>利用Pelican和GitHub Pages打造个性化博客(二)</title><link href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/" rel="alternate"></link><updated>2016-05-23T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-08:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;于是Bolg满血复活,测试了几次没发现什么bug,暂且先用这个主题好了.以后研究一下自己学着定制主题吧.&lt;/p&gt;</summary><category term="心情"></category><category term="Pelican"></category><category term="Python"></category></entry><entry><title>利用Pelican和GitHub Pages打造个性化博客(二)</title><link href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/" rel="alternate"></link><updated>2017-01-26T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-08:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;在上一篇里我们已经完成了Pelican的安装,生成网站并部署到GitHub Pages上.下面我们就继续完善网站的设置.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;1. 更换主题&lt;/h2&gt;
@@ -1425,7 +1504,7 @@ git push origin master
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="Pelican"></category><category term="GitHub"></category><category term="Python"></category><category term="MarkDown"></category></entry><entry><title>利用Pelican和GitHub Pages打造个性化博客(一)</title><link href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/" rel="alternate"></link><updated>2016-05-23T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-07:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</id><summary type="html">&lt;h2&gt;1. 配置GitHbu Pages&lt;/h2&gt;
+&lt;/script&gt;</summary><category term="Pelican"></category><category term="GitHub"></category><category term="Python"></category><category term="MarkDown"></category></entry><entry><title>利用Pelican和GitHub Pages打造个性化博客(一)</title><link href="http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/" rel="alternate"></link><updated>2017-01-26T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-07:posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</id><summary type="html">&lt;h2&gt;1. 配置GitHbu Pages&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;在GitHub中新建一个repository,命名为username.github.io,其中username是github的用户名,我建的是rocmax.github.io.&lt;/p&gt;
@@ -1530,7 +1609,7 @@ git push origin master    #将本地更改同步到远程仓库的master分支
 &lt;p&gt;到这里就把使用Pelican+GitHub Pages搭建个人博客的基本流程介绍完了.生成的博客应该类似于这样:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="PelicanWeb" src="/imgs/2015/PelicanWeb.png" /&gt;
 呃....好像也很丑的样子,而且也没啥功能.
-下一篇我们继续定制这个博客,让它变得既美观又功能强大.&lt;/p&gt;</summary><category term="Pelican"></category><category term="GitHub"></category><category term="Python"></category><category term="MarkDown"></category></entry><entry><title>祝!新博客开张!</title><link href="http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/" rel="alternate"></link><updated>2016-05-23T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-07:posts/2015/10/zhu-xin-bo-ke-kai-zhang/</id><summary type="html">&lt;blockquote&gt;
+下一篇我们继续定制这个博客,让它变得既美观又功能强大.&lt;/p&gt;</summary><category term="Pelican"></category><category term="GitHub"></category><category term="Python"></category><category term="MarkDown"></category></entry><entry><title>祝!新博客开张!</title><link href="http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/" rel="alternate"></link><updated>2017-01-26T00:00:00+08:00</updated><author><name>Roc</name></author><id>tag:blog.game18.net,2015-10-07:posts/2015/10/zhu-xin-bo-ke-kai-zhang/</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;生命在于折腾!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;不久前刚刚开始使用&lt;a href="http://yellowandblackcats.blogspot.jp/"&gt;Blogger&lt;/a&gt;,为了替换一直使用的印象笔记.用了一段时间发现还是不爽,Blogger对MarkDown的支持并不是太好,也没什么好用的编辑器去配合,而且我费半天劲定制的Blogger界面丑得要死.终于,我下定决心再折腾一遍,搞一个更好用的博客.&lt;/p&gt;

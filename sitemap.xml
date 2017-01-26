@@ -5,77 +5,84 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.game18.net/</loc>
-<lastmod>2016-05-23T15:58:01-00:00</lastmod>
+<lastmod>2017-01-26T21:37:01-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/archives.html</loc>
-<lastmod>2016-05-23T15:58:01-00:00</lastmod>
+<lastmod>2017-01-26T21:37:01-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tags.html</loc>
-<lastmod>2016-05-23T15:58:01-00:00</lastmod>
+<lastmod>2017-01-26T21:37:01-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/categories.html</loc>
-<lastmod>2016-05-23T15:58:01-00:00</lastmod>
+<lastmod>2017-01-26T21:37:01-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
+<loc>http://blog.game18.net/posts/2017/01/ri-yu-deng-ji-kao-shi-n2tong-guo/</loc>
+<lastmod>2017-01-26T00:00:00+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+
+<url>
 <loc>http://blog.game18.net/posts/2016/05/huo-fu-man-bian-ma/</loc>
-<lastmod>2016-05-23T00:00:00+08:00</lastmod>
+<lastmod>2017-01-26T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2016/05/cheng-xu-yuan-de-zi-wo-xiu-yang/</loc>
-<lastmod>2016-05-23T00:00:00+08:00</lastmod>
+<lastmod>2017-01-26T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2016/04/cocos2d-xshi-xian-liu-ti-mo-ni-zhong-ji-pian/</loc>
-<lastmod>2016-05-23T00:00:00+08:00</lastmod>
+<lastmod>2017-01-26T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2016/03/da-jian-jie-shi-ban/</loc>
-<lastmod>2016-05-23T00:00:00+08:00</lastmod>
+<lastmod>2017-01-26T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2016/03/guan-yu-vryou-xi-de-tao-lun/</loc>
-<lastmod>2016-05-23T00:00:00+08:00</lastmod>
+<lastmod>2017-01-26T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2015/11/cocos2d-xshi-xian-liu-ti-mo-ni-chu-ji-pian/</loc>
-<lastmod>2016-05-23T00:00:00+08:00</lastmod>
+<lastmod>2017-01-26T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2015/11/ying-yong-zi-ding-yi-shadershi-xian-gao-si-mo-hu/</loc>
-<lastmod>2016-05-23T00:00:00+08:00</lastmod>
+<lastmod>2017-01-26T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
@@ -96,154 +103,154 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.game18.net/posts/2015/10/mo-ta-you-xi-shi-xian-si-lu/</loc>
-<lastmod>2016-05-23T00:00:00+08:00</lastmod>
+<lastmod>2017-01-26T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2015/10/cocos2d-xfang-da-jing-xiao-guo/</loc>
-<lastmod>2016-05-23T00:00:00+08:00</lastmod>
+<lastmod>2017-01-26T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2015/10/pythonzhua-qu-wang-ye-shu-ju/</loc>
-<lastmod>2016-05-23T00:00:00+08:00</lastmod>
+<lastmod>2017-01-26T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2015/10/geng-huan-bo-ke-zhu-ti/</loc>
-<lastmod>2016-05-23T00:00:00+08:00</lastmod>
+<lastmod>2017-01-26T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-er/</loc>
-<lastmod>2016-05-23T00:00:00+08:00</lastmod>
+<lastmod>2017-01-26T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2015/10/li-yong-pelicanhe-github-pagesda-zao-ge-xing-hua-bo-ke-yi/</loc>
-<lastmod>2016-05-23T00:00:00+08:00</lastmod>
+<lastmod>2017-01-26T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/posts/2015/10/zhu-xin-bo-ke-kai-zhang/</loc>
-<lastmod>2016-05-23T00:00:00+08:00</lastmod>
+<lastmod>2017-01-26T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/category/cocos2d-x</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/category/python</loc>
-<lastmod>2016-05-23T14:19:57+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/category/sui-bi</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T11:42:52+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/category/wang-ye-ji-zhu</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/gaussian-blur/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/pelican/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/markdown/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/centos/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/you-xi-kai-fa/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/xin-qing/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T11:42:52+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/vsftpd/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/yy-bord/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/huffman/</loc>
-<lastmod>2016-05-23T14:19:57+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/rendertexture/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/qian-li-ma/</loc>
-<lastmod>2016-05-23T14:19:57+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -256,22 +263,29 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://blog.game18.net/tag/ri-yu/</loc>
+<lastmod>2017-01-26T11:42:52+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://blog.game18.net/tag/beautifulsoup/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/box2d/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/html/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -292,21 +306,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.game18.net/tag/baidu/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/python/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/wu-li-yin-qing/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -320,56 +334,63 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.game18.net/tag/apache/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/crawl/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/liquid-simulation/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/you-xi-gan-xiang/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/c/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/github/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/cocos2d-x/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.game18.net/tag/shader/</loc>
-<lastmod>2016-05-23T00:00:00+08:06</lastmod>
+<lastmod>2017-01-26T00:00:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://blog.game18.net/tag/n2/</loc>
+<lastmod>2017-01-26T11:42:52+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -383,7 +404,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.game18.net/author/roc.html</loc>
-<lastmod>2016-05-23T14:19:57+08:06</lastmod>
+<lastmod>2017-01-26T11:42:52+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
