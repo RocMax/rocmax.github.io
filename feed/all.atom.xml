@@ -1499,7 +1499,7 @@ git push origin master
 &lt;ul&gt;
 &lt;li&gt;我的系统环境:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;table&gt;
+&lt;table class="table"&gt;
 &lt;tr&gt;&lt;th&gt;OSX&lt;/th&gt;&lt;th&gt;Python&lt;/th&gt;&lt;th&gt;Git&lt;/th&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;th&gt;10.11&lt;/th&gt;&lt;th&gt;2.7.10&lt;/th&gt;&lt;th&gt;2.3.8&lt;/th&gt;&lt;/tr&gt;
 &lt;/table&gt;
